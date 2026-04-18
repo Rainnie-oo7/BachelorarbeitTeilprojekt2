@@ -1,0 +1,20 @@
+scripts/
+.idea/
+__pycache__/
+*.pyc
+
+data/
+cnn/dataset/
+cnn/infer_data/
+alte/
+aelter/
+aelteraelter/
+
+cnn/convu_try_1.pth
+cnn/convu_try_2_big.pth
+cnn/Unbekanntes_bild.dcm
+cnn/*.pt
+cnn/*.pth
+
+SShDWI usw.txt
+*.log

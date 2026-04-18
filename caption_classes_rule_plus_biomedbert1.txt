@@ -1,0 +1,20 @@
+ROCO_00002	Computed tomography scan in axial view showing obliteration of the left maxillary sinus	CT	CT	rule
+ROCO_00003	Bacterial contamination occurred after completion of root canal treatment in the tooth, which remained with a temporary filling for 15 month.	None	KombiModalitaet(CT,PET)	bert_fallback
+ROCO_00004	The patient had residual paralysis of the hand after poliomyelitis. It was necessary to stabilize the thumb with reference to the index finger. This was accomplished by placing a graft from the bone bank between the first and second metacarpals. The roentgenogram shows the complete healing of the graft one year later.	X-ray	X-ray	rule
+ROCO_00005	Panoramic radiograph after immediate loading.	X-ray	X-ray	rule
+ROCO_00007	Plain abdomen x-ray: Multiple air levels at the mid-abdomen (arrows), no radiopaque shadow, and no air under the diaphragm.	X-ray	X-ray	rule
+ROCO_00008	A 3-year-old child with visual difficulties. Axial FLAIR image show a supra-sellar lesion extending to the temporal lobes along the optic tracts (arrows) with moderate mass effect, compatible with optic glioma. FLAIR hyperintensity is also noted in the left mesencephalon from additional tumoral involvement	MRI	MRI	rule
+ROCO_00009	Showing the subtrochanteric fracture in the porotic bone.	None	X-ray	bert_fallback
+ROCO_00010	Post orthodontic treatment. Root canal therapy done with maxillary incisors	None	X-ray	bert_fallback
+ROCO_00011	Two sequential thrombi in the distal segment of the obtuse marginal 2 (OM2).	None	Angioplastie	bert_fallback
+ROCO_00012	An example of MRI image that takes advantage of joint effusion as contrast material in acute scenario. 57x46mm (150 x 150 DPI).	MRI	MRI	rule
+ROCO_00013	Child with abduction and flexion of right lower extremity and hyperextension of the tibia on the femur, associated with dislocation of the left hip, probably the result of the dangerous position of adduction in production of pathological dislocation. A roentgenogram of the mother’s pelvis, one week before delivery, showed this same deformity in utero.	X-ray	X-ray	rule
+ROCO_00014	Axial T2 HASTE MR image shows loss of normal trilaminar myometrial architecture and mild focal thinning of placenta at the site of compression of myometrium in front of aorta (black arrow), just proximal to the bifurcation. Normal trilaminar signal pattern of myometrium can be seen at other regions (white arrows)	MRI	MRI	rule
+ROCO_00015	Hydronephrosis appearance in sonography.	Ultraschall	Ultraschall	rule
+ROCO_00017	Coronary angiogram demonstrating occluded OM1 and OM2 arteries.	Angioplastie	Angioplastie	rule
+ROCO_00018	Cardiac catheterization showing normal coronaries and a tumor blush.	None	Angioplastie	bert_fallback
+ROCO_00019	Follow-up coronary angiography and fluoroscopy showed a gap in the stent strut. A-D: a gap in the stent strut.	Fluoroskopie+Xray	Fluoroskopie+Xray	rule
+ROCO_00021	Right-sided metatarsal in dorsoplantar projection.Cow. Age group IV—cattle 4–8 years. (a) Narrow symphysis that is (b) indistinct from the bone surface.	X-ray	X-ray	rule
+ROCO_00022	Fourth patient’s MRI	MRI	MRI	rule
+ROCO_00023	Orthopantomograph	None	X-ray	bert_fallback
+ROCO_00024	Focal steatosis of the liver parenchyma	None	KombiModalitaet(CT,PET)	bert_fallback

@@ -1,0 +1,46 @@
+Aufrufbeispiele
+python roco_pipeline.py \
+  --parquet-file /home/b/PycharmProjects/ba2roco/roco_local_parquet/data/train-00000-of-00027.parquet \
+  --num-rows 200 \
+  --pooling cls \
+  --text-threshold 0.30 \
+  --show-scores
+
+alte
+python roco_pipeline.py \
+  --input_dir /home/b/PycharmProjects/ba2roco/roco_local_parquet/data \
+  --output_dir /home/b/PycharmProjects/ba2roco/roco_pipeline_output \
+  --batch_size 32
+
+Aelter skript:
+Nur herunterladen, klassifizieren, Parquet schreiben:
+
+python roco_pipeline.py \
+  --hf-token hf_xxx \
+  --download-dir ./roco_local_parquet \
+  --output-dir ./roco_outputs \
+  --device cuda
+
+Mit Bildexport:
+
+python roco_pipeline.py \
+  --hf-token hf_xxx \
+  --download-dir ./roco_local_parquet \
+  --output-dir ./roco_outputs \
+  --device cuda \
+  --export-images
+
+Mit Heuristik-Fallback:
+
+python roco_pipeline.py \
+  --hf-token hf_xxx \
+  --download-dir ./roco_local_parquet \
+  --output-dir ./roco_outputs \
+  --device cuda \
+  --use-heuristics
+
+Nur Train-Split:
+
+python roco_pipeline.py \
+  --hf-token hf_xxx \
+  --splits train
