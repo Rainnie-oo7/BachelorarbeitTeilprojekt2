@@ -1,0 +1,135 @@
+Anzahl der Dateien: 604294
+Klassen: ['xray', 'xray_fluoroskopie_angiographie', 'us', 'mrt_hirn_flair', 'mrt_hirn_t1', 'mrt_hirn_t2', 'mrt_hirn_t1_c', 'mrt_prostata_t1', 'mrt_prostata_t2', 'ct', 'ct_kombimodalitaet_spect+ct_pet+ct']
+class_to_idx: {'xray': 0, 'xray_fluoroskopie_angiographie': 1, 'us': 2, 'mrt_hirn_flair': 3, 'mrt_hirn_t1': 4, 'mrt_hirn_t2': 5, 'mrt_hirn_t1_c': 6, 'mrt_prostata_t1': 7, 'mrt_prostata_t2': 8, 'ct': 9, 'ct_kombimodalitaet_spect+ct_pet+ct': 10}
+
+Anzahl pro Klasse im Gesamtdatensatz:
+xray: 54415
+xray_fluoroskopie_angiographie: 3000
+us: 23804
+mrt_hirn_flair: 22
+mrt_hirn_t1: 1429
+mrt_hirn_t2: 1385
+mrt_hirn_t1_c: 1692
+mrt_prostata_t1: 10
+mrt_prostata_t2: 1656
+ct: 98158
+ct_kombimodalitaet_spect+ct_pet+ct: 418723
+
+Sanity Check erstes Sample:
+shape=torch.Size([3, 224, 224]), dtype=torch.float32, min=-1.0000, max=24135.1562, label=10
+
+Class Weights:
+xray: 1.0048
+xray_fluoroskopie_angiographie: 4.2792
+us: 1.5192
+mrt_hirn_flair: 49.9708
+mrt_hirn_t1: 6.2003
+mrt_hirn_t2: 6.2980
+mrt_hirn_t1_c: 5.6981
+mrt_prostata_t1: 50.0000
+mrt_prostata_t2: 5.7597
+ct: 0.7481
+ct_kombimodalitaet_spect+ct_pet+ct: 0.3622
+
+Train-Verteilung:
+xray: 42903
+xray_fluoroskopie_angiographie: 2348
+us: 18747
+mrt_hirn_flair: 15
+mrt_hirn_t1: 1126
+mrt_hirn_t2: 1096
+mrt_hirn_t1_c: 1339
+mrt_prostata_t1: 6
+mrt_prostata_t2: 1325
+ct: 77617
+ct_kombimodalitaet_spect+ct_pet+ct: 330870
+
+Val-Verteilung:
+xray: 5768
+xray_fluoroskopie_angiographie: 313
+us: 2490
+mrt_hirn_flair: 4
+mrt_hirn_t1: 154
+mrt_hirn_t2: 139
+mrt_hirn_t1_c: 178
+mrt_prostata_t1: 3
+mrt_prostata_t2: 169
+ct: 10314
+ct_kombimodalitaet_spect+ct_pet+ct: 43918
+
+Test-Verteilung:
+xray: 5744
+xray_fluoroskopie_angiographie: 339
+us: 2567
+mrt_hirn_flair: 3
+mrt_hirn_t1: 149
+mrt_hirn_t2: 150
+mrt_hirn_t1_c: 175
+mrt_prostata_t1: 1
+mrt_prostata_t2: 162
+ct: 10227
+ct_kombimodalitaet_spect+ct_pet+ct: 43935
+
+
+
+Epoch 1/1 [Train]: 100%|██████████| 14919/14919 [7:14:12<00:00,  1.75s/it, loss=0.2137]
+Evaluation:   0%|          | 0/1983 [00:00<?, ?it/s]
+Epoch 1/1
+Train Loss: 0.3177
+Val Loss: 0.1561
+Val Accuracy: 96.71%
+Val Balanced Accuracy: 70.79%
+Val Macro F1: 0.6772
+Val Weighted F1: 0.9676
+
+Modell gespeichert als convu_try_3t.pth
+
+================ TESTERGEBNISSE ================
+Loss: 0.1453
+Accuracy: 96.77%
+Balanced Accuracy: 67.67%
+Macro Precision: 0.6181
+Macro Recall: 0.6767
+Macro F1: 0.6329
+Weighted Precision: 0.9708
+Weighted Recall: 0.9677
+Weighted F1: 0.9681
+
+Pro Klasse:
+xray: n=5744, acc=96.47%, precision=0.9934, recall=0.9647, f1=0.9788
+xray_fluoroskopie_angiographie: n=339, acc=93.22%, precision=0.8564, recall=0.9322, f1=0.8927
+us: n=2567, acc=99.92%, precision=0.9304, recall=0.9992, f1=0.9636
+mrt_hirn_flair: n=3, acc=0.00%, precision=0.0000, recall=0.0000, f1=0.0000
+mrt_hirn_t1: n=149, acc=44.97%, precision=0.4351, recall=0.4497, f1=0.4422
+mrt_hirn_t2: n=150, acc=96.00%, precision=0.4706, recall=0.9600, f1=0.6316
+mrt_hirn_t1_c: n=175, acc=18.29%, precision=0.4507, recall=0.1829, f1=0.2602
+mrt_prostata_t1: n=1, acc=0.00%, precision=0.0000, recall=0.0000, f1=0.0000
+mrt_prostata_t2: n=162, acc=100.00%, precision=0.7826, recall=1.0000, f1=0.8780
+ct: n=10227, acc=98.83%, precision=0.8822, recall=0.9883, f1=0.9323
+ct_kombimodalitaet_spect+ct_pet+ct: n=43935, acc=96.67%, precision=0.9981, recall=0.9667, f1=0.9821
+
+Confusion Matrix:
+tensor([[ 5541,    53,    96,     0,    13,     2,    14,     0,    19,     5,
+             1],
+        [   15,   316,     0,     0,     0,     0,     0,     0,     8,     0,
+             0],
+        [    0,     0,  2565,     0,     0,     2,     0,     0,     0,     0,
+             0],
+        [    0,     0,     0,     0,     0,     2,     0,     0,     0,     0,
+             1],
+        [    0,     0,     0,     1,    67,    66,    15,     0,     0,     0,
+             0],
+        [    0,     0,     1,     0,     0,   144,     2,     0,     0,     0,
+             3],
+        [    0,     0,     1,     0,    67,    74,    32,     0,     0,     0,
+             1],
+        [    0,     0,     0,     0,     1,     0,     0,     0,     0,     0,
+             0],
+        [    0,     0,     0,     0,     0,     0,     0,     0,   162,     0,
+             0],
+        [   14,     0,     3,     0,     6,    14,     5,     0,     2, 10107,
+            76],
+        [    8,     0,    91,     0,     0,     2,     3,     0,    16,  1344,
+         42471]])
+
+Process finished with exit code 0

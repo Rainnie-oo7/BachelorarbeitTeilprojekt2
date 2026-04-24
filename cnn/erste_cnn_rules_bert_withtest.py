@@ -357,9 +357,6 @@ def evaluate_model(model, loader, criterion, device, class_names):
     total = 0
     correct = 0
 
-    all_labels = []
-    all_preds = []
-
     num_classes = len(class_names)
     confusion = torch.zeros(num_classes, num_classes, dtype=torch.int64)
 
@@ -381,9 +378,6 @@ def evaluate_model(model, loader, criterion, device, class_names):
 
             labels_cpu = labels.cpu()
             preds_cpu = preds.cpu()
-
-            all_labels.extend(labels_cpu.tolist())
-            all_preds.extend(preds_cpu.tolist())
 
             for t, p in zip(labels_cpu.tolist(), preds_cpu.tolist()):
                 confusion[t, p] += 1
@@ -414,7 +408,7 @@ def evaluate_model(model, loader, criterion, device, class_names):
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
         f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
-        class_acc = recall  # bei Single-Label-Klassifikation identisch mit Trefferquote der Klasse
+        class_acc = recall
 
         per_class_metrics.append({
             "class_name": class_names[c],
@@ -487,6 +481,38 @@ def print_metrics(title, metrics):
     print(metrics["confusion_matrix"])
 
 
+def compute_class_weights_from_counts(class_counts_dict, class_names, use_sqrt=True, max_weight=50.0):
+    """
+    Berechnet Class Weights auf Basis der Klassenhaeufigkeiten.
+
+    Formel:
+        weight_c = N / (K * n_c)
+
+    Optional:
+    - sqrt, damit extreme Gewichte abgeflacht werden
+    - clamp, damit sehr kleine Klassen nicht alles dominieren
+    """
+    counts = torch.tensor(
+        [class_counts_dict[name] for name in class_names],
+        dtype=torch.float32
+    )
+
+    counts[counts == 0] = 1.0
+
+    total_samples = counts.sum()
+    num_classes = len(class_names)
+
+    weights = total_samples / (num_classes * counts)
+
+    if use_sqrt:
+        weights = torch.sqrt(weights)
+
+    if max_weight is not None:
+        weights = torch.clamp(weights, max=max_weight)
+
+    return weights
+
+
 # ============================================================
 # Hauptteil
 # ============================================================
@@ -494,7 +520,7 @@ def print_metrics(title, metrics):
 if __name__ == "__main__":
     root_dir = "dataset"
     batch_size = 32
-    num_epochs = 2
+    num_epochs = 1
     seed = 42
 
     transform = transforms.Compose([
@@ -520,7 +546,6 @@ if __name__ == "__main__":
     if len(dataset) == 0:
         raise RuntimeError("Keine gueltigen .pt-Dateien gefunden.")
 
-    # Kurzer Sanity Check
     sample_img, sample_label = dataset[0]
     print("\nSanity Check erstes Sample:")
     print(
@@ -531,10 +556,25 @@ if __name__ == "__main__":
         f"label={sample_label}"
     )
 
-    # Split: 70 / 15 / 15
+    # ============================================================
+    # Class Weights
+    # ============================================================
+
+    class_weights = compute_class_weights_from_counts(
+        class_counts_dict=class_counts,
+        class_names=dataset.classes,
+        use_sqrt=True,
+        max_weight=50.0
+    )
+
+    print("\nClass Weights:")
+    for cls_name, weight in zip(dataset.classes, class_weights.tolist()):
+        print(f"{cls_name}: {weight:.4f}")
+
+    # Split: 79 / 10.5 / 10.5
     total_size = len(dataset)
-    train_size = int(0.7 * total_size)
-    val_size = int(0.15 * total_size)
+    train_size = int(0.79 * total_size)
+    val_size = int(0.105 * total_size)
     test_size = total_size - train_size - val_size
 
     generator = torch.Generator().manual_seed(seed)
@@ -544,7 +584,6 @@ if __name__ == "__main__":
         generator=generator
     )
 
-    # Split-Verteilungen ausgeben
     train_counts = count_subset_classes(train_dataset, dataset.classes)
     val_counts = count_subset_classes(val_dataset, dataset.classes)
     test_counts = count_subset_classes(test_dataset, dataset.classes)
@@ -572,17 +611,15 @@ if __name__ == "__main__":
         num_workers=4
     )
 
-    # Modell
     num_classes = len(dataset.classes)
     model = SimpleCNN(num_classes=num_classes)
-
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     device = torch.device("cpu")
     model.to(device)
 
-    # Training
+    criterion = nn.CrossEntropyLoss(weight=class_weights.to(device))
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+
     for epoch in range(num_epochs):
         model.train()
         running_loss = 0.0
@@ -614,10 +651,8 @@ if __name__ == "__main__":
         print(f"Val Macro F1: {val_metrics['macro_f1']:.4f}")
         print(f"Val Weighted F1: {val_metrics['weighted_f1']:.4f}")
 
-    # Modell speichern
-    torch.save(model.state_dict(), "convu_try_3eh.pth")
-    print("\nModell gespeichert als convu_try_3eh.pth")
+    torch.save(model.state_dict(), "convu_try_3t.pth")
+    print("\nModell gespeichert als convu_try_3t.pth")
 
-    # Finale Testevaluation
     test_metrics = evaluate_model(model, test_loader, criterion, device, dataset.classes)
     print_metrics("TESTERGEBNISSE", test_metrics)

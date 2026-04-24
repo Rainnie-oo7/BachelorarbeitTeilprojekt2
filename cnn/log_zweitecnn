@@ -1,0 +1,94 @@
+/home/b/anaconda3/envs/ba2roco/bin/python /home/b/PycharmProjects/ba2roco/cnn/zweite_cnn.py
+Error processing line 1 of /home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "/home/b/anaconda3/envs/ba2roco/lib/python3.10/site.py", line 195, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+
+================ DATASET CHECK ================
+Root: /home/b/PycharmProjects/ba2roco/cnn/dataset
+Anzahl Samples: 430767
+Klassen: ['xray', 'xray_fluoroskopie_angiographie', 'mrt_hirn', 'mrt_body']
+class_to_idx: {'xray': 0, 'xray_fluoroskopie_angiographie': 1, 'mrt_hirn': 2, 'mrt_body': 3}
+
+Anzahl pro Klasse:
+xray: 54419
+xray_fluoroskopie_angiographie: 6433
+mrt_hirn: 337909
+mrt_body: 32006
+
+Anzahl pro Quelle:
+automatedcardiacdiagnosischallenge_miccai17: 1200
+breast-mri-nact-pilot: 26678
+kneemridataset: 736
+prostate_mri: 3332
+spine mri dataset: 60
+unknown: 398761
+
+Uebersprungene Dateien:
+unsupported: 2216
+mask_or_gt: 678
+unknown_label: 0
+ignored_dicom_spine: 60
+ignored_acdc_4d: 150
+
+Erste 10 Samples:
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/2-AP Caudal/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/2-AP Caudal/Image 1.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/2-AP Caudal/Image 2.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/0-RAO Straight/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/0-RAO Straight/Image 1.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/0-RAO Straight/Image 2.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/3-LAO Straight/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/3-LAO Straight/Image 1.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/3-LAO Straight/Image 2.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/1-AP Cranial/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 1, 'slice_idx': None}
+
+Sanity Check erstes Sample:
+shape=torch.Size([3, 224, 224]), dtype=torch.float32, min=50.3762, max=509.0001, label=1, class=xray_fluoroskopie_angiographie
+
+Class Weights:
+xray: 1.4067
+xray_fluoroskopie_angiographie: 4.0915
+mrt_hirn: 0.5645
+mrt_body: 1.8343
+
+Train-Verteilung:
+xray: 42980
+xray_fluoroskopie_angiographie: 5047
+mrt_hirn: 267012
+mrt_body: 25266
+
+Val-Verteilung:
+xray: 5765
+xray_fluoroskopie_angiographie: 695
+mrt_hirn: 35393
+mrt_body: 3377
+
+Test-Verteilung:
+xray: 5674
+xray_fluoroskopie_angiographie: 691
+mrt_hirn: 35504
+mrt_body: 3363
+
+Device: cpu
+Epoch 1/5 [Train]:   0%|          | 0/10635 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 1/5 [Train]:   0%|          | 9/10635 [00:03<52:06,  3.40it/s, loss=1.9698]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 1/5 [Train]:   0%|          | 15/10635 [00:04<50:23,  3.51it/s, loss=1.4200]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 1/5 [Train]:   1%|          | 77/10635 [00:22<51:01,  3.45it/s, loss=0.4789]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
