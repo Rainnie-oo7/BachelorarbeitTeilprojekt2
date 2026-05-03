@@ -17,6 +17,7 @@ BASE_DIR = Path(BASE_DIR)
 
 PCAM_DIR = BASE_DIR / "PatchCamelyon_PCam_histologie"
 DOCF_DIR = BASE_DIR / "DocFigure_chart"
+PMNIST_DIR = BASE_DIR / "PathMNIST_histologie" / "pathmnist_224"
 
 # ============================================================
 # 1) PCAM H5 INSPEKTION
@@ -143,10 +144,72 @@ def parse_docfigure():
             print("Nicht gefunden:", fname)
 
 
+def inspect_pathmnist():
+    print("\n" + "="*60)
+    print("PathMNIST (.npy) Analyse")
+    print("="*60)
+
+    splits = ["train", "val", "test"]
+
+    for split in splits:
+        print(f"\nSplit: {split}")
+
+        img_path = PMNIST_DIR / f"{split}_images.npy"
+        lbl_path = PMNIST_DIR / f"{split}_labels.npy"
+
+        if not img_path.exists():
+            print("Images nicht gefunden:", img_path)
+            continue
+
+        # =========================
+        # IMAGES
+        # =========================
+        images = np.load(img_path)
+
+        print("\nImages:")
+        print("Shape:", images.shape)
+        print("Dtype:", images.dtype)
+
+        print("Min:", images.min())
+        print("Max:", images.max())
+
+        # Beispielbild
+        sample = images[0]
+        print("Sample Shape:", sample.shape)
+
+        # =========================
+        # LABELS Pruef
+        # =========================
+        if lbl_path.exists():
+            labels = np.load(lbl_path)
+
+            print("\nLabels:")
+            print("Shape:", labels.shape)
+            print("Dtype:", labels.dtype)
+
+            unique, counts = np.unique(labels, return_counts=True)
+
+            print("Label-Verteilung:")
+            for u, c in zip(unique, counts):
+                print(f"{u}: {c}")
+
+        else:
+            print("\n⚠️ Keine Labels gefunden (ok für mein Setup)")
+
+        # =========================
+        # Stichprobe Statistik
+        # =========================
+        print("\nStichprobe (erste 5 Bilder):")
+
+        for i in range(min(5, len(images))):
+            img = images[i]
+            print(f"Bild {i}: min={img.min()} max={img.max()} mean={img.mean():.2f}")
+
 # ============================================================
 # MAIN
 # ============================================================
 
 if __name__ == "__main__":
-    inspect_pcam()
-    parse_docfigure()
+    # inspect_pcam()
+    # parse_docfigure()
+    inspect_pathmnist()

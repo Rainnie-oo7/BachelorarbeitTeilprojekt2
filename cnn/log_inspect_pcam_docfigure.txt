@@ -106,3 +106,54 @@ Beispielbilder laden:
 2009_05206596-Figure7-1subFig-1.png | Bar plots | size=(431, 346) mode=RGB
 venD_108.png | Venn Diagram | size=(543, 490) mode=RGB
 gMap_492.png | Geographic map | size=(602, 461) mode=P
+
+============================================================
+PathMNIST (.npy) Analyse
+============================================================
+Split: train
+
+Images:
+Shape: (89996, 224, 224, 3)
+Dtype: uint8
+Min: 0
+Max: 255
+Sample Shape: (224, 224, 3)
+
+Stichprobe (erste 5 Bilder):
+Bild 0: min=13 max=255 mean=216.15
+Bild 1: min=3 max=255 mean=172.25
+Bild 2: min=5 max=255 mean=189.45
+Bild 3: min=10 max=255 mean=175.96
+Bild 4: min=17 max=255 mean=187.10
+
+Split: val
+
+Images:
+Shape: (10004, 224, 224, 3)
+Dtype: uint8
+Min: 0
+Max: 255
+Sample Shape: (224, 224, 3)
+
+Stichprobe (erste 5 Bilder):
+Bild 0: min=25 max=255 mean=167.21
+Bild 1: min=9 max=255 mean=221.05
+Bild 2: min=0 max=255 mean=231.22
+Bild 3: min=25 max=255 mean=180.62
+Bild 4: min=150 max=255 mean=231.27
+
+Split: test
+
+Images:
+Shape: (7180, 224, 224, 3)
+Dtype: uint8
+Min: 0
+Max: 255
+Sample Shape: (224, 224, 3)
+
+Stichprobe (erste 5 Bilder):
+Bild 0: min=15 max=255 mean=137.84
+Bild 1: min=4 max=255 mean=172.84
+Bild 2: min=9 max=255 mean=191.97
+Bild 3: min=11 max=255 mean=164.48
+Bild 4: min=13 max=255 mean=196.01

@@ -1,146 +1,152 @@
 # -*- coding: utf-8 -*-
 
 import os
-from pathlib import Path
+import io
 import random
+from pathlib import Path
 from collections import Counter
 
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
+from torch.utils.data import random_split
 
 from PIL import Image
 import pandas as pd
-import numpy as np
 import h5py
-
+import numpy as np
+from tqdm import tqdm
 # ============================================================
 # CONFIG
 # ============================================================
 
 BASE_DIR = Path("/home/b/PycharmProjects/ba2roco/cnn/dataset3")
 
-CLASSES = [
-    "histologie",
-    "haut",
-    "chart",
-    "endoskopie",
-    "mikroskopie",
-    "chirurgie"
-]
-
+CLASSES = ["histologie", "haut", "chart", "endoskopie", "mikroskopie", "chirurgie"]
 CLASS_TO_IDX = {c: i for i, c in enumerate(CLASSES)}
 
 IMG_SIZE = 224
-BATCH_SIZE = 32
-EPOCHS = 5
+DEVICE = "cpu"
+# DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
-# ============================================================
-# TRANSFORM
-# ============================================================
+# PCam downsampling (wichtig!) Sind eh alle fast gleich Histologiebilder, 330k zu viel, restliche haben 8-32k
+PCAM_STRIDE = 12  # daher jedes 12. Bild, ^ Class Weights allein reichen nicht
 
 transform = transforms.Compose([
-    transforms.Resize((IMG_SIZE, IMG_SIZE)),
-    transforms.ToTensor()
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+    transforms.Normalize(
+        (0.5, 0.5, 0.5),
+        (0.5, 0.5, 0.5)
+    )
 ])
 
-# ============================================================
-# HELPER
-# ============================================================
-
-def infer_class_from_folder(path: Path):
-    name = path.parts[-2]
-    if "_" not in name:
-        return None
-    suffix = name.split("_")[-1].lower()
-    return suffix if suffix in CLASS_TO_IDX else None
-
+batch_size = 32
+num_epochs = 5
+seed = 42
 
 # ============================================================
-# MAIN DATASET
+# DATASET
 # ============================================================
 
 class MultiDataset(Dataset):
     def __init__(self):
         self.samples = []
 
-        self.collect_folder_datasets()
-        self.collect_docfigure()
-        self.collect_chartqa()
-        self.collect_pcam()
+        self.load_chartqa()
+        self.load_colorectal()
+        self.load_dermnet()
+        self.load_docfigure()
+        self.load_kvasir()
+        self.load_livecell()
+        self.load_pcam()
+        self.load_peir()
+        self.load_surgical()
+        self.load_pathmnist()
 
-        print("Total samples:", len(self.samples))
-
-        # class distribution
-        counts = Counter([s["label"] for s in self.samples])
-        print("Class distribution:", counts)
-
-        self.compute_class_weights(counts)
-
-    # --------------------------------------------------------
-    # CLASS WEIGHTS
-    # --------------------------------------------------------
-    def compute_class_weights(self, counts):
-        total = sum(counts.values())
-        num_classes = len(CLASSES)
-
-        weights = []
-        for c in CLASSES:
-            n_c = counts.get(c, 1)
-            w = total / (num_classes * n_c)
-            weights.append(w)
-
-        weights = torch.tensor(weights, dtype=torch.float32)
-        weights = torch.clamp(weights, max=10.0)
-
-        self.class_weights = weights
+        print("\nTotal samples:", len(self.samples))
+        self.print_class_distribution()
 
     # --------------------------------------------------------
-    # GENERIC FOLDER DATASETS
-    # --------------------------------------------------------
-    def collect_folder_datasets(self):
-        print("Scanning folder datasets...")
+    def add_image(self, path, label):
+        self.samples.append({
+            "type": "image",
+            "path": path,
+            "label": label
+        })
 
-        for root, _, files in os.walk(BASE_DIR):
-            root_path = Path(root)
+    def add_bytes(self, img_bytes, label):
+        self.samples.append({
+            "type": "bytes",
+            "image": img_bytes,
+            "label": label
+        })
 
-            for f in files:
-                if not f.lower().endswith((".jpg", ".png", ".tif")):
-                    continue
+    def add_h5(self, h5_path, idx, label):
+        self.samples.append({
+            "type": "h5",
+            "h5": h5_path,
+            "index": idx,
+            "label": label
+        })
 
-                path = root_path / f
-                label = infer_class_from_folder(path)
+    # ============================================================
+    # DATASETS
+    # ============================================================
 
-                if label is None:
-                    continue
+    def load_chartqa(self):
+        print("Loading ChartQA...")
+        d = BASE_DIR / "ChartQA_chart"
 
-                self.samples.append({
-                    "type": "image",
-                    "path": path,
-                    "label": label
-                })
+        files = [
+            "train-00000-of-00003.parquet",
+            "train-00001-of-00003.parquet",
+            "train-00002-of-00003.parquet",
+            "train-00003-of-00003.parquet",
+            "test-00000-of-00001.parquet"
+        ]
 
-    # --------------------------------------------------------
-    # DOCFIGURE
-    # --------------------------------------------------------
-    def collect_docfigure(self):
-        print("Loading DocFigure...")
-
-        ann_dir = BASE_DIR / "DocFigure_chart/DocFigure_annotation/annotation"
-        img_dir = BASE_DIR / "DocFigure_chart/DocFigure_image"
-
-        allowed = {"bar chart", "line chart", "pie chart", "scatter plot"}
-
-        for split in ["train.txt", "test.txt"]:
-            path = ann_dir / split
-            if not path.exists():
+        for f in files:
+            p = d / f
+            if not p.exists():
                 continue
 
-            with open(path) as f:
-                for line in f:
+            df = pd.read_parquet(p)
+
+            for _, row in df.iterrows():
+                self.add_bytes(row["image"], "chart")
+
+    def load_colorectal(self):
+        print("Loading Colorectal...")
+        base = BASE_DIR / "Colorectal_histologie"
+
+        for sub in base.glob("*/*"):
+            for img in sub.glob("*.tif"):
+                self.add_image(img, "histologie")
+
+    def load_dermnet(self):
+        print("Loading DermNet...")
+        base = BASE_DIR / "Dermnet_koerperaussenechtbild_haut"
+
+        for img in base.rglob("*.jpg"):
+            self.add_image(img, "haut")
+
+    def load_docfigure(self):
+        print("Loading DocFigure...")
+
+        ann = BASE_DIR / "DocFigure_chart/DocFigure_annotation/annotation"
+        img_dir = BASE_DIR / "DocFigure_chart/DocFigure_image"
+
+        EXCLUDE = {"3d objects", "medical images", "mask", "natural images"}
+
+        for split in ["train.txt", "test.txt"]:
+            f = ann / split
+            if not f.exists():
+                continue
+
+            with open(f) as file:
+                for line in file:
                     parts = line.strip().split(",")
                     if len(parts) < 2:
                         continue
@@ -148,63 +154,108 @@ class MultiDataset(Dataset):
                     fname = parts[0].strip()
                     label = parts[1].strip().lower()
 
-                    if label not in allowed:
+                    if label in EXCLUDE:
                         continue
 
-                    img_path = img_dir / fname
-                    if img_path.exists():
-                        self.samples.append({
-                            "type": "image",
-                            "path": img_path,
-                            "label": "chart"
-                        })
+                    path = img_dir / fname
+                    if path.exists():
+                        self.add_image(path, "chart")
 
-    # --------------------------------------------------------
-    # CHARTQA PARQUET
-    # --------------------------------------------------------
-    def collect_chartqa(self):
-        print("Loading ChartQA...")
+    def load_kvasir(self):
+        print("Loading Kvasir...")
+        base = BASE_DIR / "kvasir_endoskopie"
 
-        chartqa_dir = BASE_DIR / "ChartQA_chart"
+        for img in base.rglob("*.jpg"):
+            self.add_image(img, "endoskopie")
 
-        for pq in chartqa_dir.glob("*.parquet"):
-            df = pd.read_parquet(pq)
+    def load_livecell(self):
+        print("Loading LIVECell...")
+        base = BASE_DIR / "LIVEcell_mikroskopie"
 
-            for _, row in df.iterrows():
-                img_bytes = row["image"]
+        for img in base.rglob("*.tif"):
+            self.add_image(img, "mikroskopie")
 
-                self.samples.append({
-                    "type": "bytes",
-                    "image": img_bytes,
-                    "label": "chart"
-                })
-
-    # --------------------------------------------------------
-    # PCAM H5
-    # --------------------------------------------------------
-    def collect_pcam(self):
+    def load_pcam(self):
         print("Loading PCam...")
+        base = BASE_DIR / "PatchCamelyon_PCam_histologie"
 
-        pcam_dir = BASE_DIR / "PatchCamelyon_PCam_histologie"
+        for h5_file in base.glob("*_x.h5"):
+            with h5py.File(h5_file, "r") as f:
+                data = f["x"]
+                for i in range(0, len(data), PCAM_STRIDE):
+                    self.add_h5(h5_file, i, "histologie")
 
-        for h5_file in pcam_dir.glob("*_x.h5"):
-            f = h5py.File(h5_file, "r")
-            data = f["x"]
+    def load_peir(self):
+        print("Loading PEIR...")
+        base = BASE_DIR / "peir_chirurgie"
 
-            for i in range(len(data)):
-                self.samples.append({
-                    "type": "h5",
-                    "h5": h5_file,
-                    "index": i,
-                    "label": "histologie"
-                })
+        for img in base.glob("*.jpg"):
+            self.add_image(img, "chirurgie")
 
-    # --------------------------------------------------------
+    def load_surgical(self):
+        print("Loading Surgical...")
+        base = BASE_DIR / "Surgical_gastrectomy_miccai2022_chirurgie"
+
+        for img in base.rglob("*.jpg"):
+            self.add_image(img, "chirurgie")
+
+    def load_pathmnist(self):
+        print("Loading PathMNIST (optimized)...")
+
+        base = BASE_DIR / "PathMNIST_histologie" / "pathmnist_224"
+
+        splits = ["train", "val", "test"]
+
+        for split in splits:
+            img_path = base / f"{split}_images.npy"
+
+            if not img_path.exists():
+                print(f"⚠fehlt: {img_path}")
+                continue
+
+            # nicht direkt laden, nur Referenz speichern
+            images = np.load(img_path, mmap_mode="r")
+
+            print(f"{split}: {images.shape}")
+
+            # kein for i in range(len(images)), das wäre zu langsam
+            self.samples.append({
+                "type": "npy",
+                "array": images,
+                "label": "histologie",
+                "length": len(images)
+            })
+
+    # ============================================================
+    # STATS
+    # ============================================================
+
+    def print_class_distribution(self):
+        counts = Counter([s["label"] for s in self.samples])
+        print("Class distribution:", counts)
+
+        total = sum(counts.values())
+        num_classes = len(CLASSES)
+
+        weights = []
+        for c in CLASSES:
+            n = counts.get(c, 1)
+            w = total / (num_classes * n)
+            weights.append(w)
+
+        weights = torch.tensor(weights)
+        weights = torch.clamp(weights, max=10)
+
+        self.class_weights = weights
+        print("Class weights:", weights)
+
+    # ============================================================
     # GET ITEM
-    # --------------------------------------------------------
+    # ============================================================
+
     def __getitem__(self, idx):
         s = self.samples[idx]
-        label_idx = CLASS_TO_IDX[s["label"]]
+        label = CLASS_TO_IDX[s["label"]]
 
         if s["type"] == "image":
             img = Image.open(s["path"]).convert("RGB")
@@ -218,10 +269,10 @@ class MultiDataset(Dataset):
             img = Image.fromarray(arr)
 
         else:
-            raise ValueError("Unknown type")
+            raise ValueError
 
         img = transform(img)
-        return img, label_idx
+        return img, label
 
     def __len__(self):
         return len(self.samples)
@@ -232,7 +283,7 @@ class MultiDataset(Dataset):
 # ============================================================
 
 class SimpleCNN(nn.Module):
-    def __init__(self, num_classes):
+    def __init__(self):
         super().__init__()
 
         self.net = nn.Sequential(
@@ -248,51 +299,228 @@ class SimpleCNN(nn.Module):
             nn.Flatten(),
             nn.Linear(128 * 28 * 28, 256),
             nn.ReLU(),
-            nn.Linear(256, num_classes)
+            nn.Linear(256, len(CLASSES))
         )
 
     def forward(self, x):
         return self.net(x)
 
 
+def create_loaders(dataset, batch_size=32):
+
+    total = len(dataset)
+
+    train_size = int(0.85 * total)
+    val_size = int(0.07 * total)
+    test_size = total - train_size - val_size
+
+    train_set, val_set, test_set = random_split(
+        dataset,
+        [train_size, val_size, test_size],
+        generator=torch.Generator().manual_seed(42)
+    )
+
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=4)
+    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=4)
+    test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=4)
+
+    return train_loader, val_loader, test_loader
+
+
+def evaluate_model(model, loader, criterion, device, class_names):
+    model.eval()
+
+    total_loss = 0.0
+    total = 0
+    correct = 0
+
+    num_classes = len(class_names)
+    confusion = torch.zeros(num_classes, num_classes, dtype=torch.int64)
+
+    with torch.no_grad():
+        eval_bar = tqdm(loader, desc="Evaluation", leave=False)
+
+        for inputs, labels in eval_bar:
+            inputs = inputs.to(device, dtype=torch.float32)
+            labels = labels.to(device)
+
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+
+            total_loss += loss.item()
+
+            preds = outputs.argmax(dim=1)
+            total += labels.size(0)
+            correct += (preds == labels).sum().item()
+
+            for t, p in zip(labels.cpu(), preds.cpu()):
+                confusion[t.long(), p.long()] += 1
+
+            acc = correct / total if total > 0 else 0.0
+            eval_bar.set_postfix(loss=f"{loss.item():.4f}", acc=f"{acc * 100:.2f}%")
+
+    avg_loss = total_loss / len(loader)
+    accuracy = correct / total
+
+    # ---- Metrics ----
+    per_class_metrics = []
+    recalls = []
+
+    macro_precision_sum = 0.0
+    macro_recall_sum = 0.0
+    macro_f1_sum = 0.0
+
+    weighted_precision_sum = 0.0
+    weighted_recall_sum = 0.0
+    weighted_f1_sum = 0.0
+
+    for c in range(num_classes):
+        tp = confusion[c, c].item()
+        fp = confusion[:, c].sum().item() - tp
+        fn = confusion[c, :].sum().item() - tp
+        support = confusion[c, :].sum().item()
+
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+        per_class_metrics.append({
+            "class_name": class_names[c],
+            "support": support,
+            "accuracy": recall,
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+        })
+
+        recalls.append(recall)
+
+        macro_precision_sum += precision
+        macro_recall_sum += recall
+        macro_f1_sum += f1
+
+        weighted_precision_sum += precision * support
+        weighted_recall_sum += recall * support
+        weighted_f1_sum += f1 * support
+
+    macro_precision = macro_precision_sum / num_classes
+    macro_recall = macro_recall_sum / num_classes
+    macro_f1 = macro_f1_sum / num_classes
+    balanced_accuracy = sum(recalls) / num_classes
+
+    weighted_precision = weighted_precision_sum / total
+    weighted_recall = weighted_recall_sum / total
+    weighted_f1 = weighted_f1_sum / total
+
+    return {
+        "loss": avg_loss,
+        "accuracy": accuracy,
+        "balanced_accuracy": balanced_accuracy,
+        "macro_precision": macro_precision,
+        "macro_recall": macro_recall,
+        "macro_f1": macro_f1,
+        "weighted_precision": weighted_precision,
+        "weighted_recall": weighted_recall,
+        "weighted_f1": weighted_f1,
+        "per_class_metrics": per_class_metrics,
+        "confusion_matrix": confusion,
+    }
+
+def print_metrics(title, metrics):
+    print(f"\n================ {title} ================")
+    print(f"Loss: {metrics['loss']:.4f}")
+    print(f"Accuracy: {metrics['accuracy'] * 100:.2f}%")
+    print(f"Balanced Accuracy: {metrics['balanced_accuracy'] * 100:.2f}%")
+    print(f"Macro Precision: {metrics['macro_precision']:.4f}")
+    print(f"Macro Recall: {metrics['macro_recall']:.4f}")
+    print(f"Macro F1: {metrics['macro_f1']:.4f}")
+    print(f"Weighted Precision: {metrics['weighted_precision']:.4f}")
+    print(f"Weighted Recall: {metrics['weighted_recall']:.4f}")
+    print(f"Weighted F1: {metrics['weighted_f1']:.4f}")
+
+    print("\nPro Klasse:")
+    for m in metrics["per_class_metrics"]:
+        print(
+            f"{m['class_name']}: "
+            f"n={m['support']}, "
+            f"acc={m['accuracy'] * 100:.2f}%, "
+            f"precision={m['precision']:.4f}, "
+            f"recall={m['recall']:.4f}, "
+            f"f1={m['f1']:.4f}"
+        )
+
+    print("\nConfusion Matrix:")
+    print(metrics["confusion_matrix"])
 # ============================================================
 # TRAIN
 # ============================================================
-
 def train():
     dataset = MultiDataset()
 
-    loader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=4)
+    train_loader, val_loader, test_loader = create_loaders(dataset)
 
-    model = SimpleCNN(len(CLASSES)).to(DEVICE)
+    model = SimpleCNN().to(DEVICE)
 
     criterion = nn.CrossEntropyLoss(weight=dataset.class_weights.to(DEVICE))
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
-    for epoch in range(EPOCHS):
-        model.train()
-        total_loss = 0
+    train_model(
+        model,
+        train_loader,
+        val_loader,
+        criterion,
+        optimizer,
+        DEVICE,
+        epochs=5
+    )
+    # Validation
+    val_metrics = evaluate_model(model, val_loader, criterion, DEVICE, CLASSES)
+    print_metrics("Validation", val_metrics)
 
-        for imgs, labels in loader:
-            imgs = imgs.to(DEVICE)
-            labels = labels.to(DEVICE)
+    test_metrics = evaluate_model(model, test_loader, criterion, DEVICE, CLASSES)
+    print_metrics("Test", test_metrics)
+
+def train_model(model, train_loader, val_loader, criterion, optimizer, device, epochs):
+
+    for epoch in range(epochs):
+        model.train()
+
+        total_loss = 0.0
+        correct = 0
+        total = 0
+
+        train_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs}")
+
+        for inputs, labels in train_bar:
+            inputs = inputs.to(device, dtype=torch.float32)
+            labels = labels.to(device)
 
             optimizer.zero_grad()
-            out = model(imgs)
-            loss = criterion(out, labels)
+
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+
             loss.backward()
             optimizer.step()
 
             total_loss += loss.item()
 
-        print(f"Epoch {epoch+1} Loss: {total_loss:.4f}")
+            preds = outputs.argmax(dim=1)
+            correct += (preds == labels).sum().item()
+            total += labels.size(0)
 
-    torch.save(model.state_dict(), "cnn3.pth")
+            acc = correct / total if total > 0 else 0.0
 
+            train_bar.set_postfix(
+                loss=f"{loss.item():.4f}",
+                acc=f"{acc*100:.2f}%"
+            )
 
-# ============================================================
-# MAIN
-# ============================================================
+        print(f"\nEpoch {epoch+1} Summary:")
+        print(f"Train Loss: {total_loss/len(train_loader):.4f}")
+        print(f"Train Acc: {acc*100:.2f}%")
+
+    torch.save(model.state_dict(), "cnn_multiclass.pth")
 
 if __name__ == "__main__":
     train()
