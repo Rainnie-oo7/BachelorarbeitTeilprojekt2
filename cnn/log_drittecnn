@@ -7,12 +7,22 @@ Loading LIVECell...
 Loading PCam...
 Loading PEIR...
 Loading Surgical...
-Loading PathMNIST (optimized)...
+Loading PathMNIST (fixed)...
 train: (89996, 224, 224, 3)
 val: (10004, 224, 224, 3)
 test: (7180, 224, 224, 3)
 
-Total samples: 111420
-Class distribution: Counter({'chart': 32719, 'histologie': 32311, 'haut': 19559, 'chirurgie': 13592, 'endoskopie': 8000, 'mikroskopie': 5239})
-Class weights: tensor([0.5747, 0.9494, 0.5676, 2.3212, 3.5446, 1.3662])
-Epoch 1/5:   1%|          | 15/2960 [00:07<23:55,  2.05it/s, acc=58.75%, loss=0.6081]
+Total samples: 218597
+Class distribution: Counter({'histologie': 139488, 'chart': 32719, 'haut': 19559, 'chirurgie': 13592, 'endoskopie': 8000, 'mikroskopie': 5239})
+Class weights: tensor([0.2612, 1.8627, 1.1135, 4.5541, 6.9542, 2.6805])
+chartqa: train=27811, val=1963, test=2945
+colorectal: train=4250, val=300, test=450
+dermnet: train=16625, val=1173, test=1761
+kvasir: train=6800, val=480, test=720
+livecell: train=4453, val=314, test=472
+pcam: train=23211, val=1638, test=2459
+surgical: train=11553, val=815, test=1224
+pathmnist_train: train=76496, val=5399, test=8101
+pathmnist_val: train=8503, val=600, test=901
+pathmnist_test: train=6103, val=430, test=647
+Epoch 1/5:   2%|▏         | 109/5807 [00:49<40:26,  2.35it/s, acc=85.58%, loss=0.1301]

@@ -4,13 +4,13 @@ import os
 import io
 import random
 from pathlib import Path
-from collections import Counter
+from collections import Counter, defaultdict
+
 
 import torch
 import torch.nn as nn
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset, DataLoader, random_split, Subset
 import torchvision.transforms as transforms
-from torch.utils.data import random_split
 
 from PIL import Image
 import pandas as pd
@@ -69,26 +69,29 @@ class MultiDataset(Dataset):
         self.print_class_distribution()
 
     # --------------------------------------------------------
-    def add_image(self, path, label):
+    def add_image(self, path, label, source):
         self.samples.append({
             "type": "image",
             "path": path,
-            "label": label
+            "label": label,
+            "source": source
         })
 
-    def add_bytes(self, img_bytes, label):
+    def add_bytes(self, img_bytes, label, source):
         self.samples.append({
             "type": "bytes",
             "image": img_bytes,
-            "label": label
+            "label": label,
+            "source": source
         })
 
-    def add_h5(self, h5_path, idx, label):
+    def add_h5(self, h5_path, idx, label, source):
         self.samples.append({
             "type": "h5",
             "h5": h5_path,
             "index": idx,
-            "label": label
+            "label": label,
+            "source": source
         })
 
     # ============================================================
@@ -115,7 +118,7 @@ class MultiDataset(Dataset):
             df = pd.read_parquet(p)
 
             for _, row in df.iterrows():
-                self.add_bytes(row["image"], "chart")
+                self.add_bytes(row["image"], "chart", "chartqa")
 
     def load_colorectal(self):
         print("Loading Colorectal...")
@@ -123,14 +126,14 @@ class MultiDataset(Dataset):
 
         for sub in base.glob("*/*"):
             for img in sub.glob("*.tif"):
-                self.add_image(img, "histologie")
+                self.add_image(img, "histologie", "colorectal")
 
     def load_dermnet(self):
         print("Loading DermNet...")
         base = BASE_DIR / "Dermnet_koerperaussenechtbild_haut"
 
         for img in base.rglob("*.jpg"):
-            self.add_image(img, "haut")
+            self.add_image(img, "haut", "dermnet")
 
     def load_docfigure(self):
         print("Loading DocFigure...")
@@ -159,21 +162,21 @@ class MultiDataset(Dataset):
 
                     path = img_dir / fname
                     if path.exists():
-                        self.add_image(path, "chart")
+                        self.add_image(path, "chart", "docfigure")
 
     def load_kvasir(self):
         print("Loading Kvasir...")
         base = BASE_DIR / "kvasir_endoskopie"
 
         for img in base.rglob("*.jpg"):
-            self.add_image(img, "endoskopie")
+            self.add_image(img, "endoskopie", "kvasir")
 
     def load_livecell(self):
         print("Loading LIVECell...")
         base = BASE_DIR / "LIVEcell_mikroskopie"
 
         for img in base.rglob("*.tif"):
-            self.add_image(img, "mikroskopie")
+            self.add_image(img, "mikroskopie", "livecell")
 
     def load_pcam(self):
         print("Loading PCam...")
@@ -183,49 +186,47 @@ class MultiDataset(Dataset):
             with h5py.File(h5_file, "r") as f:
                 data = f["x"]
                 for i in range(0, len(data), PCAM_STRIDE):
-                    self.add_h5(h5_file, i, "histologie")
+                    self.add_h5(h5_file, i, "histologie", "pcam")
 
     def load_peir(self):
         print("Loading PEIR...")
         base = BASE_DIR / "peir_chirurgie"
 
         for img in base.glob("*.jpg"):
-            self.add_image(img, "chirurgie")
+            self.add_image(img, "chirurgie", "peir")
 
     def load_surgical(self):
         print("Loading Surgical...")
         base = BASE_DIR / "Surgical_gastrectomy_miccai2022_chirurgie"
 
         for img in base.rglob("*.jpg"):
-            self.add_image(img, "chirurgie")
+            self.add_image(img, "chirurgie", "surgical")
 
     def load_pathmnist(self):
-        print("Loading PathMNIST (optimized)...")
+        print("Loading PathMNIST (fixed)...")
 
         base = BASE_DIR / "PathMNIST_histologie" / "pathmnist_224"
-
         splits = ["train", "val", "test"]
 
         for split in splits:
             img_path = base / f"{split}_images.npy"
 
             if not img_path.exists():
-                print(f"⚠fehlt: {img_path}")
+                print(f"⚠️ fehlt: {img_path}")
                 continue
 
-            # nicht direkt laden, nur Referenz speichern
             images = np.load(img_path, mmap_mode="r")
 
             print(f"{split}: {images.shape}")
 
-            # kein for i in range(len(images)), das wäre zu langsam
-            self.samples.append({
-                "type": "npy",
-                "array": images,
-                "label": "histologie",
-                "length": len(images)
-            })
-
+            for i in range(len(images)):
+                self.samples.append({
+                    "type": "npy",
+                    "array": images,
+                    "index": i,
+                    "label": "histologie",
+                    "source": f"pathmnist_{split}"
+                })
     # ============================================================
     # STATS
     # ============================================================
@@ -255,24 +256,40 @@ class MultiDataset(Dataset):
 
     def __getitem__(self, idx):
         s = self.samples[idx]
-        label = CLASS_TO_IDX[s["label"]]
 
-        if s["type"] == "image":
-            img = Image.open(s["path"]).convert("RGB")
+        try:
+            label = CLASS_TO_IDX[s["label"]]
 
-        elif s["type"] == "bytes":
-            img = Image.open(io.BytesIO(s["image"])).convert("RGB")
+            t = s["type"]
 
-        elif s["type"] == "h5":
-            with h5py.File(s["h5"], "r") as f:
-                arr = f["x"][s["index"]]
-            img = Image.fromarray(arr)
+            if t == "image":
+                img = Image.open(s["path"]).convert("RGB")
 
-        else:
-            raise ValueError
+            elif t == "bytes":
+                img = Image.open(io.BytesIO(s["image"])).convert("RGB")
 
-        img = transform(img)
-        return img, label
+            elif t == "h5":
+                with h5py.File(s["h5"], "r") as f:
+                    arr = f["x"][s["index"]]
+                img = Image.fromarray(arr)
+
+            elif t == "npy":
+                arr = s["array"][s["index"]]
+                img = Image.fromarray(arr)
+
+            else:
+                raise ValueError(f"Unknown type: {t}")
+
+            img = transform(img)
+            return img, label
+
+        except Exception as e:
+            print("\n⚠Fehler im Sample:")
+            print(s)
+            print("Error:", e)
+
+            new_idx = random.randint(0, len(self.samples) - 1)
+            return self.__getitem__(new_idx)
 
     def __len__(self):
         return len(self.samples)
@@ -304,25 +321,50 @@ class SimpleCNN(nn.Module):
 
     def forward(self, x):
         return self.net(x)
+# ============================================================
+# globales Splitting soll vermieden werden, nur Splitting fuer DS jeweils
+# ============================================================
+def create_dataset_splits(dataset, train_ratio=0.85, val_ratio=0.06):
+
+    # gruppieren nach source
+    source_to_indices = defaultdict(list)
+
+    for idx, s in enumerate(dataset.samples):
+        source_to_indices[s["source"]].append(idx)
+
+    train_indices = []
+    val_indices = []
+    test_indices = []
+
+    for source, indices in source_to_indices.items():
+        indices = list(indices)
+        random.shuffle(indices)
+
+        n = len(indices)
+
+        n_train = int(n * train_ratio)
+        n_val = int(n * val_ratio)
+
+        train_indices += indices[:n_train]
+        val_indices += indices[n_train:n_train + n_val]
+        test_indices += indices[n_train + n_val:]
+
+        print(f"{source}: train={n_train}, val={n_val}, test={n - n_train - n_val}")
+
+    return train_indices, val_indices, test_indices
 
 
 def create_loaders(dataset, batch_size=32):
 
-    total = len(dataset)
+    train_idx, val_idx, test_idx = create_dataset_splits(dataset)
 
-    train_size = int(0.85 * total)
-    val_size = int(0.07 * total)
-    test_size = total - train_size - val_size
-
-    train_set, val_set, test_set = random_split(
-        dataset,
-        [train_size, val_size, test_size],
-        generator=torch.Generator().manual_seed(42)
-    )
+    train_set = Subset(dataset, train_idx)
+    val_set   = Subset(dataset, val_idx)
+    test_set  = Subset(dataset, test_idx)
 
     train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=4)
-    val_loader = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=4)
-    test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=4)
+    val_loader   = DataLoader(val_set, batch_size=batch_size, shuffle=False, num_workers=4)
+    test_loader  = DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=4)
 
     return train_loader, val_loader, test_loader
 
@@ -455,6 +497,7 @@ def print_metrics(title, metrics):
 # TRAIN
 # ============================================================
 def train():
+
     dataset = MultiDataset()
 
     train_loader, val_loader, test_loader = create_loaders(dataset)
