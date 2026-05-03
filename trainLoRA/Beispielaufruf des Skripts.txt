@@ -1,0 +1,13 @@
+CSV-Format:
+Totales Beispiel heissen train_irgendwas_000001.jpg
+image_path,caption,modality
+/data/img1.png,Chest X-ray showing...,xray
+/data/img2.png,Axial CT scan...,ct
+
+Start Q,V:
+python trainLoRA/train_blip_lora.py --csv make_CLS/cap_clsfy_rules_cnn_bert.csv --modality xray --lora_mode qv
+
+#Dauer gleich wie CNN zuvor 2,4s/it numworker2 batchsize4
+
+Start Q,K,V:
+python trainLoRA/train_blip_lora.py --csv make_CLS/cap_clsfy_rules_cnn_bert.csv --modality xray --lora_mode qkv

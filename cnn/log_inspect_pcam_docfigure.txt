@@ -1,0 +1,108 @@
+============================================================
+PCam (.h5) Analyse
+============================================================
+
+Datei: camelyonpatch_level_2_split_train_mask.h5
+Keys: ['mask']
+
+Key: mask
+Shape: (262144, 96, 96, 1)
+Dtype: bool
+Sample min/max: False False
+
+Datei: camelyonpatch_level_2_split_valid_x.h5
+Keys: ['x']
+
+Key: x
+Shape: (32768, 96, 96, 3)
+Dtype: uint8
+Sample min/max: 0 255
+
+Datei: camelyonpatch_level_2_split_train_x.h5
+Keys: ['x']
+
+Key: x
+Shape: (262144, 96, 96, 3)
+Dtype: uint8
+Sample min/max: 0 255
+
+Datei: camelyonpatch_level_2_split_test_x.h5
+Keys: ['x']
+
+Key: x
+Shape: (32768, 96, 96, 3)
+Dtype: uint8
+Sample min/max: 0 255
+
+============================================================
+DocFigure Annotation Analyse
+============================================================
+
+Train Samples: 19796
+Test Samples: 13172
+
+Label-Verteilung:
+Graph plots: 9020
+Natural images: 3676
+Tables: 1899
+3D objects: 1368
+Bar plots: 1196
+Scatter plot: 1138
+Medical images: 1128
+Sketches: 1105
+Flow chart: 1074
+Heat map: 1073
+Mask: 1055
+Geographic map: 1052
+Block diagram: 1024
+Venn Diagram: 863
+Confusion matrix: 811
+Histogram: 783
+Box plot: 605
+Vector plot: 575
+Pie chart: 433
+Surface plot: 392
+Algorithm: 388
+Contour plot: 362
+Tree Diagram: 352
+Bubble Chart: 338
+Polar plot: 336
+Pareto charts: 311
+Area chart: 310
+Radar chart: 301
+
+Nach Filter:
+Samples: 15458
+
+Gefilterte Labels:
+Graph plots: 5413
+Tables: 1140
+Bar plots: 718
+Scatter plot: 683
+Sketches: 664
+Flow chart: 645
+Heat map: 644
+Geographic map: 632
+Block diagram: 615
+Venn Diagram: 518
+Confusion matrix: 487
+Histogram: 470
+Box plot: 364
+Vector plot: 346
+Pie chart: 260
+Surface plot: 236
+Algorithm: 233
+Contour plot: 218
+Tree Diagram: 212
+Bubble Chart: 203
+Polar plot: 202
+Area chart: 187
+Pareto charts: 187
+Radar chart: 181
+
+Beispielbilder laden:
+2014_06909848-Figure6-1subFig-4.png | Histogram | size=(224, 216) mode=RGB
+2009_05206841-Figure4-1subFig-1.png | Sketches | size=(219, 95) mode=RGB
+2009_05206596-Figure7-1subFig-1.png | Bar plots | size=(431, 346) mode=RGB
+venD_108.png | Venn Diagram | size=(543, 490) mode=RGB
+gMap_492.png | Geographic map | size=(602, 461) mode=P

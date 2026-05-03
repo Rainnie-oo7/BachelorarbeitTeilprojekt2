@@ -1,0 +1,316 @@
+loading configuration file config.json from cache at /home/b/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/82a37760796d32b1411fe092ab5d4e227313294b/config.json
+`text_config` is `None`. Initializing the `BlipTextConfig` with default values.
+`vision_config` is `None`. initializing the `BlipVisionConfig` with default values.
+Model config BlipConfig {
+  "architectures": [
+    "BlipForConditionalGeneration"
+  ],
+  "dtype": "float32",
+  "image_text_hidden_size": 256,
+  "initializer_factor": 1.0,
+  "initializer_range": 0.02,
+  "label_smoothing": 0.0,
+  "logit_scale_init_value": 2.6592,
+  "model_type": "blip",
+  "projection_dim": 512,
+  "text_config": {
+    "add_cross_attention": false,
+    "attention_probs_dropout_prob": 0.0,
+    "bos_token_id": 30522,
+    "cross_attention_hidden_size": null,
+    "decoder_start_token_id": null,
+    "encoder_hidden_size": 768,
+    "eos_token_id": 2,
+    "finetuning_task": null,
+    "hidden_act": "gelu",
+    "hidden_dropout_prob": 0.0,
+    "hidden_size": 768,
+    "initializer_factor": 1.0,
+    "initializer_range": 0.02,
+    "intermediate_size": 3072,
+    "is_decoder": true,
+    "label_smoothing": 0.0,
+    "layer_norm_eps": 1e-12,
+    "max_position_embeddings": 512,
+    "model_type": "blip_text_model",
+    "num_attention_heads": 12,
+    "num_hidden_layers": 12,
+    "pad_token_id": 0,
+    "prefix": null,
+    "projection_dim": 768,
+    "pruned_heads": {},
+    "sep_token_id": 102,
+    "task_specific_params": null,
+    "tf_legacy_loss": false,
+    "tie_encoder_decoder": false,
+    "tie_word_embeddings": true,
+    "tokenizer_class": null,
+    "torchscript": false,
+    "use_bfloat16": false,
+    "use_cache": true,
+    "vocab_size": 30524
+  },
+  "tie_word_embeddings": true,
+  "transformers_version": "5.3.0",
+  "vision_config": {
+    "add_cross_attention": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": null,
+    "cross_attention_hidden_size": null,
+    "decoder_start_token_id": null,
+    "dropout": 0.0,
+    "eos_token_id": null,
+    "finetuning_task": null,
+    "hidden_act": "gelu",
+    "hidden_size": 768,
+    "image_size": 384,
+    "initializer_factor": 1.0,
+    "initializer_range": 0.02,
+    "intermediate_size": 3072,
+    "is_decoder": false,
+    "layer_norm_eps": 1e-05,
+    "model_type": "blip_vision_model",
+    "num_attention_heads": 12,
+    "num_channels": 3,
+    "num_hidden_layers": 12,
+    "pad_token_id": null,
+    "patch_size": 16,
+    "prefix": null,
+    "projection_dim": 512,
+    "pruned_heads": {},
+    "sep_token_id": null,
+    "task_specific_params": null,
+    "tf_legacy_loss": false,
+    "tie_encoder_decoder": false,
+    "tie_word_embeddings": true,
+    "tokenizer_class": null,
+    "torchscript": false,
+    "use_bfloat16": false
+  }
+}
+
+loading weights file pytorch_model.bin from cache at /home/b/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/82a37760796d32b1411fe092ab5d4e227313294b/pytorch_model.bin
+Will use dtype=torch.float32 as defined in model's config object
+Generate config GenerationConfig {
+  "output_attentions": false,
+  "output_hidden_states": false
+}
+
+Generate config GenerationConfig {
+  "bos_token_id": 30522,
+  "eos_token_id": 2,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "pad_token_id": 0,
+  "use_cache": true
+}
+
+Loading weights: 100%|██████████| 473/473 [00:00<00:00, 51826.17it/s]
+The tied weights mapping and config for this model specifies to tie text_decoder.cls.predictions.bias to text_decoder.cls.predictions.decoder.bias, but both are present in the checkpoints, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning
+The tied weights mapping and config for this model specifies to tie text_decoder.bert.embeddings.word_embeddings.weight to text_decoder.cls.predictions.decoder.weight, but both are present in the checkpoints, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning
+BlipForConditionalGeneration LOAD REPORT from: Salesforce/blip-image-captioning-base
+Key                                       | Status     |  |
+------------------------------------------+------------+--+-
+text_decoder.bert.embeddings.position_ids | UNEXPECTED |  |
+
+Notes:
+- UNEXPECTED	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Attempting to create safetensors variant
+Safetensors PR exists
+Generation config file not found, using a generation config created from the model config.
+loading configuration file config.json from cache at /home/b/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/82a37760796d32b1411fe092ab5d4e227313294b/config.json
+Generate config GenerationConfig {}
+
+loading configuration file processor_config.json from cache at None
+loading configuration file preprocessor_config.json from cache at /home/b/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/82a37760796d32b1411fe092ab5d4e227313294b/preprocessor_config.json
+The image processor of type `BlipImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`.
+loading configuration file preprocessor_config.json from cache at /home/b/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/82a37760796d32b1411fe092ab5d4e227313294b/preprocessor_config.json
+size should be a dictionary on of the following set of keys: ({'width', 'height'}, {'shortest_edge'}, {'shortest_edge', 'longest_edge'}, {'longest_edge'}, {'max_width', 'max_height'}), got 384. Converted to {'height': 384, 'width': 384}.
+Image processor BlipImageProcessorFast {
+  "data_format": "channels_first",
+  "do_convert_rgb": true,
+  "do_normalize": true,
+  "do_rescale": true,
+  "do_resize": true,
+  "image_mean": [
+    0.48145466,
+    0.4578275,
+    0.40821073
+  ],
+  "image_processor_type": "BlipImageProcessorFast",
+  "image_std": [
+    0.26862954,
+    0.26130258,
+    0.27577711
+  ],
+  "resample": 3,
+  "rescale_factor": 0.00392156862745098,
+  "size": {
+    "height": 384,
+    "width": 384
+  }
+}
+
+loading configuration file config.json from cache at /home/b/.cache/huggingface/hub/models--Salesforce--blip-image-captioning-base/snapshots/82a37760796d32b1411fe092ab5d4e227313294b/config.json
+`text_config` is `None`. Initializing the `BlipTextConfig` with default values.
+`vision_config` is `None`. initializing the `BlipVisionConfig` with default values.
+Model config BlipConfig {
+  "architectures": [
+    "BlipForConditionalGeneration"
+  ],
+  "dtype": "float32",
+  "image_text_hidden_size": 256,
+  "initializer_factor": 1.0,
+  "initializer_range": 0.02,
+  "label_smoothing": 0.0,
+  "logit_scale_init_value": 2.6592,
+  "model_type": "blip",
+  "projection_dim": 512,
+  "text_config": {
+    "add_cross_attention": false,
+    "attention_probs_dropout_prob": 0.0,
+    "bos_token_id": 30522,
+    "cross_attention_hidden_size": null,
+    "decoder_start_token_id": null,
+    "encoder_hidden_size": 768,
+    "eos_token_id": 2,
+    "finetuning_task": null,
+    "hidden_act": "gelu",
+    "hidden_dropout_prob": 0.0,
+    "hidden_size": 768,
+    "initializer_factor": 1.0,
+    "initializer_range": 0.02,
+    "intermediate_size": 3072,
+    "is_decoder": true,
+    "label_smoothing": 0.0,
+    "layer_norm_eps": 1e-12,
+    "max_position_embeddings": 512,
+    "model_type": "blip_text_model",
+    "num_attention_heads": 12,
+    "num_hidden_layers": 12,
+    "pad_token_id": 0,
+    "prefix": null,
+    "projection_dim": 768,
+    "pruned_heads": {},
+    "sep_token_id": 102,
+    "task_specific_params": null,
+    "tf_legacy_loss": false,
+    "tie_encoder_decoder": false,
+    "tie_word_embeddings": true,
+    "tokenizer_class": null,
+    "torchscript": false,
+    "use_bfloat16": false,
+    "use_cache": true,
+    "vocab_size": 30524
+  },
+  "tie_word_embeddings": true,
+  "transformers_version": "5.3.0",
+  "vision_config": {
+    "add_cross_attention": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": null,
+    "cross_attention_hidden_size": null,
+    "decoder_start_token_id": null,
+    "dropout": 0.0,
+    "eos_token_id": null,
+    "finetuning_task": null,
+    "hidden_act": "gelu",
+    "hidden_size": 768,
+    "image_size": 384,
+    "initializer_factor": 1.0,
+    "initializer_range": 0.02,
+    "intermediate_size": 3072,
+    "is_decoder": false,
+    "layer_norm_eps": 1e-05,
+    "model_type": "blip_vision_model",
+    "num_attention_heads": 12,
+    "num_channels": 3,
+    "num_hidden_layers": 12,
+    "pad_token_id": null,
+    "patch_size": 16,
+    "prefix": null,
+    "projection_dim": 512,
+    "pruned_heads": {},
+    "sep_token_id": null,
+    "task_specific_params": null,
+    "tf_legacy_loss": false,
+    "tie_encoder_decoder": false,
+    "tie_word_embeddings": true,
+    "tokenizer_class": null,
+    "torchscript": false,
+    "use_bfloat16": false
+  }
+}
+
+Processor BlipProcessor:
+- image_processor: BlipImageProcessorFast {
+  "data_format": "channels_first",
+  "do_convert_rgb": true,
+  "do_normalize": true,
+  "do_rescale": true,
+  "do_resize": true,
+  "image_mean": [
+    0.48145466,
+    0.4578275,
+    0.40821073
+  ],
+  "image_processor_type": "BlipImageProcessorFast",
+  "image_std": [
+    0.26862954,
+    0.26130258,
+    0.27577711
+  ],
+  "resample": 3,
+  "rescale_factor": 0.00392156862745098,
+  "size": {
+    "height": 384,
+    "width": 384
+  }
+}
+
+- tokenizer: BertTokenizer(name_or_path='Salesforce/blip-image-captioning-base', vocab_size=30522, model_max_length=512, padding_side='right', truncation_side='right', special_tokens={'unk_token': '[UNK]', 'sep_token': '[SEP]', 'pad_token': '[PAD]', 'cls_token': '[CLS]', 'mask_token': '[MASK]'}, added_tokens_decoder={
+	0: AddedToken("[PAD]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	100: AddedToken("[UNK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	101: AddedToken("[CLS]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	102: AddedToken("[SEP]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+	103: AddedToken("[MASK]", rstrip=False, lstrip=False, single_word=False, normalized=False, special=True),
+})
+
+{
+  "image_processor": {
+    "data_format": "channels_first",
+    "do_convert_rgb": true,
+    "do_normalize": true,
+    "do_rescale": true,
+    "do_resize": true,
+    "image_mean": [
+      0.48145466,
+      0.4578275,
+      0.40821073
+    ],
+    "image_processor_type": "BlipImageProcessorFast",
+    "image_std": [
+      0.26862954,
+      0.26130258,
+      0.27577711
+    ],
+    "resample": 3,
+    "rescale_factor": 0.00392156862745098,
+    "size": {
+      "height": 384,
+      "width": 384
+    }
+  },
+  "processor_class": "BlipProcessor"
+}
+
+`text_config` is `None`. Initializing the `BlipTextConfig` with default values.
+`vision_config` is `None`. initializing the `BlipVisionConfig` with default values.
+`text_config` is `None`. Initializing the `BlipTextConfig` with default values.
+`vision_config` is `None`. initializing the `BlipVisionConfig` with default values.
+Configuration saved in /home/user/Dokumente/blipbase/config.json
+Configuration saved in /home/user/Dokumente/blipbase/generation_config.json
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.81it/s]
+Model weights saved in /home/user/Dokumente/blipbase/model.safetensors
+tokenizer config file saved in /home/user/Dokumente/blipbase/tokenizer_config.json
+processor saved in /home/user/Dokumente/blipbase/processor_config.json

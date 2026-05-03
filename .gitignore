@@ -5,6 +5,7 @@ __pycache__/
 
 data/
 cnn/dataset/
+cnn/dataset3/
 cnn/infer_data/
 alte/
 aelter/
