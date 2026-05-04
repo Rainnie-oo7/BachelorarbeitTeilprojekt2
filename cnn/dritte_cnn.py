@@ -299,7 +299,7 @@ class MultiDataset(Dataset):
 # MODEL
 # ============================================================
 
-class SimpleCNN(nn.Module):
+class ThirdCNN(nn.Module):
     def __init__(self):
         super().__init__()
 
@@ -502,7 +502,7 @@ def train():
 
     train_loader, val_loader, test_loader = create_loaders(dataset)
 
-    model = SimpleCNN().to(DEVICE)
+    model = ThirdCNN().to(DEVICE)
 
     criterion = nn.CrossEntropyLoss(weight=dataset.class_weights.to(DEVICE))
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
