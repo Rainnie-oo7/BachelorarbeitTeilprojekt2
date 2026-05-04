@@ -26,3 +26,81 @@ pathmnist_train: train=76496, val=5399, test=8101
 pathmnist_val: train=8503, val=600, test=901
 pathmnist_test: train=6103, val=430, test=647
 Epoch 1/5:   2%|▏         | 109/5807 [00:49<40:26,  2.35it/s, acc=85.58%, loss=0.1301]
+Epoch 1/5: 100%|██████████| 5807/5807 [38:25<00:00,  2.52it/s, acc=99.06%, loss=0.0004]
+Epoch 1 Summary:
+Train Loss: 0.0391
+Train Acc: 99.06%
+Epoch 2/5: 100%|██████████| 5807/5807 [37:53<00:00,  2.55it/s, acc=99.73%, loss=0.0000]
+Epoch 3/5:   0%|          | 0/5807 [00:00<?, ?it/s]
+Epoch 2 Summary:
+Train Loss: 0.0105
+Train Acc: 99.73%
+Epoch 3/5: 100%|██████████| 5807/5807 [37:49<00:00,  2.56it/s, acc=99.86%, loss=0.0002]
+Epoch 4/5:   0%|          | 0/5807 [00:00<?, ?it/s]
+Epoch 3 Summary:
+Train Loss: 0.0047
+Train Acc: 99.86%
+Epoch 4/5: 100%|██████████| 5807/5807 [37:55<00:00,  2.55it/s, acc=99.89%, loss=0.0000]
+
+Epoch 4 Summary:
+Train Loss: 0.0031
+Train Acc: 99.89%
+Epoch 5/5: 100%|██████████| 5807/5807 [37:52<00:00,  2.55it/s, acc=99.93%, loss=0.0000]
+
+Epoch 5 Summary:
+Train Loss: 0.0022
+Train Acc: 99.93%
+Evaluation:   0%|          | 0/615 [00:00<?, ?it/s]
+================ Validation ================
+Loss: 0.0013
+Accuracy: 99.97%
+Balanced Accuracy: 99.92%
+Macro Precision: 0.9994
+Macro Recall: 0.9992
+Macro F1: 0.9993
+Weighted Precision: 0.9997
+Weighted Recall: 0.9997
+Weighted F1: 0.9997
+
+Pro Klasse:
+histologie: n=8367, acc=99.99%, precision=1.0000, recall=0.9999, f1=0.9999
+haut: n=1173, acc=100.00%, precision=0.9966, recall=1.0000, f1=0.9983
+chart: n=1963, acc=100.00%, precision=1.0000, recall=1.0000, f1=1.0000
+endoskopie: n=480, acc=99.79%, precision=1.0000, recall=0.9979, f1=0.9990
+mikroskopie: n=314, acc=100.00%, precision=1.0000, recall=1.0000, f1=1.0000
+chirurgie: n=815, acc=99.75%, precision=1.0000, recall=0.9975, f1=0.9988
+
+Confusion Matrix:
+tensor([[8366,    1,    0,    0,    0,    0],
+        [   0, 1173,    0,    0,    0,    0],
+        [   0,    0, 1963,    0,    0,    0],
+        [   0,    1,    0,  479,    0,    0],
+        [   0,    0,    0,    0,  314,    0],
+        [   0,    2,    0,    0,    0,  813]])
+
+================ Test ================
+Loss: 0.0023
+Accuracy: 99.95%
+Balanced Accuracy: 99.91%
+Macro Precision: 0.9992
+Macro Recall: 0.9991
+Macro F1: 0.9991
+Weighted Precision: 0.9995
+Weighted Recall: 0.9995
+Weighted F1: 0.9995
+
+Pro Klasse:
+histologie: n=12558, acc=99.97%, precision=0.9998, recall=0.9997, f1=0.9998
+haut: n=1761, acc=99.83%, precision=0.9972, recall=0.9983, f1=0.9977
+chart: n=2945, acc=100.00%, precision=0.9993, recall=1.0000, f1=0.9997
+endoskopie: n=720, acc=99.72%, precision=0.9986, recall=0.9972, f1=0.9979
+mikroskopie: n=472, acc=100.00%, precision=1.0000, recall=1.0000, f1=1.0000
+chirurgie: n=1224, acc=99.92%, precision=1.0000, recall=0.9992, f1=0.9996
+
+Confusion Matrix:
+tensor([[12554,     3,     1,     0,     0,     0],
+        [    1,  1758,     1,     1,     0,     0],
+        [    0,     0,  2945,     0,     0,     0],
+        [    0,     2,     0,   718,     0,     0],
+        [    0,     0,     0,     0,   472,     0],
+        [    1,     0,     0,     0,     0,  1223]])
