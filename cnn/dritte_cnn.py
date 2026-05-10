@@ -23,7 +23,12 @@ from tqdm import tqdm
 
 BASE_DIR = Path("/home/b/PycharmProjects/ba2roco/cnn/dataset3")
 
-CLASSES = ["histologie", "haut", "chart", "endoskopie", "mikroskopie", "chirurgie"]
+CLASSES = ["histologie",
+           "haut",
+           "chart",
+           "endoskopie",
+           "mikroskopie",
+           "chirurgie"]
 CLASS_TO_IDX = {c: i for i, c in enumerate(CLASSES)}
 
 IMG_SIZE = 224

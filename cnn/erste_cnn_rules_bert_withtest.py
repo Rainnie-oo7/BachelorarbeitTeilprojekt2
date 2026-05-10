@@ -6,25 +6,91 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader, random_split, Dataset
 from tqdm import tqdm
+from collections import defaultdict
+import random
+from pathlib import Path
+import numpy as np
+from PIL import Image
 
-VALID_EXTENSIONS = {'.pt'}
+try:
+    import pydicom
+except ImportError:
+    pydicom = None
 
+VALID_EXTENSIONS = {
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.bmp',
+    '.tif',
+    '.tiff',
+    '.dcm',
+}
+DATASET_ROOTS = [
+    # CT
+    #/media/b/Volume/
+    Path("D:/TCIA_Lung_Phantom"),
+    Path("D:/TCIA_TCGA-ESCA"),
+    Path("D:/TCIA_TCGA-STAD"),
+    Path("D:/QIN-Lung"),
+    Path("D:/StageII-Colorectal-CT"),
+    # CT KOMBI
+    Path("D:/TCGA-LUAD"),
+    Path("D:/PSMA-PET-CT"),
+    # US
+    Path("/home/b/PycharmProjects/ba2roco/cnn/dataset1")]
+print("\n============ ROOT CHECK ==========")
+for p in DATASET_ROOTS:
+    print(p, "EXISTS:", p.exists())
 
-# ============================================================
-# Hilfsfunktionen nur fuer Torch-Tensoren
-# ============================================================
+FINAL_CLASS_MAPPING = {
+    "ct": "ct",
+    "ct_kombimodalitaet_spect+ct_pet+ct": "ct_kombimodalitaet_spect+ct_pet+ct",
+    "us": "us",
+}
 
-def load_tensor_file(path):
-    """
-    Laedt eine .pt-Datei und gibt einen Torch-Tensor zurueck.
-    Erwartet Bilddaten als Tensor oder etwas, das in Tensor wandelbar ist.
-    """
-    obj = torch.load(path, map_location='cpu')
+def load_image_file(path):
 
-    if isinstance(obj, torch.Tensor):
-        tensor = obj
+    ext = os.path.splitext(path)[1].lower()
+
+    # ============================================================
+    # DICOM
+    # ============================================================
+
+    if ext == ".dcm":
+
+        if pydicom is None:
+            raise ImportError("pydicom nicht installiert.")
+
+        ds = pydicom.dcmread(path)
+
+        arr = ds.pixel_array.astype(np.float32)
+
+        arr = arr - arr.min()
+
+        if arr.max() > 0:
+            arr = arr / arr.max()
+
+        arr = (arr * 255).clip(0, 255).astype(np.uint8)
+
+        img = Image.fromarray(arr).convert("RGB")
+
+    # ============================================================
+    # NORMALE BILDER
+    # ============================================================
+
     else:
-        tensor = torch.as_tensor(obj)
+
+        img = Image.open(path).convert("RGB")
+
+    arr = np.array(img)
+
+    tensor = (
+        torch.from_numpy(arr)
+        .permute(2, 0, 1)
+        .float()
+        / 255.0
+    )
 
     return tensor
 
@@ -81,22 +147,14 @@ def ensure_image_tensor(tensor):
 # ============================================================
 
 class NestedMedicalFolder(Dataset):
-    def __init__(self, root_dir, transform=None):
-        self.root_dir = root_dir
+    def __init__(self, root_dirs, transform=None):
+        self.root_dirs = root_dirs
         self.transform = transform
 
         self.classes = [
-            'xray',
-            'xray_fluoroskopie_angiographie',
-            'us',
-            'mrt_hirn_flair',
-            'mrt_hirn_t1',
-            'mrt_hirn_t2',
-            'mrt_hirn_t1_c',
-            'mrt_prostata_t1',
-            'mrt_prostata_t2',
             'ct',
-            'ct_kombimodalitaet_spect+ct_pet+ct'
+            'ct_kombimodalitaet_spect+ct_pet+ct',
+            'us',
         ]
         self.class_to_idx = {cls_name: i for i, cls_name in enumerate(self.classes)}
         self.images = []
@@ -109,7 +167,7 @@ class NestedMedicalFolder(Dataset):
     def __getitem__(self, idx):
         img_path, label = self.images[idx]
 
-        image = load_tensor_file(img_path)
+        image = load_image_file(img_path)
         image = ensure_image_tensor(image)
 
         if self.transform:
@@ -123,182 +181,246 @@ class NestedMedicalFolder(Dataset):
 
     def is_busi_mask(self, path):
         filename = os.path.basename(path).lower()
-        return '_mask' in filename
+        mask_keywords = [
+            '_mask',
+            'mask',
+            '_seg',
+            'segmentation',
+            '_gt',
+        ]
 
-    def collect_mrt_prostata_files(self):
-        """
-        Erwartete Struktur:
-        dataset/mrt_prostata/PROSTATE_MRI/PROSTATE-MRI/...
-        Nur Serienordner mit T1 oder T2 werden berücksichtigt.
-        """
-        base_dir = os.path.join(
-            self.root_dir,
-            'mrt_prostata',
-            'PROSTATE_MRI',
-            'PROSTATE-MRI'
-        )
+        return any(k in filename for k in mask_keywords)
 
-        if not os.path.isdir(base_dir):
-            print(f"[WARNUNG] Prostata-Basisordner nicht gefunden: {base_dir}")
-            return
+    def infer_dataset_name(self, full_path):
 
-        for level1 in os.listdir(base_dir):
-            level1_path = os.path.join(base_dir, level1)
-            if not os.path.isdir(level1_path):
-                continue
+        norm = os.path.normpath(full_path)
+        parts = norm.split(os.sep)
 
-            for level2 in os.listdir(level1_path):
-                level2_path = os.path.join(level1_path, level2)
-                if not os.path.isdir(level2_path):
-                    continue
-
-                for series_folder in os.listdir(level2_path):
-                    series_path = os.path.join(level2_path, series_folder)
-                    if not os.path.isdir(series_path):
-                        continue
-
-                    series_name = series_folder.lower()
-                    class_name = None
-
-                    if re.search(r'(^|[^a-z0-9])t2([^a-z0-9]|$)', series_name):
-                        class_name = 'mrt_prostata_t2'
-                    elif re.search(r'(^|[^a-z0-9])t1([^a-z0-9]|$)', series_name):
-                        class_name = 'mrt_prostata_t1'
-                    else:
-                        continue
-
-                    label = self.class_to_idx[class_name]
-
-                    for file in os.listdir(series_path):
-                        file_path = os.path.join(series_path, file)
-                        if os.path.isfile(file_path) and self.is_valid_file(file):
-                            self.images.append((file_path, label))
-
-    def infer_class_from_path(self, full_path):
-        norm_path = os.path.normpath(full_path)
-        parts = norm_path.split(os.sep)
         lower_parts = [p.lower() for p in parts]
 
-        # 1) US / Dataset_BUSI
-        if 'us' in lower_parts and 'dataset_busi' in lower_parts:
-            if self.is_busi_mask(full_path):
-                return None
+        # ============================================================
+        # CT
+        # ============================================================
+
+        known_ct = [
+            'tcia_lung_phantom',
+            'tcia_tcga-esca',
+            'tcia_tcga-stad',
+            'qin-lung',
+            'stageii-colorectal-ct',
+        ]
+
+        for p in lower_parts:
+            for k in known_ct:
+                if k in p:
+                    return k
+
+        # ============================================================
+        # CT KOMBI
+        # ============================================================
+
+        known_combo = [
+            'tcga-luad',
+            'psma-pet-ct',
+        ]
+        #egal wie tief der Ordner liegt.
+        for p in lower_parts:
+            for k in known_combo:
+                if k in p:
+                    return k
+
+        # ============================================================
+        # US
+        # ============================================================
+
+        known_us = [
+            'common carotid artery ultrasound images',
+            'dataset_busi_with_gt',
+            'ddti thyroid ultrasound images',
+            'fetal abdominal structures segmentation dataset using ultrasonic images',
+            'ultrasound fetus dataset',
+            'ultrasound-nerve-segmentation',
+        ]
+        #egal wie tief der Ordner liegt.
+        for p in lower_parts:
+            for k in known_us:
+                if k in p:
+                    return k
+
+        return "unknown"
+
+    def infer_class_from_path(self, full_path):
+
+        dataset_name = self.infer_dataset_name(full_path)
+
+        # ============================================================
+        # CT
+        # ============================================================
+
+        ct_datasets = {
+            'tcia_lung_phantom',
+            'tcia_tcga-esca',
+            'tcia_tcga-stad',
+            'qin-lung',
+            'stageii-colorectal-ct',
+        }
+
+        if dataset_name in ct_datasets:
+            return 'ct'
+
+        # ============================================================
+        # CT KOMBI
+        # ============================================================
+
+        combo_datasets = {
+            'tcga-luad',
+            'psma-pet-ct',
+        }
+
+        if dataset_name in combo_datasets:
+            return 'ct_kombimodalitaet_spect+ct_pet+ct'
+
+        # ============================================================
+        # US
+        # ============================================================
+
+        us_datasets = {
+            'common carotid artery ultrasound images',
+            'dataset_busi_with_gt',
+            'ddti thyroid ultrasound images',
+            'fetal abdominal structures segmentation dataset using ultrasonic images',
+            'ultrasound fetus dataset',
+            'ultrasound-nerve-segmentation',
+        }
+
+        if dataset_name in us_datasets:
             return 'us'
-
-        if 'us' in lower_parts:
-            return 'us'
-
-        # 2) Xray-Fluoroskopie-Angiographie
-        if 'xray_fluoroskopie_angiographie' in lower_parts:
-            return 'xray_fluoroskopie_angiographie'
-
-        # 3) Generisches Xray
-        if 'xray' in lower_parts:
-            return 'xray'
-
-        # 4) CT / CT-Kombimodalitaeten
-        if 'ct' in lower_parts or any('ct' in p for p in lower_parts):
-            for part in reversed(parts):
-                pl = part.lower().strip()
-
-                if 'spect' in pl and 'ct' in pl:
-                    return 'ct_kombimodalitaet_spect+ct_pet+ct'
-
-                if 'pet' in pl and 'ct' in pl:
-                    return 'ct_kombimodalitaet_spect+ct_pet+ct'
-
-                if re.search(r'spect[\s_\-]*ct|ct[\s_\-]*spect', pl):
-                    return 'ct_kombimodalitaet_spect+ct_pet+ct'
-
-                if re.search(r'pet[\s_\-]*ct|ct[\s_\-]*pet|petct', pl):
-                    return 'ct_kombimodalitaet_spect+ct_pet+ct'
-
-                if pl == 'ct':
-                    return 'ct'
-
-                if re.search(r'(^|[^a-z0-9])ct([^a-z0-9]|$)', pl):
-                    return 'ct'
-
-            return None
-
-        # 5) MRT Hirn - Brain Tumor MRI Images 44 Classes
-        if 'mrt_hirn' in lower_parts and 'brain tumor mri images 44 classes' in lower_parts:
-            for part in reversed(parts):
-                pl = part.lower().strip()
-                if pl.endswith(' t1c+'):
-                    return 'mrt_hirn_t1_c'
-                if pl.endswith(' t1'):
-                    return 'mrt_hirn_t1'
-                if pl.endswith(' t2'):
-                    return 'mrt_hirn_t2'
-            return None
-
-        # 6) MRT Hirn - Neurohacking_data-0.0/BRAINIX/DICOM
-        if (
-            'mrt_hirn' in lower_parts and
-            'neurohacking_data-0.0' in lower_parts and
-            'brainix' in lower_parts and
-            'dicom' in lower_parts
-        ):
-            if 'flair' in lower_parts:
-                return 'mrt_hirn_flair'
-            if 't1' in lower_parts:
-                return 'mrt_hirn_t1'
-            if 't2' in lower_parts:
-                return 'mrt_hirn_t2'
-            return None
-
-        # 7) MRT Prostata
-        if (
-            'mrt_prostata' in lower_parts and
-            'prostate_mri' in lower_parts and
-            'prostate-mri' in lower_parts
-        ):
-            for part in reversed(parts):
-                pl = part.lower().strip()
-
-                if re.search(r'(^|[^a-z0-9])t2([^a-z0-9]|$)', pl):
-                    return 'mrt_prostata_t2'
-
-                if re.search(r'(^|[^a-z0-9])t1([^a-z0-9]|$)', pl):
-                    return 'mrt_prostata_t1'
-
-            return None
-
-        if 'mrt_hirn' in lower_parts:
-            return None
-
-        if 'mrt_prostata' in lower_parts:
-            return None
 
         return None
 
     def collect_files(self):
+        rng = random.Random(42)
+
+        max_per_class = 23800
+
+        grouped = defaultdict(list)
+
+        # ============================================================
+        # Alle Dateien sammeln
+        # ============================================================
+
+        for dataset_root in self.root_dirs:
+
+            dataset_root = str(dataset_root)
+
+            print(f"\nDurchsuche: {dataset_root}")
+
+            for root, _, files in os.walk(dataset_root):
+                for file in files:
+
+                    if not self.is_valid_file(file):
+                        continue
+
+                    full_path = os.path.join(root, file)
+
+                    class_name = self.infer_class_from_path(full_path)
+
+                    if class_name is None:
+                        continue
+
+                    if class_name in FINAL_CLASS_MAPPING:
+                        class_name = FINAL_CLASS_MAPPING[class_name]
+                    else:
+                        continue
+
+                    if class_name not in self.classes:
+                        continue
+
+                    # US Masken entfernen
+                    if class_name == "us":
+                        if self.is_busi_mask(full_path):
+                            continue
+
+                    dataset_name = self.infer_dataset_name(full_path)
+
+                    grouped[(class_name, dataset_name)].append(full_path)
+
+        # ============================================================
+        # Zufallig, Balanced Dataset Sampling (Shuffle in jedem Datensatz)
+        # ============================================================
+
         self.images = []
 
-        for root, _, files in os.walk(self.root_dir):
-            norm_root = os.path.normpath(root)
-            lower_parts = [p.lower() for p in norm_root.split(os.sep)]
+        for class_name in self.classes:
 
-            if 'mrt_prostata' in lower_parts:
+            datasets = []
+
+            for (cls_name, dataset_name), files in grouped.items():
+
+                if cls_name == class_name:
+                    datasets.append((dataset_name, files))
+
+            print(f"\n================ {class_name} ================")
+
+            total_datasets = len(datasets)
+
+            if total_datasets == 0:
                 continue
 
-            for file in files:
-                if not self.is_valid_file(file):
-                    continue
+            # ============================================================
+            # Erst fair verteilen
+            # ============================================================
 
-                full_path = os.path.join(root, file)
-                class_name = self.infer_class_from_path(full_path)
+            target_per_dataset = max_per_class // total_datasets
 
-                if class_name is None:
-                    continue
+            selected_all = []
 
-                label = self.class_to_idx[class_name]
+            leftovers = []
+
+            for dataset_name, files in datasets:
+                rng.shuffle(files)
+
+                take_now = min(target_per_dataset, len(files))
+
+                selected = files[:take_now]
+
+                rest = files[take_now:]
+
+                selected_all.extend(selected)
+
+                leftovers.extend(rest)
+
+                print(
+                    f"{dataset_name:60s} "
+                    f"gefunden={len(files):6d} "
+                    f"nehme={len(selected):6d}"
+                )
+
+            # ============================================================
+            # Fehlende Samples auffuellen
+            # ============================================================
+
+            missing = max_per_class - len(selected_all)
+
+            if missing > 0:
+                rng.shuffle(leftovers)
+
+                refill = leftovers[:missing]
+
+                selected_all.extend(refill)
+
+                print(f"Auffuellung: +{len(refill)}")
+
+            # ============================================================
+            # Finale Samples speichern
+            # ============================================================
+
+            label = self.class_to_idx[class_name]
+
+            for full_path in selected_all:
                 self.images.append((full_path, label))
 
-        self.collect_mrt_prostata_files()
-
-
+            print(f"Final fuer {class_name}: {len(selected_all)}")
 # ============================================================
 # Einfaches CNN
 # ============================================================
@@ -480,47 +602,13 @@ def print_metrics(title, metrics):
     print("\nConfusion Matrix:")
     print(metrics["confusion_matrix"])
 
-
-def compute_class_weights_from_counts(class_counts_dict, class_names, use_sqrt=True, max_weight=50.0):
-    """
-    Berechnet Class Weights auf Basis der Klassenhaeufigkeiten.
-
-    Formel:
-        weight_c = N / (K * n_c)
-
-    Optional:
-    - sqrt, damit extreme Gewichte abgeflacht werden
-    - clamp, damit sehr kleine Klassen nicht alles dominieren
-    """
-    counts = torch.tensor(
-        [class_counts_dict[name] for name in class_names],
-        dtype=torch.float32
-    )
-
-    counts[counts == 0] = 1.0
-
-    total_samples = counts.sum()
-    num_classes = len(class_names)
-
-    weights = total_samples / (num_classes * counts)
-
-    if use_sqrt:
-        weights = torch.sqrt(weights)
-
-    if max_weight is not None:
-        weights = torch.clamp(weights, max=max_weight)
-
-    return weights
-
-
 # ============================================================
 # Hauptteil
 # ============================================================
 
 if __name__ == "__main__":
-    root_dir = "dataset"
     batch_size = 32
-    num_epochs = 1
+    num_epochs = 5
     seed = 42
 
     transform = transforms.Compose([
@@ -528,7 +616,7 @@ if __name__ == "__main__":
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
     ])
 
-    dataset = NestedMedicalFolder(root_dir=root_dir, transform=transform)
+    dataset = NestedMedicalFolder(root_dirs=DATASET_ROOTS, transform=transform)
 
     print(f"Anzahl der Dateien: {len(dataset)}")
     print(f"Klassen: {dataset.classes}")
@@ -555,21 +643,6 @@ if __name__ == "__main__":
         f"max={sample_img.max().item():.4f}, "
         f"label={sample_label}"
     )
-
-    # ============================================================
-    # Class Weights
-    # ============================================================
-
-    class_weights = compute_class_weights_from_counts(
-        class_counts_dict=class_counts,
-        class_names=dataset.classes,
-        use_sqrt=True,
-        max_weight=50.0
-    )
-
-    print("\nClass Weights:")
-    for cls_name, weight in zip(dataset.classes, class_weights.tolist()):
-        print(f"{cls_name}: {weight:.4f}")
 
     # Split: 79 / 10.5 / 10.5
     total_size = len(dataset)
@@ -617,7 +690,7 @@ if __name__ == "__main__":
     device = torch.device("cpu")
     model.to(device)
 
-    criterion = nn.CrossEntropyLoss(weight=class_weights.to(device))
+    criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
     for epoch in range(num_epochs):

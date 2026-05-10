@@ -46,10 +46,10 @@ VALID_EXTENSIONS = {
 }
 
 CLASSES = [
-    "xray",
-    "xray_fluoroskopie_angiographie",
-    "mrt_hirn",
     "mrt_body",
+    "mrt_hirn",
+    "xray",
+    "xray_fluoroskopie_angiographie"
 ]
 
 CLASS_TO_IDX = {c: i for i, c in enumerate(CLASSES)}
@@ -83,7 +83,12 @@ def pil_to_tensor_rgb(img):
 
     img = img.convert("RGB")
     arr = np.array(img)
-    tensor = torch.from_numpy(arr).permute(2, 0, 1).float()
+    tensor = (
+            torch.from_numpy(arr)
+            .permute(2, 0, 1)
+            .float()
+            / 255.0
+    )
     return tensor
 
 
@@ -112,6 +117,8 @@ def ensure_image_tensor(tensor):
     elif c != 3:
         raise ValueError(f"Unerwartete Kanalzahl: {c}, shape={tuple(tensor.shape)}")
 
+    if tensor.max() > 1.5:
+        tensor = tensor / 255.0
     return tensor
 
 
@@ -319,6 +326,7 @@ class FolderLabelMedicalDataset(Dataset):
             "_mask" in name
             or name.endswith("_gt.nii")
             or "_gt." in name
+            or "_seg" in name
             or "segmentation" in str(path).lower()
         )
 
@@ -431,7 +439,12 @@ class FolderLabelMedicalDataset(Dataset):
 
     def collect_files(self):
         self.samples = []
+        max_per_class = 20000
 
+        class_counter = {
+            c: 0
+            for c in self.classes
+        }
         for root, _, files in os.walk(self.root_dir):
             root_path = Path(root)
 
@@ -465,11 +478,22 @@ class FolderLabelMedicalDataset(Dataset):
                         continue
 
                     depth = arr_shape[2]
+
                     for z in slice_indices_25_percent(depth):
+                        if class_counter[label_name] >= max_per_class:
+                            continue
                         self.add_sample(path, label_name, slice_idx=z)
+                        class_counter[label_name] += 1
+
 
                 else:
+
+                    if class_counter[label_name] >= max_per_class:
+                        continue
+
                     self.add_sample(path, label_name)
+
+                    class_counter[label_name] += 1
 
     def print_summary(self):
         print("\n================ DATASET CHECK ================")
@@ -804,7 +828,16 @@ if __name__ == "__main__":
     print(f"\nDevice: {device}")
 
     model = SimpleCNN(num_classes=len(dataset.classes)).to(device)
+    # model.load_state_dict(
+    #     torch.load(
+    #         "/home/b/Dokumente/cnn2/convu_folderlabel_mrt_body_mrt_hirn.pth",
+    #         map_location=device
+    #     )
+    # )
 
+    print("Checkpoint geladen.")
+    print(model.classifier[-1].weight.shape)
+    print(CLASS_TO_IDX)
     criterion = nn.CrossEntropyLoss(weight=class_weights.to(device))
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -839,9 +872,156 @@ if __name__ == "__main__":
         print(f"Val Macro F1: {val_metrics['macro_f1']:.4f}")
         print(f"Val Weighted F1: {val_metrics['weighted_f1']:.4f}")
 
-    save_path = "convu_folderlabel_mrt_body_mrt_hirn.pth"
+    save_path = "cnn2.pth"
     torch.save(model.state_dict(), save_path)
     print(f"\nModell gespeichert als {save_path}")
 
     test_metrics = evaluate_model(model, test_loader, criterion, device, dataset.classes)
     print_metrics("TESTERGEBNISSE", test_metrics)
+
+    # ============================================================
+    # DEBUG TESTING: 25 Bilder pro Klasse
+    # ============================================================
+    #
+    # import random
+    # from collections import defaultdict
+    #
+    #
+    # def build_balanced_debug_subset(dataset, per_class=25, seed=42):
+    #     random.seed(seed)
+    #
+    #     grouped = defaultdict(list)
+    #
+    #     for idx, rec in enumerate(dataset.samples):
+    #         grouped[rec["label_name"]].append(idx)
+    #
+    #     selected = []
+    #
+    #     print("\n================ DEBUG SUBSET ================")
+    #
+    #     for cls_name in dataset.classes:
+    #         candidates = grouped[cls_name]
+    #
+    #         print(f"{cls_name}: gefunden={len(candidates)}")
+    #
+    #         if len(candidates) == 0:
+    #             continue
+    #
+    #         take = min(per_class, len(candidates))
+    #
+    #         chosen = random.sample(candidates, take)
+    #
+    #         selected.extend(chosen)
+    #
+    #         print(f" -> nehme {take}")
+    #
+    #     return selected
+    #
+    #
+    # def run_debug_testing(model, dataset, device, per_class=25):
+    #     model.eval()
+    #
+    #     selected_indices = build_balanced_debug_subset(
+    #         dataset=dataset,
+    #         per_class=per_class
+    #     )
+    #
+    #     confusion = torch.zeros(
+    #         len(dataset.classes),
+    #         len(dataset.classes),
+    #         dtype=torch.int64
+    #     )
+    #
+    #     correct = 0
+    #     total = 0
+    #
+    #     print("\n================ DEBUG TESTING ================")
+    #
+    #     with torch.no_grad():
+    #
+    #         for idx in selected_indices:
+    #
+    #             rec = dataset.samples[idx]
+    #
+    #             image, label = dataset[idx]
+    #
+    #             input_tensor = image.unsqueeze(0).to(
+    #                 device,
+    #                 dtype=torch.float32
+    #             )
+    #
+    #             outputs = model(input_tensor)
+    #
+    #             probs = torch.softmax(outputs, dim=1)[0]
+    #
+    #             pred = outputs.argmax(dim=1).item()
+    #
+    #             confusion[label, pred] += 1
+    #
+    #             total += 1
+    #
+    #             if pred == label:
+    #                 correct += 1
+    #
+    #             topk = torch.topk(
+    #                 probs,
+    #                 k=min(3, len(dataset.classes))
+    #             )
+    #
+    #             top_indices = topk.indices.cpu().tolist()
+    #             top_values = topk.values.cpu().tolist()
+    #
+    #             print("\n------------------------------------------------")
+    #             print(f"PATH: {rec['path']}")
+    #             print(f"TRUE: {dataset.classes[label]}")
+    #             print(f"PRED: {dataset.classes[pred]}")
+    #             print(f"CORRECT: {pred == label}")
+    #
+    #             print(f"RAW LOGITS: {outputs[0].cpu().tolist()}")
+    #
+    #             print("\nTOP-3:")
+    #
+    #             for rank, (cls_idx, score) in enumerate(
+    #                     zip(top_indices, top_values),
+    #                     start=1
+    #             ):
+    #                 print(
+    #                     f"{rank}. "
+    #                     f"{dataset.classes[cls_idx]} "
+    #                     f"{score:.6f}"
+    #                 )
+    #
+    #     acc = correct / total if total > 0 else 0.0
+    #
+    #     print("\n================ DEBUG ERGEBNIS ================")
+    #     print(f"Accuracy: {acc * 100:.2f}%")
+    #
+    #     print("\nConfusion Matrix:")
+    #     print(confusion)
+    #
+    #     print("\nPer-Class Accuracy:")
+    #
+    #     for c in range(len(dataset.classes)):
+    #         tp = confusion[c, c].item()
+    #
+    #         total_c = confusion[c].sum().item()
+    #
+    #         class_acc = tp / total_c if total_c > 0 else 0.0
+    #
+    #         print(
+    #             f"{dataset.classes[c]}: "
+    #             f"{class_acc * 100:.2f}% "
+    #             f"(n={total_c})"
+    #         )
+    #
+    #
+    # # ============================================================
+    # # START DEBUG TESTING
+    # # ============================================================
+    #
+    # run_debug_testing(
+    #     model=model,
+    #     dataset=dataset,
+    #     device=device,
+    #     per_class=25
+    # )

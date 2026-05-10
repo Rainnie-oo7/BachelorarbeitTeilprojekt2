@@ -11,6 +11,308 @@ Remainder of file ignored
 
 ================ DATASET CHECK ================
 Root: /home/b/PycharmProjects/ba2roco/cnn/dataset
+Anzahl Samples: 66433
+Klassen: ['mrt_body', 'mrt_hirn', 'xray', 'xray_fluoroskopie_angiographie']
+class_to_idx: {'mrt_body': 0, 'mrt_hirn': 1, 'xray': 2, 'xray_fluoroskopie_angiographie': 3}
+
+Anzahl pro Klasse:
+mrt_body: 20000
+mrt_hirn: 20000
+xray: 20000
+xray_fluoroskopie_angiographie: 6433
+
+Anzahl pro Quelle:
+automatedcardiacdiagnosischallenge_miccai17: 1200
+breast-mri-nact-pilot: 18004
+kneemridataset: 736
+spine mri dataset: 60
+unknown: 46433
+
+Uebersprungene Dateien:
+unsupported: 2220
+mask_or_gt: 1047
+unknown_label: 0
+ignored_dicom_spine: 60
+ignored_acdc_4d: 150
+
+Erste 10 Samples:
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/2-AP Caudal/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/2-AP Caudal/Image 1.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/2-AP Caudal/Image 2.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/0-RAO Straight/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/0-RAO Straight/Image 1.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/0-RAO Straight/Image 2.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/3-LAO Straight/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/3-LAO Straight/Image 1.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/3-LAO Straight/Image 2.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+{'path': PosixPath('/home/b/PycharmProjects/ba2roco/cnn/dataset/xray_fluoroskopie_angiographie/Xcad Coronary Angiography/CathLab-144/1-AP Cranial/Image 0.jpg'), 'label_name': 'xray_fluoroskopie_angiographie', 'label_idx': 3, 'slice_idx': None}
+
+Sanity Check erstes Sample:
+shape=torch.Size([3, 224, 224]), dtype=torch.float32, min=-0.7985, max=1.0000, label=3, class=xray_fluoroskopie_angiographie
+
+Class Weights:
+mrt_body: 0.9113
+mrt_hirn: 0.9113
+xray: 0.9113
+xray_fluoroskopie_angiographie: 1.6068
+
+Train-Verteilung:
+mrt_body: 15842
+mrt_hirn: 15767
+xray: 15780
+xray_fluoroskopie_angiographie: 5093
+
+Val-Verteilung:
+mrt_body: 2088
+mrt_hirn: 2112
+xray: 2115
+xray_fluoroskopie_angiographie: 660
+
+Test-Verteilung:
+mrt_body: 2070
+mrt_hirn: 2121
+xray: 2105
+xray_fluoroskopie_angiographie: 680
+
+Device: cpu
+Checkpoint geladen.
+torch.Size([4, 128])
+{'mrt_body': 0, 'mrt_hirn': 1, 'xray': 2, 'xray_fluoroskopie_angiographie': 3}
+Epoch 1/5 [Train]:   0%|          | 0/1641 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 1/5 [Train]:   1%|▏         | 23/1641 [00:08<08:51,  3.05it/s, loss=1.2836]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 1/5 [Train]: 100%|██████████| 1641/1641 [08:40<00:00,  3.15it/s, loss=0.3348]
+Evaluation:   0%|          | 0/218 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Evaluation:   0%|          | 1/218 [00:00<01:26,  2.50it/s, acc=84.38%, loss=0.3288]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 2/5 [Train]:   0%|          | 0/1641 [00:00<?, ?it/s]
+Epoch 1/5
+Train Loss: 0.6047
+Val Loss: 0.5979
+Val Accuracy: 71.81%
+Val Balanced Accuracy: 75.54%
+Val Macro F1: 0.7438
+Val Weighted F1: 0.7125
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 2/5 [Train]: 100%|██████████| 1641/1641 [08:05<00:00,  3.38it/s, loss=0.0371]
+Evaluation:   0%|          | 0/218 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Evaluation:   0%|          | 1/218 [00:00<01:24,  2.58it/s, acc=93.75%, loss=0.1774]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 3/5 [Train]:   0%|          | 0/1641 [00:00<?, ?it/s]
+Epoch 2/5
+Train Loss: 0.3063
+Val Loss: 0.2402
+Val Accuracy: 90.01%
+Val Balanced Accuracy: 91.30%
+Val Macro F1: 0.9038
+Val Weighted F1: 0.9004
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 3/5 [Train]:   0%|          | 8/1641 [00:02<07:52,  3.46it/s, loss=0.2251]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 3/5 [Train]: 100%|██████████| 1641/1641 [07:35<00:00,  3.60it/s, loss=0.0038]
+Evaluation:   0%|          | 0/218 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Evaluation:   0%|          | 1/218 [00:00<01:24,  2.58it/s, acc=93.75%, loss=0.1433]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 4/5 [Train]:   0%|          | 0/1641 [00:00<?, ?it/s]
+Epoch 3/5
+Train Loss: 0.2184
+Val Loss: 0.2260
+Val Accuracy: 89.30%
+Val Balanced Accuracy: 90.39%
+Val Macro F1: 0.9027
+Val Weighted F1: 0.8918
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 4/5 [Train]:   1%|▏         | 23/1641 [00:06<07:17,  3.70it/s, loss=0.3136]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 4/5 [Train]: 100%|██████████| 1641/1641 [07:34<00:00,  3.61it/s, loss=0.0004]
+Evaluation:   0%|          | 0/218 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Evaluation:   0%|          | 1/218 [00:00<01:21,  2.67it/s, acc=90.62%, loss=0.1943]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 5/5 [Train]:   0%|          | 0/1641 [00:00<?, ?it/s]
+Epoch 4/5
+Train Loss: 0.1877
+Val Loss: 0.1863
+Val Accuracy: 93.08%
+Val Balanced Accuracy: 93.34%
+Val Macro F1: 0.9359
+Val Weighted F1: 0.9308
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 5/5 [Train]:   0%|          | 7/1641 [00:02<07:59,  3.40it/s, loss=0.0806]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 5/5 [Train]:   1%|          | 12/1641 [00:03<07:30,  3.62it/s, loss=0.1415]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Epoch 5/5 [Train]: 100%|██████████| 1641/1641 [07:34<00:00,  3.61it/s, loss=0.0049]
+Evaluation:   0%|          | 0/218 [00:00<?, ?it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Evaluation:   0%|          | 1/218 [00:00<01:23,  2.60it/s, acc=90.62%, loss=0.1280]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+Evaluation:   0%|          | 0/218 [00:00<?, ?it/s]
+Epoch 5/5
+Train Loss: 0.1676
+Val Loss: 0.1429
+Val Accuracy: 93.43%
+Val Balanced Accuracy: 94.36%
+Val Macro F1: 0.9393
+Val Weighted F1: 0.9345
+
+Modell gespeichert als cnn2.pth
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/pydicom/charset.py:738: UserWarning: Unknown encoding 'ISO_IR100' - using default encoding instead
+  _warn_about_invalid_encoding(encoding)
+
+================ TESTERGEBNISSE ================
+Loss: 0.1348
+Accuracy: 93.66%
+Balanced Accuracy: 94.60%
+Macro Precision: 0.9366
+Macro Recall: 0.9460
+Macro F1: 0.9406
+Weighted Precision: 0.9382
+Weighted Recall: 0.9366
+Weighted F1: 0.9367
+
+Pro Klasse:
+mrt_body: n=2070, acc=95.51%, precision=0.8934, recall=0.9551, f1=0.9232
+mrt_hirn: n=2121, acc=88.83%, precision=0.9313, recall=0.8883, f1=0.9093
+xray: n=2105, acc=94.96%, precision=0.9921, recall=0.9496, f1=0.9704
+xray_fluoroskopie_angiographie: n=680, acc=99.12%, precision=0.9297, recall=0.9912, f1=0.9594
+
+Confusion Matrix:
+tensor([[1977,   87,    6,    0],
+        [ 233, 1884,    4,    0],
+        [   3,   52, 1999,   51],
+        [   0,    0,    6,  674]])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+die fruehere: klassenreihenfolge, transform problem bei dicom loeste min 50 max 255 Werte anstatt 0 bis 1
+
+
+/home/b/anaconda3/envs/ba2roco/bin/python /home/b/PycharmProjects/ba2roco/cnn/zweite_cnn.py
+Error processing line 1 of /home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "/home/b/anaconda3/envs/ba2roco/lib/python3.10/site.py", line 195, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+
+================ DATASET CHECK ================
+Root: /home/b/PycharmProjects/ba2roco/cnn/dataset
 Anzahl Samples: 430767
 Klassen: ['xray', 'xray_fluoroskopie_angiographie', 'mrt_hirn', 'mrt_body']
 class_to_idx: {'xray': 0, 'xray_fluoroskopie_angiographie': 1, 'mrt_hirn': 2, 'mrt_body': 3}
