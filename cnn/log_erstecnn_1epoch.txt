@@ -1,3 +1,163 @@
+============ ROOT CHECK ==========
+/media/b/Volume/TCIA_Lung_Phantom EXISTS: True
+/media/b/Volume/TCIA_TCGA-ESCA EXISTS: True
+/media/b/Volume/TCIA_TCGA-STAD EXISTS: True
+/media/b/Volume/QIN-Lung EXISTS: True
+/media/b/Volume/StageII-Colorectal-CT EXISTS: True
+/media/b/Volume/TCGA-LUAD EXISTS: True
+/media/b/Volume/PSMA-PET-CT EXISTS: True
+/home/b/PycharmProjects/ba2roco/cnn/dataset1 EXISTS: True
+
+Durchsuche: /media/b/Volume/TCIA_Lung_Phantom
+
+Durchsuche: /media/b/Volume/TCIA_TCGA-ESCA
+
+Durchsuche: /media/b/Volume/TCIA_TCGA-STAD
+
+Durchsuche: /media/b/Volume/QIN-Lung
+
+Durchsuche: /media/b/Volume/StageII-Colorectal-CT
+
+Durchsuche: /media/b/Volume/TCGA-LUAD
+
+Durchsuche: /media/b/Volume/PSMA-PET-CT
+
+Durchsuche: /home/b/PycharmProjects/ba2roco/cnn/dataset1
+
+================ ct ================
+tcia_lung_phantom                                            gefunden=   237 nehme=   237
+tcia_tcga-esca                                               gefunden= 20593 nehme=  4000
+tcia_tcga-stad                                               gefunden= 43908 nehme=  4000
+qin-lung                                                     gefunden=  3954 nehme=  3954
+stageii-colorectal-ct                                        gefunden= 13850 nehme=  4000
+Auffuellung: +3809
+Final fuer ct: 20000
+
+================ ct_kombimodalitaet_spect+ct_pet+ct ================
+tcga-luad                                                    gefunden= 48931 nehme= 10000
+psma-pet-ct                                                  gefunden=369792 nehme= 10000
+Final fuer ct_kombimodalitaet_spect+ct_pet+ct: 20000
+
+================ us ================
+common carotid artery ultrasound images                      gefunden=  1100 nehme=  1100
+ddti thyroid ultrasound images                               gefunden=   480 nehme=   480
+ultrasound fetus dataset                                     gefunden=  2668 nehme=  2668
+ultrasound-nerve-segmentation                                gefunden= 11143 nehme= 11143
+dataset_busi_with_gt                                         gefunden=   780 nehme=   780
+Auffuellung: +0
+Final fuer us: 16171
+Anzahl der Dateien: 56171
+Klassen: ['ct', 'ct_kombimodalitaet_spect+ct_pet+ct', 'us']
+class_to_idx: {'ct': 0, 'ct_kombimodalitaet_spect+ct_pet+ct': 1, 'us': 2}
+
+Anzahl pro Klasse im Gesamtdatensatz:
+ct: 20000
+ct_kombimodalitaet_spect+ct_pet+ct: 20000
+us: 16171
+
+Sanity Check erstes Sample:
+shape=torch.Size([3, 224, 224]), dtype=torch.float32, min=-1.0000, max=0.5863, label=0
+
+Train-Verteilung:
+ct: 15775
+ct_kombimodalitaet_spect+ct_pet+ct: 15854
+us: 12746
+
+Val-Verteilung:
+ct: 2101
+ct_kombimodalitaet_spect+ct_pet+ct: 2052
+us: 1744
+
+Test-Verteilung:
+ct: 2124
+ct_kombimodalitaet_spect+ct_pet+ct: 2094
+us: 1681
+Epoch 1/5 [Train]: 100%|██████████| 1387/1387 [09:21<00:00,  2.47it/s, loss=0.3025]
+Epoch 2/5 [Train]:   0%|          | 0/1387 [00:00<?, ?it/s]
+Epoch 1/5
+Train Loss: 0.4791
+Val Loss: 0.3541
+Val Accuracy: 84.64%
+Val Balanced Accuracy: 85.34%
+Val Macro F1: 0.8533
+Val Weighted F1: 0.8461
+Epoch 2/5 [Train]: 100%|██████████| 1387/1387 [06:26<00:00,  3.59it/s, loss=0.1784]
+Epoch 3/5 [Train]:   0%|          | 0/1387 [00:00<?, ?it/s]
+Epoch 2/5
+Train Loss: 0.3279
+Val Loss: 0.2866
+Val Accuracy: 88.20%
+Val Balanced Accuracy: 88.78%
+Val Macro F1: 0.8874
+Val Weighted F1: 0.8815
+Epoch 3/5 [Train]: 100%|██████████| 1387/1387 [06:24<00:00,  3.61it/s, loss=0.2674]
+Epoch 4/5 [Train]:   0%|          | 0/1387 [00:00<?, ?it/s]
+Epoch 3/5
+Train Loss: 0.2797
+Val Loss: 0.2498
+Val Accuracy: 88.76%
+Val Balanced Accuracy: 89.28%
+Val Macro F1: 0.8928
+Val Weighted F1: 0.8871
+Epoch 4/5 [Train]: 100%|██████████| 1387/1387 [06:28<00:00,  3.57it/s, loss=0.3106]
+Epoch 5/5 [Train]:   0%|          | 0/1387 [00:00<?, ?it/s]
+Epoch 4/5
+Train Loss: 0.2510
+Val Loss: 0.2502
+Val Accuracy: 89.27%
+Val Balanced Accuracy: 89.81%
+Val Macro F1: 0.8982
+Val Weighted F1: 0.8928
+Epoch 5/5 [Train]: 100%|██████████| 1387/1387 [06:27<00:00,  3.58it/s, loss=0.4370]
+Evaluation:   0%|          | 0/185 [00:00<?, ?it/s]
+Epoch 5/5
+Train Loss: 0.2275
+Val Loss: 0.2178
+Val Accuracy: 90.61%
+Val Balanced Accuracy: 90.99%
+Val Macro F1: 0.9100
+Val Weighted F1: 0.9052
+
+Modell gespeichert als convu_try_3t.pth
+
+================ TESTERGEBNISSE ================
+Loss: 0.2295
+Accuracy: 90.20%
+Balanced Accuracy: 90.77%
+Macro Precision: 0.9168
+Macro Recall: 0.9077
+Macro F1: 0.9075
+Weighted Precision: 0.9106
+Weighted Recall: 0.9020
+Weighted F1: 0.9012
+
+Pro Klasse:
+ct: n=2124, acc=95.76%, precision=0.8110, recall=0.9576, f1=0.8782
+ct_kombimodalitaet_spect+ct_pet+ct: n=2094, acc=77.27%, precision=0.9407, recall=0.7727, f1=0.8485
+us: n=1681, acc=99.29%, precision=0.9988, recall=0.9929, f1=0.9958
+
+Confusion Matrix:
+tensor([[2034,   90,    0],
+        [ 474, 1618,    2],
+        [   0,   12, 1669]])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Anzahl der Dateien: 604294
 Klassen: ['xray', 'xray_fluoroskopie_angiographie', 'us', 'mrt_hirn_flair', 'mrt_hirn_t1', 'mrt_hirn_t2', 'mrt_hirn_t1_c', 'mrt_prostata_t1', 'mrt_prostata_t2', 'ct', 'ct_kombimodalitaet_spect+ct_pet+ct']
 class_to_idx: {'xray': 0, 'xray_fluoroskopie_angiographie': 1, 'us': 2, 'mrt_hirn_flair': 3, 'mrt_hirn_t1': 4, 'mrt_hirn_t2': 5, 'mrt_hirn_t1_c': 6, 'mrt_prostata_t1': 7, 'mrt_prostata_t2': 8, 'ct': 9, 'ct_kombimodalitaet_spect+ct_pet+ct': 10}

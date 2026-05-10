@@ -29,14 +29,14 @@ VALID_EXTENSIONS = {
 DATASET_ROOTS = [
     # CT
     #/media/b/Volume/
-    Path("D:/TCIA_Lung_Phantom"),
-    Path("D:/TCIA_TCGA-ESCA"),
-    Path("D:/TCIA_TCGA-STAD"),
-    Path("D:/QIN-Lung"),
-    Path("D:/StageII-Colorectal-CT"),
+    Path("/media/b/Volume/TCIA_Lung_Phantom"),
+    Path("/media/b/Volume/TCIA_TCGA-ESCA"),
+    Path("/media/b/Volume/TCIA_TCGA-STAD"),
+    Path("/media/b/Volume/QIN-Lung"),
+    Path("/media/b/Volume/StageII-Colorectal-CT"),
     # CT KOMBI
-    Path("D:/TCGA-LUAD"),
-    Path("D:/PSMA-PET-CT"),
+    Path("/media/b/Volume/TCGA-LUAD"),
+    Path("/media/b/Volume/PSMA-PET-CT"),
     # US
     Path("/home/b/PycharmProjects/ba2roco/cnn/dataset1")]
 print("\n============ ROOT CHECK ==========")
@@ -64,7 +64,34 @@ def load_image_file(path):
 
         ds = pydicom.dcmread(path)
 
-        arr = ds.pixel_array.astype(np.float32)
+        arr = ds.pixel_array
+
+        arr = np.asarray(arr)
+
+        # ============================================================
+        # Spezialfaelle behandeln
+        # ============================================================
+
+        # z.B. (1,1,256)
+        if arr.ndim == 3:
+
+            # (H,W,C)
+            if arr.shape[-1] in (3, 4):
+                pass
+
+            # (C,H,W)
+            elif arr.shape[0] in (3, 4):
+                arr = np.transpose(arr, (1, 2, 0))
+
+            # volumetrisch -> mittlere Slice
+            else:
+                arr = arr[arr.shape[0] // 2]
+
+        # ============================================================
+        # Normalize
+        # ============================================================
+
+        arr = arr.astype(np.float32)
 
         arr = arr - arr.min()
 
@@ -73,7 +100,25 @@ def load_image_file(path):
 
         arr = (arr * 255).clip(0, 255).astype(np.uint8)
 
-        img = Image.fromarray(arr).convert("RGB")
+        # ============================================================
+        # Graustufen -> RGB
+        # ============================================================
+
+        if arr.ndim == 2:
+            img = Image.fromarray(arr).convert("RGB")
+
+        elif arr.ndim == 3:
+
+            if arr.shape[-1] == 1:
+                arr = arr[:, :, 0]
+
+            if arr.shape[-1] == 4:
+                arr = arr[:, :, :3]
+
+            img = Image.fromarray(arr).convert("RGB")
+
+        else:
+            raise ValueError(f"Unerwartete DICOM-Form: {arr.shape}")
 
     # ============================================================
     # NORMALE BILDER
@@ -301,7 +346,7 @@ class NestedMedicalFolder(Dataset):
     def collect_files(self):
         rng = random.Random(42)
 
-        max_per_class = 23800
+        max_per_class = 20000
 
         grouped = defaultdict(list)
 
@@ -378,13 +423,24 @@ class NestedMedicalFolder(Dataset):
             leftovers = []
 
             for dataset_name, files in datasets:
+
                 rng.shuffle(files)
 
-                take_now = min(target_per_dataset, len(files))
+                # ============================================================
+                # US: alles nehmen
+                # ============================================================
 
-                selected = files[:take_now]
+                if class_name == "us":
+                    selected = files
 
-                rest = files[take_now:]
+                # ============================================================
+                # Andere Klassen: begrenzen
+                # ============================================================
+
+                else:
+                    selected = files[:target_per_dataset]
+
+                rest = files[len(selected):]
 
                 selected_all.extend(selected)
 
@@ -395,7 +451,6 @@ class NestedMedicalFolder(Dataset):
                     f"gefunden={len(files):6d} "
                     f"nehme={len(selected):6d}"
                 )
-
             # ============================================================
             # Fehlende Samples auffuellen
             # ============================================================
