@@ -1,0 +1,349 @@
+(ba2roco) b@scherv:~/PycharmProjects/ba2roco$ python make_CLS/roco_pipeline1.py \
+  --dataset_root /home/b/PycharmProjects/ba2roco/data \
+  --output_csv /home/b/PycharmProjects/ba2roco/output_roco.csv \
+  --cnn_path /home/b/Dokumente/cnnges/cnnges.pth \
+  --cnn3_path /home/b/Dokumente/cnn3/cnn3filter.pth
+Error processing line 1 of /home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "/home/b/anaconda3/envs/ba2roco/lib/python3.10/site.py", line 195, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+Using CPU. Note: This module is much faster with a GPU.
+[INFO] Lade ROCO Dataset...
+[INFO] Lade: /home/b/PycharmProjects/ba2roco/data/train/radiology/captions.txt
+[INFO] Lade: /home/b/PycharmProjects/ba2roco/data/test/radiology/captions.txt
+[INFO] Samples: 73585
+Gesamtanzahl Zeilen: 73585
+Text wird aus row['jsonl'] extrahiert.
+
+
+Schnelle Vorauswahl Early Sampler...
+Early sampling (Rules, Panelsearch, Rule & Animals Filtering):   0%|                                                          | 153/73585 [00:00<03:25, 356.61it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/torch/utils/data/dataloader.py:775: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  super().__init__(loader)
+Early sampling (Rules, Panelsearch, Rule & Animals Filtering):  25%|█████████████▉                                          | 18386/73585 [01:09<02:16, 405.72it/s]
+Early presample limit erreicht: 18396
+Early sampling (Rules, Panelsearch, Rule & Animals Filtering):  25%|█████████████▉                                          | 18396/73585 [01:09<03:29, 262.82it/s]
+
+Gesammelt: 8903 Samples
+
+===== Early Sampling Checksum&Debug =====
+
+Gefundene Klassen:
+ct: 3583
+ct_kombimodalitaet_spect+ct_pet+ct: 25
+mrt_body: 94
+mrt_hirn: 457
+us: 1222
+xray: 2916
+xray_fluoroskopie_angiographie: 606
+
+Fehlende Labels: 0
+Total gültige Labels: 8903
+
+===== Checksum =====
+ct: 3583 (expected 5000)
+ct_kombimodalitaet_spect+ct_pet+ct: 25 (expected 5000)
+us: 1222 (expected 5000)
+mrt_body: 94 (expected 5000)
+mrt_hirn: 457 (expected 5000)
+xray: 2916 (expected 5000)
+xray_fluoroskopie_angiographie: 606 (expected 5000)
+
+WARNUNG: Early sampling noch nicht vollständig balanced.
+
+Speichere Early-Rules Dataset ...
+Gespeichert: 8903 Bilder in /home/b/PycharmProjects/ba2roco/early_rules_dataset/images
+
+Initialize Convolutional Neural Network...
+
+Extrahiere Records + RULES + CNN ...
+
+Phase 3: CNN auf Subset
+records0 vorher: 8903
+records0 nachher: 3000
+CNN Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 3000/3000 [00:22<00:00, 135.91it/s]
+
+Filtered: Counter()
+records nach batch: 3000
+
+============================================================
+ROUND 0
+============================================================
+
+Aktuelle Verteilung:
+ct 1225
+ct_kombimodalitaet_spect+ct_pet+ct 7
+us 418
+mrt_body 35
+mrt_hirn 149
+xray 959
+xray_fluoroskopie_angiographie 207
+
+Fehlende Klassen:
+{'ct_kombimodalitaet_spect+ct_pet+ct', 'xray', 'us', 'ct', 'xray_fluoroskopie_angiographie', 'mrt_body', 'mrt_hirn'}
+
+Micro Round: 0
+Effective Round: 0
+
+CNN Threshold: 0.650
+
+Chunk: 0 -> 18396
+Chunkgröße: 18396
+Nach global_used: 18214
+CNN Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 18214/18214 [02:14<00:00, 135.33it/s]
+
+Filtered: Counter({'cnn3_strong': 4712, 'rule_cnn_disagreement': 4478, 'noconsent': 206})
+records nach batch: 8818
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 4478 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+Neue Accepts: 8817
+Remaining pool: 0
+
+Nach local balancing:
+
+Refill Added: 0
+ct 4641
+ct_kombimodalitaet_spect+ct_pet+ct 42
+us 1633
+mrt_body 129
+mrt_hirn 636
+xray 3887
+xray_fluoroskopie_angiographie 848
+
+Stagnation Counter: 0
+
+Speichere Round-Checkpoint ...
+Checkpoint CSV: /home/b/PycharmProjects/ba2roco/round_checkpoints/round_000.csv
+Gespeichert: 11816 Bilder in /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+Checkpoint Bilder: /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+
+============================================================
+ROUND 1
+============================================================
+
+Aktuelle Verteilung:
+ct 4641
+ct_kombimodalitaet_spect+ct_pet+ct 42
+us 1633
+mrt_body 129
+mrt_hirn 636
+xray 3888
+xray_fluoroskopie_angiographie 848
+
+Fehlende Klassen:
+{'ct_kombimodalitaet_spect+ct_pet+ct', 'xray', 'us', 'ct', 'xray_fluoroskopie_angiographie', 'mrt_body', 'mrt_hirn'}
+
+Micro Round: 0
+Effective Round: 1
+
+CNN Threshold: 0.610
+
+Chunk: 18396 -> 36792
+Chunkgröße: 18396
+Nach global_used: 18221
+CNN Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 18221/18221 [02:13<00:00, 136.40it/s]
+
+Filtered: Counter({'cnn3_strong': 4549, 'rule_cnn_disagreement': 4525, 'noconsent': 252})
+records nach batch: 8895
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 4525 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+Neue Accepts: 3854
+Remaining pool: 5041
+
+Nach local balancing:
+
+Refill Added: 0
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 80
+us 2832
+mrt_body 241
+mrt_hirn 1078
+xray 5000
+xray_fluoroskopie_angiographie 1439
+
+Stagnation Counter: 0
+
+Speichere Round-Checkpoint ...
+Checkpoint CSV: /home/b/PycharmProjects/ba2roco/round_checkpoints/round_001.csv
+Gespeichert: 15670 Bilder in /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+Checkpoint Bilder: /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+
+============================================================
+ROUND 2
+============================================================
+
+Aktuelle Verteilung:
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 80
+us 2833
+mrt_body 241
+mrt_hirn 1078
+xray 5000
+xray_fluoroskopie_angiographie 1439
+
+Fehlende Klassen:
+{'ct_kombimodalitaet_spect+ct_pet+ct', 'us', 'xray_fluoroskopie_angiographie', 'mrt_body', 'mrt_hirn'}
+
+Micro Round: 0
+Effective Round: 2
+
+CNN Threshold: 0.550
+
+Chunk: 36792 -> 55188
+Chunkgröße: 18396
+Nach global_used: 18230
+CNN Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 18230/18230 [02:14<00:00, 135.28it/s]
+
+Filtered: Counter({'cnn3_strong': 4711, 'rule_cnn_disagreement': 4425, 'noconsent': 205})
+records nach batch: 8889
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 4425 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+Neue Accepts: 2565
+Remaining pool: 11365
+
+Nach local balancing:
+
+Refill Added: 0
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 102
+us 4160
+mrt_body 338
+mrt_hirn 1583
+xray 5000
+xray_fluoroskopie_angiographie 2052
+
+Stagnation Counter: 0
+
+Speichere Round-Checkpoint ...
+Checkpoint CSV: /home/b/PycharmProjects/ba2roco/round_checkpoints/round_002.csv
+Gespeichert: 18235 Bilder in /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+Checkpoint Bilder: /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+
+============================================================
+ROUND 3
+============================================================
+
+Aktuelle Verteilung:
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 102
+us 4160
+mrt_body 338
+mrt_hirn 1583
+xray 5000
+xray_fluoroskopie_angiographie 2053
+
+Fehlende Klassen:
+{'ct_kombimodalitaet_spect+ct_pet+ct', 'us', 'xray_fluoroskopie_angiographie', 'mrt_body', 'mrt_hirn'}
+
+Micro Round: 0
+Effective Round: 3
+
+CNN Threshold: 0.550
+
+Chunk: 55188 -> 73584
+Chunkgröße: 18396
+Nach global_used: 18244
+CNN Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████| 18244/18244 [02:16<00:00, 133.58it/s]
+
+Filtered: Counter({'cnn3_strong': 4641, 'rule_cnn_disagreement': 4500, 'noconsent': 205})
+records nach batch: 8898
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 4500 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+Neue Accepts: 2063
+Remaining pool: 18200
+
+Nach local balancing:
+
+Refill Added: 0
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 133
+us 5000
+mrt_body 438
+mrt_hirn 2033
+xray 5000
+xray_fluoroskopie_angiographie 2695
+
+Stagnation Counter: 0
+
+Speichere Round-Checkpoint ...
+Checkpoint CSV: /home/b/PycharmProjects/ba2roco/round_checkpoints/round_003.csv
+Gespeichert: 20298 Bilder in /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+Checkpoint Bilder: /home/b/PycharmProjects/ba2roco/round_checkpoints/images_after_rounds
+
+============================================================
+ROUND 4
+============================================================
+
+Aktuelle Verteilung:
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 133
+us 5000
+mrt_body 438
+mrt_hirn 2033
+xray 5000
+xray_fluoroskopie_angiographie 2695
+
+Fehlende Klassen:
+{'ct_kombimodalitaet_spect+ct_pet+ct', 'mrt_hirn', 'xray_fluoroskopie_angiographie', 'mrt_body'}
+
+Micro Round: 0
+Effective Round: 4
+
+CNN Threshold: 0.550
+
+Chunk: 73584 -> 73585
+Chunkgröße: 1
+Nach global_used: 1
+CNN Processing: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 25.88it/s]
+
+Filtered: Counter({'rule_cnn_disagreement': 1})
+records nach batch: 0
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 1 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+Neue Accepts: 0
+Remaining pool: 18200
+
+Nach local balancing:
+
+Refill Added: 0
+ct 5000
+ct_kombimodalitaet_spect+ct_pet+ct 133
+us 5000
+mrt_body 438
+mrt_hirn 2033
+xray 5000
+xray_fluoroskopie_angiographie 2695
+
+Stagnation Counter: 1
+
+Speichere Round-Checkpoint ...
+Checkpoint CSV: /home/b/PycharmProjects/ba2roco/round_checkpoints/round_004.csv

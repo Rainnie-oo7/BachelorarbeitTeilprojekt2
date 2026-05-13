@@ -1131,231 +1131,184 @@ def normalize_for_rules(text: str) -> str:
 # ============================================================
 # Harte Regeln
 # ============================================================
-# Lange RULES MRT HIRN – Sublisten
-MRT_HIRN_T1_LONG = [
-    r"\bflair\b",
-    r"\bt1[- ]weighted\b",
-    r"\bt2[- ]weighted\b",
-    r"\bdiffusion[- ]weighted\b",
-    r"\bdwi\b",
-    r"\badc\b",
-    r"\badc map\b",
-    r"\bswi\b",
-    r"\bsusceptibility weighted\b",
-    r"\bpostcontrast\b",
-    r"\bgadolinium\b",
-    r"\bcontrast[- ]enhanced mri\b",
-    r"\bbrain\b.*\bt1\b",
-    r"\bhead\b.*\bt1\b",
-    r"\bcerebr\w*\b.*\bt1\b",
-    r"\bcranial\b.*\bt1\b",
-    r"\bt1[- ]weighted\b.*\bbrain\b",
-    r"\bbrain\s+mri\b.*\bt1\b",
-    r"\bbrain\s+magnetic\s+resonance\b",
-    r"\bmra\b",
-    r"\binternal\s+carotid\s+artery\b",
-    r"\bica\b",
-    r"\bflair\b",
-    r"\bdiffusion[- ]weighted imaging\b",
-    r"\bdwi\b",
-    r"\badc map\b",
-    r"\badc\b",
-    r"\bsusceptibility weighted\b",
-    r"\bswi\b",
-    r"\bbrain mri\b",
-    r"\bcranial mri\b",
-    r"\bintracranial\b",
-    r"\bneuroradiolog\w*\b",
+
+
+MRT_HIRN_RULES_LONG = [
+
+    # ---------------------------------------------------
+    # Explizite Brain MRI
+    # ---------------------------------------------------
+
+    r"\bbrain\s+mri\b",
+    r"\bbrain\s+mr\b",
+
+    r"\bcranial\s+mri\b",
+    r"\bcranial\s+mr\b",
+
+    r"\bhead\s+mri\b",
+    r"\bhead\s+mr\b",
+
+    r"\bcerebral\s+mri\b",
+    r"\bcerebral\s+mr\b",
+
+    r"\bintracranial\b.*\bmri\b",
+
+    # ---------------------------------------------------
+    # Neuroanatomie
+    # ---------------------------------------------------
+
+    r"\bhippocamp\w*\b",
+    r"\bventricl\w*\b.*\bbrain\b",
+
+    r"\bcorpus callosum\b",
+    r"\bbasal ganglia\b",
+    r"\bthalam\w*\b",
+    r"\bbrainstem\b",
+    r"\bcerebell\w*\b",
+
+    # ---------------------------------------------------
+    # Neuro-Erkrankungen
+    # ---------------------------------------------------
+
+    r"\bglioblastoma\b",
     r"\bglioma\b",
     r"\bmeningioma\b",
-    r"\bpituitary\b",
-    r"\bventricular system\b",
-    r"\bwhite matter\b",
-    r"\bgray matter\b",
-    r"\bcorpus callosum\b",
-    r"\btemporal lobe\b",
-    r"\bfrontal lobe\b",
-    r"\bparietal lobe\b",
-    r"\boccipital lobe\b",
-]
-MRT_HIRN_T2_LONG = [
-    r"\bmri\b",
-    r"\bmr imaging\b",
-    r"\bmagnetic resonance\b",
-    r"\bmagnetic resonance imaging\b",
-    r"\bbrain\b.*\bt2\b",
-    r"\bhead\b.*\bt2\b",
-    r"\bcerebr\w*\b.*\bt2\b",
-    r"\bcranial\b.*\bt2\b",
-    r"\bt2[- ]weighted\b.*\bbrain\b",
-    r"\bbrain\s+mri\b.*\bt2\b",
-    r"\bbrain\s+magnetic\s+resonance\b",
-    r"\bmra\b",
-    r"\binternal\s+carotid\s+artery\b",
-    r"\bica\b",
-]
-MRT_HIRN_FLAIR_LONG = [
+    r"\bastrocytoma\b",
+
+    r"\bmultiple sclerosis\b",
+    r"\bms lesions\b",
+
+    r"\bstroke\b.*\bmri\b",
+    r"\bischemic stroke\b",
+
+    r"\bepilep\w*\b",
+    r"\bneurodegenerative\b",
+
+    # ---------------------------------------------------
+    # MRI-Sequenzen NUR mit Brain-Kontext
+    # ---------------------------------------------------
+
     r"\bbrain\b.*\bflair\b",
-    r"\bcranial\b.*\bflair\b",
-    r"\bcerebr\w*\b.*\bflair\b",
-    r"\bhead\b.*\bflair\b",
     r"\bflair\b.*\bbrain\b",
-    r"\bfluid[- ]attenuated inversion recovery\b",
+
+    r"\bbrain\b.*\bt1\b",
+    r"\bbrain\b.*\bt2\b",
+
+    r"\bcerebral\b.*\bt1\b",
+    r"\bcerebral\b.*\bt2\b",
+
+    r"\bbrain\b.*\bdwi\b",
+    r"\bbrain\b.*\badc\b",
+
+    r"\bdiffusion[- ]weighted\b.*\bbrain\b",
+
+    # ---------------------------------------------------
+    # Neurovascular
+    # ---------------------------------------------------
+
+    r"\bmra\b",
+    r"\bmr angiography\b",
+
+    r"\binternal carotid artery\b",
+    r"\bmiddle cerebral artery\b",
+    r"\bvertebral artery\b",
 ]
-MRT_HIRN_T1_C_LONG = [
-    r"\bbrain\b.*\bt1\s*\+\s*c\b",
-    r"\bbrain\b.*\bt1\s*post[- ]contrast\b",
-    r"\bpost[- ]contrast\b.*\bbrain\b.*\bmri\b",
-    r"\bgadolinium[- ]enhanced\b.*\bbrain\b.*\bmri\b",
-    r"\bcontrast[- ]enhanced\b.*\bbrain\b.*\bmri\b",
-    r"\bt1\s*\+\s*c\b.*\bbrain\b",
-    r"\bt1\s+with\s+contrast\b.*\bbrain\b",
-]
-# RULES MRT BODY – Sublisten
-MRT_PROSTATA_T1_LONG = [
-    r"\bmri\b",
-    r"\bmr imaging\b",
-    r"\bmagnetic resonance\b",
-    r"\bmagnetic resonance imaging\b",
-    r"\bprostat\w*\b.*\bt1\b",
-    r"\bt1[- ]weighted\b.*\bprostat\w*\b",
-    r"\bprostate\s+mri\b.*\bt1\b",
-    r"\bpelvic\s+mri\b.*\bprostat\w*\b.*\bt1\b",
-    r"\bmusculoskeletal mri\b",
-    r"\bmsk mri\b",
-    r"\bpelvis mri\b",
-    r"\bpelvic mri\b",
-    r"\bspinal mri\b",
-    r"\blumbar spine\b",
-    r"\bcervical spine\b",
-    r"\bthoracic spine\b",
-    r"\bshoulder mri\b",
-    r"\bknee mri\b",
-    r"\bhip mri\b",
-    r"\babdominal mri\b",
-    r"\bcardiac mri\b",
-    r"\bbreast mri\b",
-    r"\bliver mri\b",
-    r"\brenal mri\b",
-    r"\bprostate mpmri\b",
-    r"\bmr cholangiopancreatography\b",
-    r"\bmrcp\b",
-]
-MRT_PROSTATA_T2_LONG = [
-    r"\bprostat\w*\b.*\bt2\b",
-    r"\bt2[- ]weighted\b.*\bprostat\w*\b",
-    r"\bprostate\s+mri\b.*\bt2\b",
-    r"\bpelvic\s+mri\b.*\bprostat\w*\b.*\bt2\b",
-    r"\bzonal anatomy\b.*\bprostat\w*\b.*\bt2\b",
-]
-MRT_BODY_GENERAL_LONG = [
-    r"\bpelvic\s+mri\b",
-    r"\bpelvic\s+mr\b",
-    r"\bprostate\s+mri\b",
-    r"\bprostate\s+mr\b",
-    r"\bmpmri\b",
-    r"\bmultiparametric\s+mri\b.*\bprostat\w*\b",
+MRT_BODY_RULES_LONG = [
+
+    # ---------------------------------------------------
+    # Allgemeine Body MRI
+    # ---------------------------------------------------
+
     r"\babdominal\s+mri\b",
-    r"\bbreast\s+mri\b",
-    r"\bliver\s+mri\b",
-    r"\bkidney\s+mri\b",
-    r"\brenal\s+mri\b",
-    r"\bspine\s+mri\b",
-    r"\bknee\s+mri\b",
+    r"\bpelvic\s+mri\b",
+
     r"\bcardiac\s+mri\b",
     r"\bheart\s+mri\b",
+
+    r"\bbreast\s+mri\b",
+    r"\bspine\s+mri\b",
+
+    r"\blumbar\s+mri\b",
+    r"\bcervical\s+mri\b",
+
+    r"\bthoracic\s+mri\b",
+
+    r"\bmusculoskeletal\s+mri\b",
+
     r"\bwhole[- ]body\s+mri\b",
 
-    r"\bmri\b.*\bprostat\w*\b",
-    r"\bmr\b.*\bprostat\w*\b",
-    r"\bmri\b.*\bpelvi\w*\b",
-    r"\bmr\b.*\bpelvi\w*\b",
-    r"\bdiffusion[- ]weighted\b.*\bprostat\w*\b",
-    r"\bdwi\b.*\bprostat\w*\b",
-    r"\badc\b.*\bprostat\w*\b",
-    r"\bdynamic contrast[- ]enhanced\b.*\bprostat\w*\b",
-    r"\bdce\b.*\bprostat\w*\b",
+    # ---------------------------------------------------
+    # Organe
+    # ---------------------------------------------------
 
-    r"\babdominal\s+mr\b",
-    r"\bbreast\s+mr\b",
-    r"\bliver\s+mr\b",
-    r"\bkidney\s+mr\b",
-    r"\brenal\s+mr\b",
-    r"\bspine\s+mr\b",
-    r"\bknee\s+mr\b",
-    r"\bcardiac\s+mr\b",
-    r"\bheart\s+mr\b",
+    r"\bliver\s+mri\b",
+    r"\brenal\s+mri\b",
+    r"\bkidney\s+mri\b",
+
+    r"\bpancrea\w*\b.*\bmri\b",
+
+    r"\bprostat\w*\b.*\bmri\b",
+
+    r"\brectal\s+mri\b",
+
+    r"\bpelvi\w*\b.*\bmri\b",
+
+    # ---------------------------------------------------
+    # Gelenke / Orthopädie
+    # ---------------------------------------------------
+
+    r"\bknee\s+mri\b",
+    r"\bshoulder\s+mri\b",
+
+    r"\bhip\s+mri\b",
+
+    r"\bankle\s+mri\b",
+
+    r"\bjoint\s+mri\b",
+
+    # ---------------------------------------------------
+    # Sequenzen MIT Body-Kontext
+    # ---------------------------------------------------
+
+    r"\bspine\b.*\bt1\b",
+    r"\bspine\b.*\bt2\b",
+
+    r"\bprostate\b.*\bt2\b",
+
+    r"\bliver\b.*\bdwi\b",
+
+    r"\bpelvis\b.*\badc\b",
+
+    r"\bcardiac\b.*\bdelayed enhancement\b",
 ]
-
-def interleave_patterns(*pattern_lists):
-    mixed = []
-    for group in zip_longest(*pattern_lists):
-        for pattern in group:
-            if pattern is not None:
-                mixed.append(pattern)
-    return mixed
-# Ich wollte Hirn zusammenfassen und Prostata (auch auf viel Koerper trainiert, hiess aber durch CNN so)
-# Interleave lange Regeln (Kartenmisch-artig) quasi da Reihenfolge jeweiliger Klasse gleich wichtig ist m1 = [a, b] und m2 = [c, d] wird m_hirn = [a, c, b, d]
-MRT_HIRN_RULES_LONG = interleave_patterns(
-    MRT_HIRN_T1_LONG,
-    MRT_HIRN_T2_LONG,
-    MRT_HIRN_FLAIR_LONG,
-    MRT_HIRN_T1_C_LONG,
-)
-MRT_BODY_RULES_LONG = interleave_patterns(
-    MRT_PROSTATA_T1_LONG,
-    MRT_PROSTATA_T2_LONG,
-    MRT_BODY_GENERAL_LONG,
-)
-# Weitere Regeln - lange
 CT_HYBRID_RULES_LONG = [
+    # PET/CT
     r"\bpet\s*/\s*ct\b",
     r"\bpet\s*-\s*ct\b",
     r"\bpetct\b",
-    r"\bfused\s+pet\s*[-/]?\s*ct\b",
-    r"\bhybrid\s+pet\s*[-/]?\s*ct\b",
-    r"\bcombined\s+pet\s*[-/]?\s*ct\b",
-    r"\bco[- ]registered\s+pet\s+(and\s+)?ct\b",
+    r"\bfdg\s*pet\s*/\s*ct\b",
+    r"\bfdg[- ]pet[- ]ct\b",
+    r"\bfused\s+pet\s*/\s*ct\b",
+    r"\bhybrid\s+pet\s*/\s*ct\b",
+    r"\bcombined\s+pet\s*/\s*ct\b",
+    r"\bpet[- ]based\s+ct\b",
+    r"\bpositron emission tomography\b.*\bct\b",
+    # SPECT/CT
     r"\bspect\s*/\s*ct\b",
     r"\bspect\s*-\s*ct\b",
     r"\bspectct\b",
-    r"\bpositron emission tomography\b",
-    r"\bfused\s+spect\s*[-/]?\s*ct\b",
-    r"\bhybrid\s+spect\s*[-/]?\s*ct\b",
-    r"\bcombined\s+spect\s*[-/]?\s*ct\b",
-    r"\bco[- ]registered\s+spect\s+(and\s+)?ct\b",
-    r"\bsingle[- ]photon emission computed tomography\s+(and|with)\s+ct\b",
-    r"\bpositron emission tomography\s+(and|with)\s+computed tomography\b",
-    r"\bfdg pet\b",
-    r"\b18f[- ]fdg\b",
-    r"\bfused pet ct\b",
-    r"\bpet acquisition\b",
-    r"\bct attenuation correction\b",
-    r"\bmaximum intensity projection\b",
-    r"\bmip image\b",
-    r"\bpet reconstruction\b",
-    r"\bmetabolic activity\b",
-    r"\bhypermetabolic\b",
-    r"\bfdg\b",
-    r"\bpet image\b",
-    r"\bpet imaging\b",
-    r"\bpet reconstruction\b",
-    r"\bmetabolic imaging\b",
-    r"\btracer uptake\b",
-    r"\bradiotracer\b",
-    r"\b18f fdg\b",
-    r"\b18f-fdg\b",
-    r"\bmaximum intensity projection\b",
-    r"\bmip\b",
+    r"\bfused\s+spect\s*/\s*ct\b",
+    r"\bhybrid\s+spect\s*/\s*ct\b",
+    r"\bsingle[- ]photon emission computed tomography\b.*\bct\b",
+    # Allgemein
+    r"\bmultimodal\b.*\bpet\b.*\bct\b",
+    r"\bco[- ]registered\b.*\bpet\b.*\bct\b",
+    r"\bfusion imaging\b.*\bpet\b.*\bct\b",
 ]
 CT_RULES_LONG = [
-    r"\bct\b",
-    r"\bct scan\b",
     r"\bcomputed tomography\b",
-    r"\bcomputed tomography angiography\b",
-    r"\bcomputed tomograph\w*\b",
+    r"\bct scan\b",
     r"\baxial ct\b",
-    r"\bcta\b",
     r"\bcoronal ct\b",
     r"\bsagittal ct\b",
     r"\bcontrast[- ]enhanced ct\b",
@@ -1366,42 +1319,39 @@ CT_RULES_LONG = [
     r"\bhrct\b",
     r"\bcect\b",
     r"\bhounsfield\b",
-    r"\bnoncontrast ct\b",
-    r"\bcontrast enhanced ct\b",
-    r"\bchest ct\b",
+    r"\bcomputed tomography angiography\b",
+    r"\bcta\b",
     r"\bthoracic ct\b",
+    r"\bchest ct\b",
     r"\babdominal ct\b",
     r"\bpelvic ct\b",
-    r"\bhead ct\b",
-    r"\bcranial ct\b",
-    r"\baxial image\b.*\bct\b",
-    r"\bcoronal reconstruction\b",
-    r"\bsagittal reconstruction\b",
-    r"\bmultiplanar reconstruction\b",
-    r"\bmpr\b",
-    r"\b3d ct\b",
+    r"\bwhole[- ]body ct\b",
 ]
 XRAY_ANGIOGRAPHY_RULES_LONG = [
-    r"\bangioplast\w*\b",
-    r"\bangiography\w*\b",
-    r"\bballoon angioplasty\b",
-    r"\bpercutaneous transluminal angioplasty\b",
-    r"\bpta\b",
-    r"\bptca\b",
-    r"\bcoronary angioplasty\b",
-    r"\bstent placement\b",
-    r"\bpercutaneous coronary intervention\b",
-    r"\bpci\b",
+    r"\bangiograph\w*\b",
+    r"\bangioplasty\b",
+    r"\bcoronary angiography\b",
+    r"\bcatheter angiography\b",
+    r"\bdigital subtraction angiography\b",
+    r"\bdsa\b",
     r"\bfluoroscopy\b",
     r"\bfluoroscopic\b",
     r"\bc[- ]arm\b",
     r"\bx[- ]ray guided\b",
+    r"\binterventional radiology\b",
+    r"\bcatheterization\b",
+    r"\bvascular intervention\b",
+    r"\bembolization\b",
+    r"\bcoil embolization\b",
+    r"\bstent placement\b",
+    r"\bpercutaneous coronary intervention\b",
+    r"\bpci\b",
+    r"\bptca\b",
+    r"\bguidewire\b",
+    r"\bcontrast injection\b",
+    r"\bangiographic image\b",
+    r"\broadmap fluoroscopy\b",
     r"\bfluoroscopic guidance\b",
-    r"\breal[- ]time x[- ]ray\b",
-    r"\bangiograph\w*\b",
-    r"\bdigital subtraction angiography\b",
-    r"\bdsa\b",
-    r"\bcatheter angiography\b",
 ]
 XRAY_RULES_LONG = [
     r"\bx[- ]?ray\b",
@@ -1419,25 +1369,20 @@ US_RULES_LONG = [
     r"\bultrasound\b",
     r"\bsonograph\w*\b",
     r"\bultrasonograph\w*\b",
-    r"\bechograph\w*\b",
-    r"\bechocardiograph\w*\b",
-    r"\bultrasonic\b",
     r"\bdoppler\b",
-    r"\bduplex sonograph\w*\b",
-    r"\bendoscopic ultrasound\b",
-    r"\beus\b",
-    r"\bb[- ]mode ultrasound\b",
     r"\bcolor doppler\b",
     r"\bpower doppler\b",
+    r"\bduplex\b",
+    r"\bb[- ]mode\b",
+    r"\bechocardiograph\w*\b",
     r"\btransvaginal\b",
     r"\btransrectal\b",
     r"\btransabdominal\b",
-    r"\bechocardiography\b",
-    r"\bechocardiogram\b",
-    r"\btransesophageal echocardiography\b",
-    r"\btee\b",
-    r"\btransthoracic echocardiography\b",
-    r"\btte\b",
+    r"\bendoscopic ultrasound\b",
+    r"\beus\b",
+    r"\bfetal ultrasound\b",
+    r"\bobstetric ultrasound\b",
+    r"\bcarotid ultrasound\b",
 ]
 #Filter Regeln
 MICROSCOPY_RULES_LONG = [
@@ -1557,19 +1502,27 @@ CHART_RULES_LONG = [
     r"\bbody weight changes\b",
     r"\btimeline\b",
 ]
+
 LABEL_PRIORITY = {
-    "ct": 100,
+
+    # höchste Spezifität
+    "ct_kombimodalitaet_spect+ct_pet+ct": 200,
+
+    "xray_fluoroskopie_angiographie": 180,
+
+    "mrt_hirn": 160,
+    "mrt_body": 150,
+
+    "ct": 120,
+    "xray": 100,
     "us": 90,
-    "mrt_hirn": 85,
-    "mrt_body": 80,
-    "xray_fluoroskopie_angiographie": 80,
-    "ct_kombimodalitaet_spect+ct_pet+ct": 70,
-    "xray": 65,
-    "microscopy": 54,
-    "pathology": 50,
-    "surgery_real": 45,
+
+    # Filterklassen
+    "microscopy": 50,
+    "pathology": 45,
+    "surgery_real": 40,
     "endoscopy": 35,
-    "chart_or_diagram": 34,
+    "chart_or_diagram": 30,
 }
 # RULES
 RULES_LONG = [

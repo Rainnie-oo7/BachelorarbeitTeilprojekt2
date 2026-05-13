@@ -1,0 +1,102 @@
+(ba2roco) b@scherv:~/PycharmProjects/ba2roco$ python mk_nonoverlapping_class_sets.py \
+    --mode roco \
+    --root_dir /home/b/Dokumente \
+    --output_dir /home/b/PycharmProjects/ba2roco/merged_roco/
+Error processing line 1 of /home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "/home/b/anaconda3/envs/ba2roco/lib/python3.10/site.py", line 195, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+
+Gefundene Logs:
+/home/b/Dokumente/ROCO-checkpoints_log1
+/home/b/Dokumente/ROCO-checkpoints_log2
+/home/b/Dokumente/ROCO-checkpoints_log3
+/home/b/Dokumente/ROCO-checkpoints_log4
+
+Gefundene CSVs:
+/home/b/Dokumente/ROCO-checkpoints_log1/round_checkpoints/output_roco.csv
+/home/b/Dokumente/ROCO-checkpoints_log2/round_checkpoints/output_roco.csv
+/home/b/Dokumente/ROCO-checkpoints_log3/round_checkpoints/output_roco.csv
+/home/b/Dokumente/ROCO-checkpoints_log4/round_checkpoints/output_roco.csv
+Geladen: /home/b/Dokumente/ROCO-checkpoints_log1/round_checkpoints/output_roco.csv
+final_label
+xray                              5000
+us                                4493
+mrt_hirn                           884
+ct                                 436
+mrt_body                           395
+xray_fluoroskopie_angiographie      66
+Name: count, dtype: int64
+Geladen: /home/b/Dokumente/ROCO-checkpoints_log2/round_checkpoints/output_roco.csv
+final_label
+ct                                    5000
+us                                    5000
+xray                                  5000
+mrt_hirn                              2322
+xray_fluoroskopie_angiographie        2082
+mrt_body                              1190
+ct_kombimodalitaet_spect+ct_pet+ct     738
+Name: count, dtype: int64
+Geladen: /home/b/Dokumente/ROCO-checkpoints_log3/round_checkpoints/output_roco.csv
+final_label
+ct                                    5000
+us                                    5000
+mrt_body                              5000
+xray                                  5000
+mrt_hirn                              2179
+xray_fluoroskopie_angiographie        2005
+ct_kombimodalitaet_spect+ct_pet+ct     960
+Name: count, dtype: int64
+Geladen: /home/b/Dokumente/ROCO-checkpoints_log4/round_checkpoints/output_roco.csv
+final_label
+ct                                    5000
+us                                    5000
+xray                                  5000
+xray_fluoroskopie_angiographie        2695
+mrt_hirn                              2033
+mrt_body                               438
+ct_kombimodalitaet_spect+ct_pet+ct     133
+Name: count, dtype: int64
+
+Analysiere Konflikte...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 11274/11274 [00:00<00:00, 49669.22it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 21332/21332 [00:00<00:00, 52054.26it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 25144/25144 [00:00<00:00, 54948.40it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20299/20299 [00:00<00:00, 53444.22it/s]
+
+Konflikte gefunden: 1536
+
+Erzeuge konfliktfreien Datensatz...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 11274/11274 [00:00<00:00, 47511.22it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 21332/21332 [00:00<00:00, 59611.68it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 25144/25144 [00:00<00:00, 53244.98it/s]
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20299/20299 [00:00<00:00, 60840.53it/s]
+
+CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/merged_roco/merged_roco.csv
+
+Kopiere Bilder...
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 24998/24998 [00:00<00:00, 77355.34it/s]
+Kopiert: 0
+
+==============================
+FINALE KLASSENVERTEILUNG
+==============================
+
+ct: 5000
+ct_kombimodalitaet_spect+ct_pet+ct: 715
+us: 5000
+mrt_body: 4097
+mrt_hirn: 2863
+xray: 5000
+xray_fluoroskopie_angiographie: 2323
+
+Konflikte entfernt: 1536
+Gesamt final: 24998
+
+FERTIG.
