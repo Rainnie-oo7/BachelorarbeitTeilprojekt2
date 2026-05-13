@@ -1,0 +1,173 @@
+(ba2roco) b@scherv:~/PycharmProjects/ba2roco$ python make_CLS/roco_pipeline1.py   --dataset_root /home/b/PycharmProjects/ba2roco/data   --output_csv /home/b/PycharmProjects/ba2roco/output_roco.csv   --cnn_path /home/b/Dokumente/cnnges/cnnges.pth   --cnn3_path /home/b/Dokumente/cnn3/cnn3filter.pth   --debug_stop_after 3000
+Error processing line 1 of /home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "/home/b/anaconda3/envs/ba2roco/lib/python3.10/site.py", line 195, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+Using CPU. Note: This module is much faster with a GPU.
+[INFO] Lade ROCO Dataset...
+[INFO] Lade: /home/b/PycharmProjects/ba2roco/data/train/radiology/captions.txt
+[INFO] Lade: /home/b/PycharmProjects/ba2roco/data/test/radiology/captions.txt
+[INFO] Samples: 73585
+Gesamtanzahl Zeilen: 73585
+Text wird aus row['jsonl'] extrahiert.
+
+
+Schnelle Vorauswahl Early Sampler...
+Early sampling (Rules, Panelsearch, Rule & Animals Filtering):   1%|▋                                                         | 843/73585 [00:04<06:43, 180.25it/s]/home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/torch/utils/data/dataloader.py:775: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  super().__init__(loader)
+Early sampling (Rules, Panelsearch, Rule & Animals Filtering):  12%|██████▉                                                  | 8985/73585 [00:59<05:59, 179.59it/s]
+Early presample limit erreicht: 9000
+Early sampling (Rules, Panelsearch, Rule & Animals Filtering):  12%|██████▉                                                  | 9000/73585 [00:59<07:10, 150.15it/s]
+
+Gesammelt: 5087 Samples
+
+===== Early Sampling Checksum&Debug =====
+
+Gefundene Klassen:
+ct: 2319
+ct_kombimodalitaet_spect+ct_pet+ct: 79
+mrt_body: 137
+mrt_hirn: 251
+us: 643
+xray: 1424
+xray_fluoroskopie_angiographie: 234
+
+Fehlende Labels: 0
+Total gültige Labels: 5087
+
+===== Checksum =====
+ct: 2319 (expected 5000)
+ct_kombimodalitaet_spect+ct_pet+ct: 79 (expected 5000)
+us: 643 (expected 5000)
+mrt_body: 137 (expected 5000)
+mrt_hirn: 251 (expected 5000)
+xray: 1424 (expected 5000)
+xray_fluoroskopie_angiographie: 234 (expected 5000)
+
+WARNUNG: Early sampling noch nicht vollständig balanced.
+
+Speichere Early-Rules Dataset ...
+Gespeichert: 5087 Bilder in /home/b/PycharmProjects/ba2roco/early_rules_dataset/images
+
+Initialize Convolutional Neural Network...
+
+Extrahiere Records + RULES + CNN ...
+
+Phase 3: CNN auf Subset
+records0 vorher: 5087
+records0 nachher: 3000
+CNN Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 3000/3000 [00:24<00:00, 120.60it/s]
+
+Filtered: Counter({'rule_cnn_disagreement': 102, 'cnn3_strong': 16})
+records nach batch: 2882
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 102 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+============================================================
+ROUND 0
+============================================================
+
+Aktuelle Verteilung:
+ct 1370
+ct_kombimodalitaet_spect+ct_pet+ct 44
+us 389
+mrt_body 82
+mrt_hirn 152
+xray 706
+xray_fluoroskopie_angiographie 139
+
+Fehlende Klassen:
+{'xray_fluoroskopie_angiographie', 'us', 'mrt_body', 'ct', 'mrt_hirn', 'xray', 'ct_kombimodalitaet_spect+ct_pet+ct'}
+
+Micro Round: 0
+Effective Round: 0
+
+CNN Threshold: 0.650
+
+Chunk: 0 -> 6000
+Chunkgröße: 6000
+Nach global_used: 5937
+CNN Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████| 5937/5937 [00:43<00:00, 136.89it/s]
+
+Filtered: Counter({'cnn3_strong': 1409, 'rule_cnn_disagreement': 1292})
+records nach batch: 3236
+
+Disagreement CSV gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/rule_cnn_disagreements.csv
+Gespeichert: 1292 Bilder in /home/b/PycharmProjects/ba2roco/disagreements/images
+Disagreement Bilder gespeichert:
+/home/b/PycharmProjects/ba2roco/disagreements/images
+
+============================================================
+DEBUG STOP ERREICHT
+============================================================
+Aktuelle Samples: 6118
+Limit: 3000
+
+============================================================
+FINAL
+============================================================
+ct 2841
+ct_kombimodalitaet_spect+ct_pet+ct 105
+us 846
+mrt_body 177
+mrt_hirn 320
+xray 1529
+xray_fluoroskopie_angiographie 300
+
+Speichere Early-Presample Bilder ...
+Gespeichert: 6118 Bilder in /home/b/PycharmProjects/ba2roco/final_presample_images
+
+CSV gespeichert unter:
+/home/b/PycharmProjects/ba2roco/output_roco.csv
+
+===== Verteilung final_label =====
+final_label
+ct                                    2841
+xray                                  1529
+us                                     846
+mrt_hirn                               320
+xray_fluoroskopie_angiographie         300
+mrt_body                               177
+ct_kombimodalitaet_spect+ct_pet+ct     105
+Name: count, dtype: int64
+
+===== Verteilung decision_source =====
+decision_source
+hard_rule_only                4589
+hard_rule_confirmed_by_cnn    1529
+Name: count, dtype: int64
+
+===== Verteilung modality_gt =====
+modality_gt
+radiology    6118
+Name: count, dtype: int64
+
+===== Verteilung von mir klassifizierter Modalitaeten. Inspectlimit: 35=====
+
+===== FINAL LABEL DISTRIBUTION =====
+ct 14
+mrt_hirn 1
+us 6
+xray 10
+mrt_body 2
+xray_fluoroskopie_angiographie 1
+ct_kombimodalitaet_spect+ct_pet+ct 1
+
+===== FILTERING =====
+Original:        6118
+Weggefiltert:   0
+Übrig:          6118
+
+--- Gründe ---
+Filter-Rate: 0.00%
+Filter-Rate_kept: 0.00%

@@ -1,0 +1,16 @@
+=================== FINAL ============================================================
+ct 436
+ct_kombimodalitaet_spect+ct_pet+ct 0
+us 4493
+mrt_body 395
+mrt_hirn 884
+xray 5000
+xray_fluoroskopie_angiographie 66
+
+Speichere Early-Presample Bilder ... Gespeichert: 11274 Bilder in /home/b/PycharmProjects/ba2roco/final_presample_images CSV gespeichert unter: /home/b/PycharmProjects/ba2roco/output_roco.csv ===== Verteilung final_label ===== final_label xray 5000 us 4493 mrt_hirn 884 ct 436 mrt_body 395 xray_fluoroskopie_angiographie 66 Name: count, dtype: int64 ===== Verteilung decision_source ===== decision_source cnn 5066 rule_us_override 4493 rule_mrthirn_override 884 CONFRM_ct_xray_cnn2 436 rule_mrtbody_override 395 Name: count, dtype: int64 ===== Verteilung modality_gt ===== modality_gt radiology 11168 non-radiology 106 Name: count, dtype: int64 ===== Verteilung von mir klassifizierter Modalitaeten. Inspectlimit: 35===== ===== FINAL LABEL DISTRIBUTION ===== ct 35 ===== FILTERING =====
+Original: 11274
+Weggefiltert: 0
+Übrig: 11274
+--- Gründe ---
+Filter-Rate: 0.00%
+Filter-Rate_kept: 0.00%
