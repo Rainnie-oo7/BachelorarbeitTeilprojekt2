@@ -1,0 +1,36 @@
+# ============================================================
+# PHASE 1 — ÄHNLICHE DOMÄNEN FUSIONIEREN
+# ============================================================
+# 1) xray + xray_fluoroskopie_angiographie
+# 2) mrt_hirn + mrt_body
+# ============================================================
+# PHASE 2 — UNTERSCHIEDLICHE DOMÄNEN FUSIONIEREN
+# ============================================================
+# 3) ct + us
+# ============================================================
+# PHASE 3 — HYBRID-/MULTIMODALITÄTSFUSION
+# ============================================================
+# 4) ct + ct_kombimodalitaet_spect+ct_pet+ct
+# ============================================================
+# PHASE 4 — GROSSE GESAMTFUSION
+# ============================================================
+# 5) ct + xray + us + mrt_hirn
+# 6 MRT-Gesamt + Xray
+# 7 Komplettfusion aller Hauptklassen ct, us, xray, xray_fluoroskopie_angiographie, mrt_hirn, mrt_body
+
+python trainLoRA/train_lora.py \
+  --model clip \
+  --dataset roco \
+  --dataset_root /home/b/PycharmProjects/ba2roco/data \
+  --train_mode class_lora \
+  --fusion_method layerwise\
+  --fusion_paths \
+    /home/b/PycharmProjects/ba1pmc/PMC-output/outputs/class_lora_ct \
+    /home/b/PycharmProjects/ba1pmc/PMC-output/outputs/class_lora_us \
+    /home/b/PycharmProjects/ba1pmc/PMC-output/outputs/class_lora_xray \
+    /home/b/PycharmProjects/ba1pmc/PMC-output/outputs/class_lora_xray_fluoroskopie_angiographie \
+    /home/b/PycharmProjects/ba1pmc/PMC-output/outputs/class_lora_mrt_hirn \
+    /home/b/PycharmProjects/ba1pmc/PMC-output/outputs/class_lora_mrt_body \
+
+
+additive norm cosine hadamard weighted svd layerwise

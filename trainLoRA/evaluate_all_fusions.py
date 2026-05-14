@@ -694,64 +694,89 @@ def evaluate_dataset(
 # MAIN
 # ============================================================
 
+# ============================================================
+# MAIN
+# ============================================================
+
 def main():
 
-    all_results = []
+    # ========================================================
+    # ROCO
+    # ========================================================
 
-    all_results.extend(
-        evaluate_dataset(
-            dataset_name="roco",
-            dataset_root="/home/b/Dokumente/ROCO-checkpoints_merged10",
-            lora_root="/home/b/PycharmProjects/ba2roco/LoRAs"
+    roco_results = evaluate_dataset(
+        dataset_name="roco",
+        dataset_root="/home/b/Dokumente/ROCO-checkpoints_merged10",
+        lora_root="/home/b/PycharmProjects/ba2roco/LoRAs"
+    )
+
+    if len(roco_results) > 0:
+
+        df_roco = pd.DataFrame(roco_results)
+
+        df_roco = df_roco.sort_values(
+            by="Recall@1",
+            ascending=False
         )
-    )
 
-    all_results.extend(
-        evaluate_dataset(
-            dataset_name="pmc",
-            dataset_root="/home/b/Dokumente/PMC-checkpoints_merged",
-            lora_root="/home/b/PycharmProjects/ba1pmc/LoRAs"
+        output_roco = (
+            "/home/b/PycharmProjects/ba2roco/trainLoRA/"
+            "fusion_eval_roco.csv"
         )
+
+        df_roco.to_csv(
+            output_roco,
+            index=False
+        )
+
+        print("\n================================")
+        print("ROCO CSV GESPEICHERT")
+        print("================================")
+        print(output_roco)
+
+    else:
+
+        print("\nKEINE ROCO RESULTATE.")
+
+
+    # ========================================================
+    # PMC
+    # ========================================================
+
+    pmc_results = evaluate_dataset(
+        dataset_name="pmc",
+        dataset_root="/home/b/Dokumente/PMC-checkpoints_merged",
+        lora_root="/home/b/PycharmProjects/ba1pmc/LoRAs"
     )
 
-    df = pd.DataFrame(all_results)
+    if len(pmc_results) > 0:
 
-    print("\n================================")
-    print("ALL RESULTS")
-    print("================================")
+        df_pmc = pd.DataFrame(pmc_results)
 
-    print(all_results)
+        df_pmc = df_pmc.sort_values(
+            by="Recall@1",
+            ascending=False
+        )
 
-    if len(all_results) == 0:
-        print("\nKEINE ERFOLGREICHE EVALUATION.")
+        output_pmc = (
+            "/home/b/PycharmProjects/ba2roco/trainLoRA/"
+            "fusion_eval_pmc.csv"
+        )
 
-        return
+        df_pmc.to_csv(
+            output_pmc,
+            index=False
+        )
 
-    df = pd.DataFrame(all_results)
+        print("\n================================")
+        print("PMC CSV GESPEICHERT")
+        print("================================")
+        print(output_pmc)
 
-    print("\nDATAFRAME COLUMNS:")
-    print(df.columns.tolist())
+    else:
 
-    if "Recall@1" not in df.columns:
-        print("\nRecall@1 NICHT GEFUNDEN")
-        print(df.head())
+        print("\nKEINE PMC RESULTATE.")
 
-        return
-
-    df = df.sort_values(
-        by="Recall@1",
-        ascending=False
-    )
-
-    output_csv = "/home/b/PycharmProjects/ba2roco/trainLoRA/fusion_eval.csv"
-
-    df.to_csv(
-        output_csv,
-        index=False
-    )
-
-    print("\nGESPEICHERT:")
-    print(output_csv)
 
 if __name__ == "__main__":
     main()
