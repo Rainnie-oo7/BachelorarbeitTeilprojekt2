@@ -65,12 +65,9 @@ from concurrent.futures import as_completed
 
 # Klassen u. Mapping
 FINAL_CLASSES = [
-    'ct',
-    'ct_kombimodalitaet_spect+ct_pet+ct',
-    'us',
+    "ct_kombimodalitaet_spect+ct_pet+ct",
     "mrt_body",
     "mrt_hirn",
-    "xray",
     "xray_fluoroskopie_angiographie"]
 
 CNN_CLASS_NAMES = [        #strikt Reihenfolge!!!
@@ -1038,7 +1035,7 @@ def parse_roco_captions_file(
 
 def load_roco_dataset(base_dir: Path):
 
-    splits = ["train", "test", "val"]
+    splits = ["train", "test", "validation"]
     domains = ["radiology"]
 
     all_rows = []
@@ -1524,6 +1521,17 @@ LABEL_PRIORITY = {
     "endoscopy": 35,
     "chart_or_diagram": 30,
 }
+CLASS_THRESHOLDS = {
+    "ct": 0.75,
+    "xray": 0.80,
+    "us": 0.70,
+
+    "mrt_body": 0.48,
+    "mrt_hirn": 0.43,
+    "xray_fluoroskopie_angiographie": 0.38,
+    "ct_kombimodalitaet_spect+ct_pet+ct": 0.28,
+}
+
 # RULES
 RULES_LONG = [
     ("xray_fluoroskopie_angiographie", XRAY_ANGIOGRAPHY_RULES_LONG),
@@ -1548,12 +1556,9 @@ FILTER_CLASSES = {
     }
 HARD_RULE_ORDER = [
     'ct_kombimodalitaet_spect+ct_pet+ct',
-    'ct',
-    'us',
-    "mrt_body",
-    "mrt_hirn",
     "xray_fluoroskopie_angiographie",
-    "xray",
+    "mrt_hirn",
+    "mrt_body",
 ]
 
 def hard_rule_classify_first(text, rules):
@@ -1667,6 +1672,15 @@ def rule_based_classify_with_rules(text: str, rules, label_priority=None):
                     }
                 hits[label]["score"] += 1
                 hits[label]["patterns"].append(pattern)
+    # =========================================================
+    # TARGET ONLY FILTER
+    # =========================================================
+
+    hits = {
+        k: v
+        for k, v in hits.items()
+        if k in FINAL_CLASSES
+    }
 
     if not hits:
         return "unknown", "no_rule_match", "", {}
@@ -2130,13 +2144,10 @@ def process_single_record(r, ctx: ModelContext, cnn3filter, cnn_thresh):
     # ============================================================
 
     RULE_ONLY_CLASSES = {
-        "ct",
         "ct_kombimodalitaet_spect+ct_pet+ct",
         "mrt_hirn",
         "mrt_body",
         "xray_fluoroskopie_angiographie",
-        "us",
-        "xray",
     }
 
     rule_only_accept = False
@@ -2234,7 +2245,19 @@ def process_single_record(r, ctx: ModelContext, cnn3filter, cnn_thresh):
 
     expert_conf = cnn_conf_final
 
-    if ( cnn3_conf >= cnn3filter and rule_pred != "us" ):
+    RARE_CNN3_THRESH = {
+        "ct_kombimodalitaet_spect+ct_pet+ct": 0.995,
+        "mrt_hirn": 0.995,
+        "mrt_body": 0.99,
+        "xray_fluoroskopie_angiographie": 0.995,
+    }
+
+    effective_cnn3 = RARE_CNN3_THRESH.get(
+        rule_pred,
+        cnn3filter
+    )
+
+    if cnn3_conf >= effective_cnn3:
         if expert_conf <= 0.79:
             r["is_filtered"] = True
             r["filter_reason"] = "cnn3_strong"
@@ -2339,7 +2362,7 @@ def process_single_record(r, ctx: ModelContext, cnn3filter, cnn_thresh):
             )
 
     # Konflikt -> sofort rauswerfen
-    if not agreement_pass:
+    if False and not agreement_pass:
         r["is_filtered"] = True
         r["filter_reason"] = "rule_cnn_disagreement"
 
@@ -2724,7 +2747,7 @@ def build_balanced_dataset(
         # ====================================================
         cnn_thresh = adaptive_threshold(
             start=cnn_thresh,
-            min_value=0.55,
+            min_value=0.28,
             refill_round=effective_round,
             decay=0.04
         )
@@ -2814,6 +2837,9 @@ def build_balanced_dataset(
                 RULES_LONG,
                 LABEL_PRIORITY
             )
+            # Targeting
+            if rule_pred not in FINAL_CLASSES:
+                continue
             # --------------------------------------------
             # Leere Texte ignorieren
             # --------------------------------------------
@@ -3477,7 +3503,7 @@ def parse_args():
         "--micro_round_failures",
         type=int,
         # default=30,
-        default=500,
+        default=5000,
         help="Anzahl erfolgloser Samples bis Micro-Round erhöht wird"
     )
     parser.add_argument(

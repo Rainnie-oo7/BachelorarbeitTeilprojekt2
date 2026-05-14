@@ -347,3 +347,8 @@ Stagnation Counter: 1
 
 Speichere Round-Checkpoint ...
 Checkpoint CSV: /home/b/PycharmProjects/ba2roco/round_checkpoints/round_004.csv
+            ws 0.75-
+global cnn_thresh 0.65
+adaptive_threshold
+min_value=0.55, decay=0.04, micro_round_failures 500
+cnn3filter tresh  0.97
