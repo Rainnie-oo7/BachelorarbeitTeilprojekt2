@@ -1,16 +1,18 @@
 python trainLoRA/train_lora.py \
-  --model clip \
+  --model blip \
   --dataset roco \
   --dataset_root /home/b/Dokumente/ROCO-checkpoints_merged10 \
-  --train_mode baseline \
-  --batch_size 16 \
-  --max_per_class 1000
+  --train_mode class_lora \
+  --batch_size 64 \
+  --max_per_class 200 \
+  --output_dir /home/b/Dokumente/ROCO-Blip_Output200
 
-python trainLoRA/train_lora.py \
+
+python trainLoRA/train_lora_pmc.py \
   --model clip \
-  --dataset roco \
-  --dataset_root /home/b/Dokumente/ROCO-checkpoints_merged10 \
-  --train_mode shared_lora \
+  --dataset pmc \
+  --dataset_root /home/b/Dokumente/PMC-checkpoints_merged \
+  --train_mode class_lora \
   --epochs 3 \
   --batch_size 16 \
   --lr 1e-4 \

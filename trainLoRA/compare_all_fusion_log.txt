@@ -1,0 +1,2155 @@
+================================================
+ROCO
+================================================
+FOUND: 49
+
+--------------------------------------------
+class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.013039246802994361
+MAX: 0.0867859423160553
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.018020862645547215
+MAX: 0.15098066627979279
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009009086536631608
+MAX: 0.07333746552467346
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.011309925520132916
+MAX: 0.08320688456296921
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009009086507527778
+MAX: 0.07333748042583466
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009009086536631608
+MAX: 0.07333746552467346
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.013259974373795558
+MAX: 0.09580840170383453
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.008864516785251908
+MAX: 0.07434611767530441
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.013798720940637091
+MAX: 0.10661937296390533
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.00886451668823914
+MAX: 0.07434609532356262
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.008864516785251908
+MAX: 0.07434611767530441
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009014642324473243
+MAX: 0.07813579589128494
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.01602439984950858
+MAX: 0.1325511932373047
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009014642438463246
+MAX: 0.07813580334186554
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009014642324473243
+MAX: 0.07813579589128494
+
+COMPARE:
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.007029069157094152
+MAX: 0.1075863391160965
+
+COMPARE:
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 4.020814481711654e-09
+MAX: 1.73225998878479e-07
+
+COMPARE:
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.007029069087669389
+MAX: 0.1075863316655159
+
+COMPARE:
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.007029069157094152
+MAX: 0.1075863391160965
+
+COMPARE:
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 4.020814481711654e-09
+MAX: 1.73225998878479e-07
+
+--------------------------------------------
+class_lora_mrt_hirn_class_lora_mrt_body
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013191818710765801
+MAX: 0.10393032431602478
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.018041483592242002
+MAX: 0.1471383422613144
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009018727820754672
+MAX: 0.07422809302806854
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.011295972949786423
+MAX: 0.08363835513591766
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009018727575797433
+MAX: 0.07422808557748795
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009018727820754672
+MAX: 0.07422809302806854
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013386915758019313
+MAX: 0.09965449571609497
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.00903016991893916
+MAX: 0.09950569272041321
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013899168998856718
+MAX: 0.10838162153959274
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009030169989273418
+MAX: 0.09950568526983261
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.00903016991893916
+MAX: 0.09950569272041321
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009025755959252516
+MAX: 0.07605183124542236
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.015951299807056785
+MAX: 0.14060889184474945
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009025756119323583
+MAX: 0.07605181634426117
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009025755959252516
+MAX: 0.07605183124542236
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.006940623897207843
+MAX: 0.10939838737249374
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 4.236988263711661e-09
+MAX: 1.4528632164001465e-07
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.006940623484297248
+MAX: 0.10939839482307434
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.006940623897207843
+MAX: 0.10939838737249374
+
+COMPARE:
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 4.236988263711661e-09
+MAX: 1.4528632164001465e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_us
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_cosine_class_lora_ct_class_lora_us
+MEAN: 0.013027926734745657
+MAX: 0.08810214698314667
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_hadamard_class_lora_ct_class_lora_us
+MEAN: 0.01804164101971158
+MAX: 0.17770883440971375
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_layerwise_class_lora_ct_class_lora_us
+MEAN: 0.009019792116305325
+MAX: 0.09318667650222778
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.011330610116904912
+MAX: 0.09604960680007935
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.009019792094477452
+MAX: 0.09318671375513077
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.009019792116305325
+MAX: 0.09318667650222778
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_hadamard_class_lora_ct_class_lora_us
+MEAN: 0.01329572271060897
+MAX: 0.09776186943054199
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_layerwise_class_lora_ct_class_lora_us
+MEAN: 0.008851573135567984
+MAX: 0.07056397199630737
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.013800014955146859
+MAX: 0.0885772854089737
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.008851573125866707
+MAX: 0.07056392729282379
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.008851573135567984
+MAX: 0.07056397199630737
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_layerwise_class_lora_ct_class_lora_us
+MEAN: 0.009024602996457057
+MAX: 0.08646155148744583
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.016017333070825163
+MAX: 0.11629360914230347
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.009024603175930679
+MAX: 0.08646154403686523
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.009024602996457057
+MAX: 0.08646155148744583
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.00700905053539221
+MAX: 0.09347127377986908
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 4.218980721495032e-09
+MAX: 1.7043203115463257e-07
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.0070090502652722835
+MAX: 0.09347126632928848
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.00700905053539221
+MAX: 0.09347127377986908
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 4.218980721495032e-09
+MAX: 1.7043203115463257e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.013162725377090586
+MAX: 0.09036637842655182
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.017985051022454474
+MAX: 0.18295983970165253
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008990884127949053
+MAX: 0.08764222264289856
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.011274451904076463
+MAX: 0.08930788189172745
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008990883638034575
+MAX: 0.08764223009347916
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008990884127949053
+MAX: 0.08764222264289856
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.01328978646294369
+MAX: 0.09756238013505936
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008972962700984985
+MAX: 0.08725060522556305
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.01388621709581154
+MAX: 0.09876439720392227
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008972962810124349
+MAX: 0.08725059777498245
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008972962700984985
+MAX: 0.08725060522556305
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008997136287992666
+MAX: 0.09531761705875397
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.015940447813288
+MAX: 0.12019342929124832
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008997136637238631
+MAX: 0.09531760960817337
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008997136287992666
+MAX: 0.09531761705875397
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.0069542104693027795
+MAX: 0.09750206768512726
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 3.9549551029971486e-09
+MAX: 1.6298145055770874e-07
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.006954210108839713
+MAX: 0.09750206023454666
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.0069542104693027795
+MAX: 0.09750206768512726
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 3.9549551029971486e-09
+MAX: 1.6298145055770874e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.021716008535198245
+MAX: 0.18914976716041565
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.025416682779905386
+MAX: 0.28667566180229187
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.019448178165475838
+MAX: 0.2170085608959198
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.015971092274412513
+MAX: 0.14773677289485931
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.019062512190430425
+MAX: 0.2150227278470993
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.01906251251057256
+MAX: 0.2150227278470993
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.013477710153286656
+MAX: 0.09752590954303741
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.013359443037188612
+MAX: 0.10606450587511063
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.020820923673454672
+MAX: 0.1759195327758789
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.011185668896359857
+MAX: 0.08299658447504044
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.011185669005499221
+MAX: 0.08299657702445984
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.007583804855433603
+MAX: 0.06966710835695267
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.022626218715837847
+MAX: 0.19962525367736816
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.006354170845346137
+MAX: 0.07165294140577316
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.006354170480335597
+MAX: 0.07165294140577316
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.017078963564320777
+MAX: 0.17997542023658752
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.003907314812143643
+MAX: 0.03855811804533005
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.003907314850948751
+MAX: 0.03855811059474945
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.016273001082784806
+MAX: 0.18031086027622223
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.016273001179797575
+MAX: 0.18031086027622223
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 2.986564068968578e-09
+MAX: 1.578591763973236e-07
+
+--------------------------------------------
+class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.018001262491452508
+MAX: 0.19951790571212769
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.021892509709383983
+MAX: 0.17639261484146118
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.014862216601613909
+MAX: 0.1219898983836174
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.013752420471670726
+MAX: 0.11701200902462006
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.014593584754038602
+MAX: 0.11773060262203217
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.014593584620646046
+MAX: 0.11773057281970978
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.013504878714835892
+MAX: 0.10457651317119598
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.012173206695782332
+MAX: 0.13655540347099304
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.0178445765923243
+MAX: 0.1810113787651062
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.010664044697477948
+MAX: 0.12313984334468842
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.010664044610166457
+MAX: 0.12313984334468842
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.007798279322742019
+MAX: 0.05919962376356125
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.01943910022964701
+MAX: 0.20190991461277008
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.00729892590121987
+MAX: 0.058662012219429016
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.007298925995807319
+MAX: 0.058662042021751404
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.01272974600821423
+MAX: 0.17341716587543488
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.002605289428781058
+MAX: 0.025618957355618477
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.0026052894318127073
+MAX: 0.025618968531489372
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.012141362899759164
+MAX: 0.17281922698020935
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.012141362725136181
+MAX: 0.17281924188137054
+
+COMPARE:
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 3.4942203326384278e-09
+MAX: 1.30385160446167e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.028100411252429087
+MAX: 0.261229932308197
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.031016949282881495
+MAX: 0.325992614030838
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.026392441669789452
+MAX: 0.270618200302124
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.019525914879826207
+MAX: 0.17185157537460327
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.02584745718437868
+MAX: 0.2716605067253113
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.025847457441462513
+MAX: 0.27166053652763367
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013664130822386747
+MAX: 0.1036616787314415
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.014780474123350965
+MAX: 0.14195910096168518
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.02620833646506071
+MAX: 0.24804913997650146
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.012161164881642131
+MAX: 0.09730285406112671
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.012161164968953623
+MAX: 0.09730285406112671
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.007445674846773424
+MAX: 0.06063676252961159
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.027650096201493096
+MAX: 0.2711818218231201
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.005169491771084722
+MAX: 0.05433211103081703
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.005169491670433975
+MAX: 0.05433208495378494
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.023450339154805988
+MAX: 0.2561189532279968
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.005225172152374095
+MAX: 0.05291493609547615
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.0052251721620753715
+MAX: 0.05291493237018585
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.022481357931004215
+MAX: 0.2538662254810333
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.022481357872796554
+MAX: 0.2538662254810333
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 2.5153556928309007e-09
+MAX: 1.0244548320770264e-07
+
+================================================
+PMC
+================================================
+FOUND: 49
+
+--------------------------------------------
+class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.013039246802994361
+MAX: 0.0867859423160553
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.018020862645547215
+MAX: 0.15098066627979279
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009009086536631608
+MAX: 0.07333746552467346
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.011309925520132916
+MAX: 0.08320688456296921
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009009086507527778
+MAX: 0.07333748042583466
+
+COMPARE:
+fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009009086536631608
+MAX: 0.07333746552467346
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.013259974373795558
+MAX: 0.09580840170383453
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.008864516785251908
+MAX: 0.07434611767530441
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.013798720940637091
+MAX: 0.10661937296390533
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.00886451668823914
+MAX: 0.07434609532356262
+
+COMPARE:
+fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.008864516785251908
+MAX: 0.07434611767530441
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009014642324473243
+MAX: 0.07813579589128494
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.01602439984950858
+MAX: 0.1325511932373047
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009014642438463246
+MAX: 0.07813580334186554
+
+COMPARE:
+fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.009014642324473243
+MAX: 0.07813579589128494
+
+COMPARE:
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.007029069157094152
+MAX: 0.1075863391160965
+
+COMPARE:
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 4.020814481711654e-09
+MAX: 1.73225998878479e-07
+
+COMPARE:
+fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.007029069087669389
+MAX: 0.1075863316655159
+
+COMPARE:
+fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 0.007029069157094152
+MAX: 0.1075863391160965
+
+COMPARE:
+fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+VS
+fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+MEAN: 4.020814481711654e-09
+MAX: 1.73225998878479e-07
+
+--------------------------------------------
+class_lora_mrt_hirn_class_lora_mrt_body
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013191818710765801
+MAX: 0.10393032431602478
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.018041483592242002
+MAX: 0.1471383422613144
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009018727820754672
+MAX: 0.07422809302806854
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.011295972949786423
+MAX: 0.08363835513591766
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009018727575797433
+MAX: 0.07422808557748795
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009018727820754672
+MAX: 0.07422809302806854
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013386915758019313
+MAX: 0.09965449571609497
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.00903016991893916
+MAX: 0.09950569272041321
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013899168998856718
+MAX: 0.10838162153959274
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009030169989273418
+MAX: 0.09950568526983261
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.00903016991893916
+MAX: 0.09950569272041321
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009025755959252516
+MAX: 0.07605183124542236
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.015951299807056785
+MAX: 0.14060889184474945
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009025756119323583
+MAX: 0.07605181634426117
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.009025755959252516
+MAX: 0.07605183124542236
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.006940623897207843
+MAX: 0.10939838737249374
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 4.236988263711661e-09
+MAX: 1.4528632164001465e-07
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.006940623484297248
+MAX: 0.10939839482307434
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.006940623897207843
+MAX: 0.10939838737249374
+
+COMPARE:
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 4.236988263711661e-09
+MAX: 1.4528632164001465e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_us
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_cosine_class_lora_ct_class_lora_us
+MEAN: 0.013027926734745657
+MAX: 0.08810214698314667
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_hadamard_class_lora_ct_class_lora_us
+MEAN: 0.01804164101971158
+MAX: 0.17770883440971375
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_layerwise_class_lora_ct_class_lora_us
+MEAN: 0.009019792116305325
+MAX: 0.09318667650222778
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.011330610116904912
+MAX: 0.09604960680007935
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.009019792094477452
+MAX: 0.09318671375513077
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.009019792116305325
+MAX: 0.09318667650222778
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_hadamard_class_lora_ct_class_lora_us
+MEAN: 0.01329572271060897
+MAX: 0.09776186943054199
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_layerwise_class_lora_ct_class_lora_us
+MEAN: 0.008851573135567984
+MAX: 0.07056397199630737
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.013800014955146859
+MAX: 0.0885772854089737
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.008851573125866707
+MAX: 0.07056392729282379
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.008851573135567984
+MAX: 0.07056397199630737
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_layerwise_class_lora_ct_class_lora_us
+MEAN: 0.009024602996457057
+MAX: 0.08646155148744583
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.016017333070825163
+MAX: 0.11629360914230347
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.009024603175930679
+MAX: 0.08646154403686523
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.009024602996457057
+MAX: 0.08646155148744583
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us
+VS
+fusion_norm_class_lora_ct_class_lora_us
+MEAN: 0.00700905053539221
+MAX: 0.09347127377986908
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 4.218980721495032e-09
+MAX: 1.7043203115463257e-07
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us
+VS
+fusion_svd_class_lora_ct_class_lora_us
+MEAN: 0.0070090502652722835
+MAX: 0.09347126632928848
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 0.00700905053539221
+MAX: 0.09347127377986908
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_us
+VS
+fusion_weighted_class_lora_ct_class_lora_us
+MEAN: 4.218980721495032e-09
+MAX: 1.7043203115463257e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.013162725377090586
+MAX: 0.09036637842655182
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.017985051022454474
+MAX: 0.18295983970165253
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008990884127949053
+MAX: 0.08764222264289856
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.011274451904076463
+MAX: 0.08930788189172745
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008990883638034575
+MAX: 0.08764223009347916
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008990884127949053
+MAX: 0.08764222264289856
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.01328978646294369
+MAX: 0.09756238013505936
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008972962700984985
+MAX: 0.08725060522556305
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.01388621709581154
+MAX: 0.09876439720392227
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008972962810124349
+MAX: 0.08725059777498245
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008972962700984985
+MAX: 0.08725060522556305
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008997136287992666
+MAX: 0.09531761705875397
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.015940447813288
+MAX: 0.12019342929124832
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008997136637238631
+MAX: 0.09531760960817337
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.008997136287992666
+MAX: 0.09531761705875397
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.0069542104693027795
+MAX: 0.09750206768512726
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 3.9549551029971486e-09
+MAX: 1.6298145055770874e-07
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.0
+MAX: 0.0
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.006954210108839713
+MAX: 0.09750206023454666
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 0.0069542104693027795
+MAX: 0.09750206768512726
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+VS
+fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+MEAN: 3.9549551029971486e-09
+MAX: 1.6298145055770874e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.021716008535198245
+MAX: 0.18914976716041565
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.025416682779905386
+MAX: 0.28667566180229187
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.019448178165475838
+MAX: 0.2170085608959198
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.015971092274412513
+MAX: 0.14773677289485931
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.019062512190430425
+MAX: 0.2150227278470993
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.01906251251057256
+MAX: 0.2150227278470993
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.013477710153286656
+MAX: 0.09752590954303741
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.013359443037188612
+MAX: 0.10606450587511063
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.020820923673454672
+MAX: 0.1759195327758789
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.011185668896359857
+MAX: 0.08299658447504044
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.011185669005499221
+MAX: 0.08299657702445984
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.007583804855433603
+MAX: 0.06966710835695267
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.022626218715837847
+MAX: 0.19962525367736816
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.006354170845346137
+MAX: 0.07165294140577316
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.006354170480335597
+MAX: 0.07165294140577316
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.017078963564320777
+MAX: 0.17997542023658752
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.003907314812143643
+MAX: 0.03855811804533005
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.003907314850948751
+MAX: 0.03855811059474945
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.016273001082784806
+MAX: 0.18031086027622223
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 0.016273001179797575
+MAX: 0.18031086027622223
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+VS
+fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+MEAN: 2.986564068968578e-09
+MAX: 1.578591763973236e-07
+
+--------------------------------------------
+class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.018001262491452508
+MAX: 0.19951790571212769
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.021892509709383983
+MAX: 0.17639261484146118
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.014862216601613909
+MAX: 0.1219898983836174
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.013752420471670726
+MAX: 0.11701200902462006
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.014593584754038602
+MAX: 0.11773060262203217
+
+COMPARE:
+fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.014593584620646046
+MAX: 0.11773057281970978
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.013504878714835892
+MAX: 0.10457651317119598
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.012173206695782332
+MAX: 0.13655540347099304
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.0178445765923243
+MAX: 0.1810113787651062
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.010664044697477948
+MAX: 0.12313984334468842
+
+COMPARE:
+fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.010664044610166457
+MAX: 0.12313984334468842
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.007798279322742019
+MAX: 0.05919962376356125
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.01943910022964701
+MAX: 0.20190991461277008
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.00729892590121987
+MAX: 0.058662012219429016
+
+COMPARE:
+fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.007298925995807319
+MAX: 0.058662042021751404
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.01272974600821423
+MAX: 0.17341716587543488
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.002605289428781058
+MAX: 0.025618957355618477
+
+COMPARE:
+fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.0026052894318127073
+MAX: 0.025618968531489372
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.012141362899759164
+MAX: 0.17281922698020935
+
+COMPARE:
+fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 0.012141362725136181
+MAX: 0.17281924188137054
+
+COMPARE:
+fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+VS
+fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+MEAN: 3.4942203326384278e-09
+MAX: 1.30385160446167e-07
+
+--------------------------------------------
+class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+--------------------------------------------
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.028100411252429087
+MAX: 0.261229932308197
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.031016949282881495
+MAX: 0.325992614030838
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.026392441669789452
+MAX: 0.270618200302124
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.019525914879826207
+MAX: 0.17185157537460327
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.02584745718437868
+MAX: 0.2716605067253113
+
+COMPARE:
+fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.025847457441462513
+MAX: 0.27166053652763367
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.013664130822386747
+MAX: 0.1036616787314415
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.014780474123350965
+MAX: 0.14195910096168518
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.02620833646506071
+MAX: 0.24804913997650146
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.012161164881642131
+MAX: 0.09730285406112671
+
+COMPARE:
+fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.012161164968953623
+MAX: 0.09730285406112671
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.007445674846773424
+MAX: 0.06063676252961159
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.027650096201493096
+MAX: 0.2711818218231201
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.005169491771084722
+MAX: 0.05433211103081703
+
+COMPARE:
+fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.005169491670433975
+MAX: 0.05433208495378494
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.023450339154805988
+MAX: 0.2561189532279968
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.005225172152374095
+MAX: 0.05291493609547615
+
+COMPARE:
+fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.0052251721620753715
+MAX: 0.05291493237018585
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.022481357931004215
+MAX: 0.2538662254810333
+
+COMPARE:
+fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 0.022481357872796554
+MAX: 0.2538662254810333
+
+COMPARE:
+fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+VS
+fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+MEAN: 2.5153556928309007e-09
+MAX: 1.0244548320770264e-07
+
+================================================
+GESPEICHERT
+================================================
+/home/b/Dokumente/fusion_weight_differences.csv
+
+TOP DIFFERENCES:
+    dataset  ... tensor_count
+127    roco  ...           96
+274     pmc  ...           96
+126    roco  ...           96
+273     pmc  ...           96
+285     pmc  ...           96
+138    roco  ...           96
+275     pmc  ...           96
+128    roco  ...           96
+134    roco  ...           96
+281     pmc  ...           96
+131    roco  ...           96
+278     pmc  ...           96
+130    roco  ...           96
+277     pmc  ...           96
+85     roco  ...           96
+232     pmc  ...           96
+141    roco  ...           96
+288     pmc  ...           96
+243     pmc  ...           96
+96     roco  ...           96
+
+[20 rows x 7 columns]
+
+Process finished with exit code 0

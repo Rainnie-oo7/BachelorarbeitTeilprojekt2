@@ -62,8 +62,8 @@ import hashlib
 from collections import defaultdict
 import numpy as np
 import pandas as pd
+from PIL import Image
 
-from safetensors.torch import load_file
 from tqdm import tqdm
 
 import torch
@@ -91,8 +91,6 @@ from peft import (
     PeftModel,
     TaskType
 )
-from PIL import Image, ImageFile
-ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 # ============================================================
 # LOKALE MODELLE
@@ -274,12 +272,7 @@ class ImageTextDataset(Dataset):
 
         r = self.records[idx]
 
-        try:
-            with Image.open(r["image"]) as img:
-                image = img.convert("RGB")
-        except Exception as e:
-            print(f"[WARN] Fehlerhaftes Bild: {r['image']} -> {e}")
-            image = Image.new("RGB", (224, 224), (0, 0, 0))
+        image = Image.open(r["image"]).convert("RGB")
         caption = r["caption"]
         label = r["label"]
 
@@ -298,25 +291,11 @@ def load_pmc_dataset(dataset_root):
 
     dataset_root = Path(dataset_root)
 
-    csv_path = dataset_root / "round_014.csv"
+    csv_path = dataset_root / "merged_pmc.csv"
 
-    image_root = dataset_root / "images_after_rounds"
+    image_root = dataset_root / "images"
 
     df = pd.read_csv(csv_path)
-
-    # ========================================================
-    # WICHTIG:
-    # SOFORT LIMITIEREN
-    # ========================================================
-
-    MAX_LOAD_SAMPLES = 7000
-
-    df = df.sample(
-        n=min(MAX_LOAD_SAMPLES, len(df)),
-        random_state=42
-    ).reset_index(drop=True)
-
-    print("PMC CSV nach Limit:", len(df))
 
     records = []
 
@@ -375,32 +354,7 @@ def load_roco_dataset(dataset_root):
     image_root = dataset_root / "images"
 
     df = pd.read_csv(merged_csv)
-    # ========================================================
-    # SOFORT LIMITIEREN
-    # ========================================================
 
-    MAX_PER_CLASS = 200
-
-    grouped = []
-
-    for label in PMC_CLASSES:
-        sub_df = df[df["final_label"] == label]
-
-        target_n = min(
-            len(sub_df),
-            MAX_PER_CLASS
-        )
-
-        sub_df = sub_df.sample(
-            n=target_n,
-            random_state=42
-        )
-
-        grouped.append(sub_df)
-
-    df = pd.concat(grouped).reset_index(drop=True)
-
-    print("ROCO balanced:", len(df))
     records = []
 
     print("Lade ROCO Dataset...")
@@ -523,14 +477,41 @@ def load_model_and_processor(model_type, model_name=None):
 
         target_modules = [
             "query",
-            "key",
             "value"
         ]
-        # for name, _ in model.named_modules():
-        #     print(name)
+
+
+    # ========================================================
+    # BIOMEDCLIP
+    # ========================================================
+
+    elif model_type == "biomedclip":
+
+        model_name = (
+            "hf-hub:microsoft/"
+            "BiomedCLIP-PubMedBERT_256-vit_base_patch16_224"
+        )
+
+        model, _, preprocess = \
+            open_clip.create_model_and_transforms(
+                model_name
+            )
+
+        tokenizer = open_clip.get_tokenizer(
+            model_name
+        )
+
+        processor = {
+            "image_processor": preprocess,
+            "tokenizer": tokenizer
+        }
+
+        target_modules = [
+            "q_proj",
+            "v_proj"
+        ]
     else:
         raise ValueError(model_type)
-
     return model, processor, target_modules
 
 # ============================================================
@@ -723,26 +704,20 @@ def get_embeddings(model, batch, model_name):
     elif model_name == "blip":
 
         outputs = model(
-
             input_ids=inputs["input_ids"],
-
             attention_mask=inputs["attention_mask"],
-
             pixel_values=inputs["pixel_values"],
-
             output_hidden_states=True,
-
             return_dict=True
-
         )
 
-        # Multimodaler CLS Token
+        image_embeds = (
+            outputs.vision_model_output.last_hidden_state[:, 0, :]
+        )
 
-        image_embeds = outputs.last_hidden_state[:, 0, :]
-
-        # Textrepräsentation
-
-        text_embeds = outputs.question_embeds[:, 0, :]
+        text_embeds = (
+            outputs.text_encoder_output.last_hidden_state[:, 0, :]
+        )
 
         return image_embeds, text_embeds
 
@@ -1011,24 +986,16 @@ def evaluate_retrieval(
 # LOAD LORA STATE
 # ============================================================
 
+def load_lora_state_dict(path):
 
-def load_lora_state_dict(lora_path):
+    path = Path(path)
 
-    bin_path = os.path.join(lora_path, "adapter_model.bin")
-    safe_path = os.path.join(lora_path, "adapter_model.safetensors")
+    weights_path = path / "adapter_model.bin"
 
-    if os.path.exists(safe_path):
-        print(f"[LOAD] safetensors: {safe_path}")
-        state = load_file(safe_path)
-
-    elif os.path.exists(bin_path):
-        print(f"[LOAD] bin: {bin_path}")
-        state = torch.load(bin_path, map_location="cpu")
-
-    else:
-        raise FileNotFoundError(
-            f"Kein adapter_model(.bin/.safetensors) gefunden in:\n{lora_path}"
-        )
+    state = torch.load(
+        weights_path,
+        map_location="cpu"
+    )
 
     return state
 
@@ -1320,15 +1287,38 @@ def stable_hash(x):
 # NESTED DOWNSAMPLING
 # ============================================================
 
-def cap_samples_per_class(
-    records,
-    max_per_class=1000
-):
+# ============================================================
+# CLASS-SPECIFIC CAPS
+# ============================================================
+
+PMC_CLASS_CAPS = {
+
+    "ct": 1000,
+
+    "us": 1000,
+
+    "mrt_body": 1000,
+
+    "mrt_hirn": 1000,
+
+    "xray": 1000,
+
+    "xray_fluoroskopie_angiographie": 1000,
+
+    "ct_kombimodalitaet_spect+ct_pet+ct": 752,
+}
+
+
+# ============================================================
+# CLASS CAPPING
+# ============================================================
+
+def cap_samples_per_class(records):
 
     grouped = defaultdict(list)
 
     # --------------------------------------------------------
-    # GROUP BY CLASS
+    # GROUP
     # --------------------------------------------------------
 
     for r in records:
@@ -1336,7 +1326,7 @@ def cap_samples_per_class(
         grouped[r["label"]].append(r)
 
     # --------------------------------------------------------
-    # DETERMINISTIC SORTING
+    # DETERMINISTIC ORDER
     # --------------------------------------------------------
 
     for label in grouped:
@@ -1358,9 +1348,14 @@ def cap_samples_per_class(
 
         original_n = len(samples)
 
+        target_cap = PMC_CLASS_CAPS.get(
+            label,
+            original_n
+        )
+
         target_n = min(
             original_n,
-            max_per_class
+            target_cap
         )
 
         selected = samples[:target_n]
@@ -1460,34 +1455,14 @@ def main():
         args.dataset,
         args.dataset_root
     )
+
     # ============================================================
-    # PROPORTIONAL / CLASS-WISE DOWNSAMPLING
+    # PROPORTIONAL NESTED DOWNSAMPLING
     # ============================================================
 
     if args.max_per_class is not None:
-        records = cap_samples_per_class(
-            records,
-            max_per_class=args.max_per_class
-        )
+        records = cap_samples_per_class(records)
 
-    # ============================================================
-    # OPTIONAL GLOBAL LIMIT
-    # ============================================================
-
-    MAX_TOTAL_SAMPLES = 7000
-
-    if len(records) > MAX_TOTAL_SAMPLES:
-        rng = np.random.RandomState(42)
-
-        indices = rng.permutation(len(records))
-
-        indices = indices[:MAX_TOTAL_SAMPLES]
-
-        records = [records[i] for i in indices]
-
-    print("\n========================================")
-    print("GLOBAL SAMPLE LIMIT")
-    print("========================================")
     print("Samples:", len(records))
 
     train_records, val_records, test_records = split_dataset(
@@ -1530,42 +1505,30 @@ def main():
             train_dataset,
             batch_size=args.batch_size,
             shuffle=True,
-            num_workers=4,
             collate_fn=build_collate_fn(
                 processor,
                 args.model
-            ),
-            pin_memory=True,
-            persistent_workers=True,
-            prefetch_factor=2
+            )
         )
 
         val_loader = DataLoader(
             val_dataset,
             batch_size=args.batch_size,
             shuffle=False,
-            num_workers=4,
             collate_fn=build_collate_fn(
                 processor,
                 args.model
-            ),
-            pin_memory=True,
-            persistent_workers=True,
-            prefetch_factor=2
+            )
         )
 
         test_loader = DataLoader(
             test_dataset,
             batch_size=args.batch_size,
             shuffle=False,
-            num_workers=4,
             collate_fn=build_collate_fn(
                 processor,
                 args.model
-            ),
-            pin_memory=True,
-            persistent_workers=True,
-            prefetch_factor=2
+            )
         )
 
         evaluate_retrieval(
@@ -1757,12 +1720,20 @@ def main():
     # --------------------------------------------------------
     # CLASS LORA
     # --------------------------------------------------------
-
+    EXCLUDED_CLASSES = {
+        "us",
+        "mrt_body",
+        "ct"
+    }
     if args.train_mode == "class_lora":
 
         grouped = split_by_class(train_records)
 
-        all_labels = list(grouped.keys())
+        all_labels = [
+            label
+            for label in grouped.keys()
+            if label not in EXCLUDED_CLASSES
+        ]
 
         for target_label in all_labels:
             print("\n================================")
@@ -1813,42 +1784,42 @@ def main():
                 train_dataset,
                 batch_size=args.batch_size,
                 shuffle=True,
-                num_workers=16,
+                num_workers=4,
                 collate_fn=build_collate_fn(
                     processor,
                     args.model
                 ),
                 pin_memory=True,
                 persistent_workers=True,
-                prefetch_factor=8
+                prefetch_factor=2
             )
 
             val_loader = DataLoader(
                 val_dataset,
                 batch_size=args.batch_size,
                 shuffle=False,
-                num_workers=16,
+                num_workers=4,
                 collate_fn=build_collate_fn(
                     processor,
                     args.model
                 ),
                 pin_memory=True,
                 persistent_workers=True,
-                prefetch_factor=8
+                prefetch_factor=2
             )
 
             test_loader = DataLoader(
                 test_dataset,
                 batch_size=args.batch_size,
                 shuffle=False,
-                num_workers=16,
+                num_workers=4,
                 collate_fn=build_collate_fn(
                     processor,
                     args.model
                 ),
                 pin_memory=True,
                 persistent_workers=True,
-                prefetch_factor=8
+                prefetch_factor=2
             )
 
             output_dir = osp.join(

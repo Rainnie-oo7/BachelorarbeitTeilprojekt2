@@ -1,0 +1,231 @@
+/home/b/anaconda3/envs/ba2roco/bin/python /home/b/PycharmProjects/ba2roco/trainLoRA/evaluate_all_fusions.py
+Error processing line 1 of /home/b/anaconda3/envs/ba2roco/lib/python3.10/site-packages/distutils-precedence.pth:
+
+  Traceback (most recent call last):
+    File "/home/b/anaconda3/envs/ba2roco/lib/python3.10/site.py", line 195, in addpackage
+      exec(line)
+    File "<string>", line 1, in <module>
+  ModuleNotFoundError: No module named '_distutils_hack'
+
+Remainder of file ignored
+
+==============================
+roco
+==============================
+100%|██████████| 26882/26882 [02:30<00:00, 178.17it/s]
+TEST SAMPLES: 676
+
+FOUND LORAS:
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_additive_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_cosine_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_hadamard_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_layerwise_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_norm_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_svd_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_weighted_class_lora_ct_class_lora_us
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_svd_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_weighted_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/6CLIP_mhirn-mbody-xray_Fusions/fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body_class_lora_xray
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_additive_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_cosine_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_hadamard_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_layerwise_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_norm_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_svd_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+/home/b/PycharmProjects/ba2roco/LoRAs/7CLIP_ct-us-xray-xrayangio-mhirn-mbody_Fusions/fusion_weighted_class_lora_ct_class_lora_us_class_lora_xray_class_lora_xray_fluoroskopie_angiographie_class_lora_mrt_hirn_class_lora_mrt_body
+COUNT: 49
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 3683.78it/s]
+100%|██████████| 22/22 [00:30<00:00,  1.39s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_additive_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 9723.74it/s]
+100%|██████████| 22/22 [00:31<00:00,  1.45s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_cosine_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8664.57it/s]
+100%|██████████| 22/22 [00:31<00:00,  1.44s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_hadamard_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8346.50it/s]
+100%|██████████| 22/22 [00:32<00:00,  1.50s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_layerwise_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7044.64it/s]
+100%|██████████| 22/22 [00:33<00:00,  1.52s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_norm_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7351.85it/s]
+100%|██████████| 22/22 [00:31<00:00,  1.45s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_svd_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8678.58it/s]
+100%|██████████| 22/22 [00:33<00:00,  1.53s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/1CLIP_xray-xrayangio_Fusions/fusion_weighted_class_lora_xray_class_lora_xray_fluoroskopie_angiographie', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 9394.32it/s]
+100%|██████████| 22/22 [00:33<00:00,  1.54s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_additive_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8118.97it/s]
+100%|██████████| 22/22 [00:32<00:00,  1.49s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_cosine_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7068.50it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.55s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_hadamard_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7898.39it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.58s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_layerwise_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6544.89it/s]
+100%|██████████| 22/22 [00:33<00:00,  1.52s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_norm_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 10899.99it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.55s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_svd_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7424.64it/s]
+100%|██████████| 22/22 [00:37<00:00,  1.70s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/2CLIP_mhirn-mbody_Fusions/fusion_weighted_class_lora_mrt_hirn_class_lora_mrt_body', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_additive_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6537.02it/s]
+100%|██████████| 22/22 [00:35<00:00,  1.61s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_additive_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_cosine_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 9093.22it/s]
+100%|██████████| 22/22 [00:35<00:00,  1.64s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_cosine_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_hadamard_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 5035.09it/s]
+100%|██████████| 22/22 [00:36<00:00,  1.68s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_hadamard_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_layerwise_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8058.96it/s]
+100%|██████████| 22/22 [00:32<00:00,  1.49s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_layerwise_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_norm_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6215.17it/s]
+100%|██████████| 22/22 [00:33<00:00,  1.52s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_norm_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_svd_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6337.56it/s]
+100%|██████████| 22/22 [00:36<00:00,  1.65s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_svd_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_weighted_class_lora_ct_class_lora_us
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7606.72it/s]
+100%|██████████| 22/22 [00:37<00:00,  1.72s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/3CLIP_ct-us_Fusions/fusion_weighted_class_lora_ct_class_lora_us', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7607.69it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.59s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_additive_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7478.52it/s]
+100%|██████████| 22/22 [00:36<00:00,  1.66s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_cosine_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6787.18it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.58s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_hadamard_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 6002.33it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.57s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_layerwise_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7084.55it/s]
+100%|██████████| 22/22 [00:36<00:00,  1.65s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_norm_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8954.78it/s]
+100%|██████████| 22/22 [00:34<00:00,  1.55s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_svd_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 9137.72it/s]
+100%|██████████| 22/22 [00:35<00:00,  1.61s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/4CLIP_ct-ctkombi_Fusions/fusion_weighted_class_lora_ct_class_lora_ct_kombimodalitaet_spect+ct_pet+ct', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 8140.23it/s]
+100%|██████████| 22/22 [00:35<00:00,  1.62s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_additive_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7358.43it/s]
+100%|██████████| 22/22 [00:35<00:00,  1.59s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_cosine_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 9730.60it/s]
+100%|██████████| 22/22 [00:36<00:00,  1.65s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_hadamard_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7038.52it/s]
+100%|██████████| 22/22 [00:37<00:00,  1.69s/it]
+{'dataset': 'roco', 'lora': '/home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_layerwise_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn', 'Recall@1': 0.0621, 'Recall@5': 0.1849, 'Recall@10': 0.2811, 'MRR': 0.1333}
+
+EVAL: /home/b/PycharmProjects/ba2roco/LoRAs/5CLIP_ct-xray-us-mhirn_Fusions/fusion_norm_class_lora_ct_class_lora_xray_class_lora_us_class_lora_mrt_hirn
+Loading weights: 100%|██████████| 398/398 [00:00<00:00, 7945.46it/s]

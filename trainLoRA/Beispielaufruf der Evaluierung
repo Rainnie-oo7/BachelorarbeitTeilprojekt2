@@ -1,0 +1,13 @@
+python trainLoRA/evaluate_all_fusions.py \
+    --roco_lora_root /home/b/PycharmProjects/ba2roco/LoRAs \
+    --pmc_lora_root /home/b/PycharmProjects/ba1pmc/LoRAs \
+    --roco_csv /home/b/Dokumente/ROCO-checkpoints_merged10/merged_roco.csv \
+    --pmc_csv /home/b/Dokumente/PMC-checkpoints_merged/merged_pmc.csv \
+    --output_csv /home/b/PycharmProjects/ba2roco/trainLoRA/fusion_eval.csv
+
+
+find /home/b/Dokumente/ROCO-fusions -name "adapter_model.bin"
+
+und:
+
+find /home/b/PycharmProjects/ba1pmc/LoRAs -name "adapter_model.bin"
